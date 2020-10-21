@@ -4,7 +4,7 @@ source elf.env
 
 echo "Download contracts..."
 # link/clone and build contracts
-if [ $1="local" ]; then
+if [ ! -z "$1" ] && [ $1="local" ]; then
     ln -sf ../../elf-contracts . 
 else
     git clone git@github.com:element-fi/elf-contracts.git 
