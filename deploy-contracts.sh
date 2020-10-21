@@ -2,6 +2,8 @@
 
 source elf.env
 
+rm -rf elf-contracts
+
 echo "Download contracts..."
 # link/clone and build contracts
 if [ ! -z "$1" ] && [ $1="local" ]; then
