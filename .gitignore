@@ -1,2 +1,5 @@
 .workingdir
+localnet/keystore/
+localnet/.sethrc
+localnet/passwd
 
