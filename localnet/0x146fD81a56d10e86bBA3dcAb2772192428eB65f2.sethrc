@@ -1,4 +1,3 @@
-# Use Infura's Kovan testnet node for all RPC calls
 export ETH_RPC_URL=http://127.0.0.1:8545
 
 # Set an address as the default sender
