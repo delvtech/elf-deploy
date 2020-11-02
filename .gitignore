@@ -1,5 +1,3 @@
-.workingdir
-localnet/keystore/
-localnet/.sethrc
-localnet/passwd
-
+localnet/deploy.sh
+localnet/out
+.DS_Store
