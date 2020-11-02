@@ -1,14 +1,4 @@
 #!/bin/bash
-
-source elf.env
-
-rm -rf $HOME/.dapp/testnet
-mkdir -p $HOME/.dapp/testnet/snapshots
-
-
-# copy localnet config to snapshots folder
-rm -rf $HOME/.dapp/testnet/snapshots/localnet
-ln -sf $LOCALNET_DIR $HOME/.dapp/testnet/snapshots/
-
+cd localnet
 # launch network
-dapp testnet --load=localnet
+ganache-cli  --account_keys_path="./keystore/keys.json" --mnemonic="foo" --gasLimit=9007199254740991 --allowUnlimitedContractSize --defaultBalanceEther=18014398509481 --accounts=1 --chainId=99 --verbose

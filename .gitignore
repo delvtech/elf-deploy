@@ -1,5 +1,4 @@
-.workingdir
-localnet/keystore/
-localnet/.sethrc
-localnet/passwd
-
+localnet/deploy.sh
+localnet/out
+localnet/elf-contracts
+.DS_Store
