@@ -2,3 +2,5 @@ localnet/deploy.sh
 localnet/out
 localnet/elf-contracts
 .DS_Store
+
+frontend/efi-frontend
