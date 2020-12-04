@@ -1,7 +1,6 @@
 #!/bin/bash
 
 echo "Copying contracts.json from elf-contracts into frontend"
-pwd
 CONTRACTS_JSON_SOURCE=./localnet/out/contracts.json
 CONTRACTS_JSON_DESTINATION=./frontend/efi-frontend/frontend/src/contracts.json
 
