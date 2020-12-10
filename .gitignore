@@ -3,4 +3,4 @@ localnet/out
 localnet/elf-contracts
 .DS_Store
 
-efi-frontend/
+frontend/
