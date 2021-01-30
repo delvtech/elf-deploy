@@ -3,4 +3,5 @@ localnet/out
 localnet/elf-contracts
 .DS_Store
 
+node_modules/
 frontend/
