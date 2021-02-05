@@ -13,15 +13,15 @@ The purpose of this repo is automate the setup of a local testnet to run the elf
 Clone the repo
 
 ```bash
-$ git clone git@github.com:element-fi/elf-deploy.git 
+$ git clone git@github.com:element-fi/elf-deploy.git
 ```
 
-### Terminal #1 
+### Terminal #1
 
 From the elf-deploy directory run:
 
 ```bash
-$ sh start-testnet.sh 
+$ sh start-testnet.sh
 
 dapp-testnet:   RPC URL: http://127.0.0.1:8545
 dapp-testnet:  TCP port: 38545
@@ -60,9 +60,9 @@ seth-send: Waiting for transaction receipt...
 seth-send: Transaction included in block 4.
 ```
 
-Once the contracts have deployed, you can interact with them from the command line.  You will need the address of the ELF contract from the output of Terminal #2
+Once the contracts have deployed, you can interact with them from the command line. You will need the address of the ELF contract from the output of Terminal #2
 
-### Terminal #3 
+### Terminal #3
 
 From the elf-deploy/.workingdir directory run:
 
