@@ -7,3 +7,5 @@ node_modules/
 cache/
 artifacts/
 frontend/
+typechain/
+addresses.json

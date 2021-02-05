@@ -2,17 +2,10 @@ import "@nomiclabs/hardhat-waffle";
 import "hardhat-typechain";
 
 import { HardhatUserConfig, task } from "hardhat/config";
-import { HardhatRuntimeEnvironment } from "hardhat/types";
-
-// hre is provided on the global scope.  We cannot import it here or in any file we import since we
-// cannot load the hre while doing configuration.
-declare global {
-  var hre: HardhatRuntimeEnvironment;
-}
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
-task("accounts", "Prints the list of accounts", async () => {
+task("accounts", "Prints the list of accounts", async (_, hre) => {
   const accounts = await hre.ethers.getSigners();
 
   for (const account of accounts) {
@@ -21,7 +14,24 @@ task("accounts", "Prints the list of accounts", async () => {
 });
 
 const config: HardhatUserConfig = {
-  solidity: "0.7.3",
+  solidity: {
+    compilers: [
+      {
+        version: "0.5.12",
+      },
+      {
+        version: "0.8.0",
+      },
+    ],
+  },
+
+  networks: {
+    hardhat: {
+      gas: 1000000000000000000,
+      blockGasLimit: 0x1fffffffffffff,
+      allowUnlimitedContractSize: true,
+    },
+  },
 };
 
 export default config;
