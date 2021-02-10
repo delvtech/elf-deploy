@@ -24,6 +24,8 @@ const MAX_ALLOWANCE = parseEther("1000000");
 async function main() {
   const elementSigner = await getSigner(SIGNER.ELEMENT);
   const elementAddress = await elementSigner.getAddress();
+  const userSigner = await getSigner(SIGNER.USER);
+  const userAddress = await userSigner.getAddress();
 
   const [wethContract, usdcContract] = await deployBaseAssets(elementSigner);
 
@@ -56,6 +58,10 @@ async function main() {
 
   const addresses = JSON.stringify(
     {
+      // signer addresses
+      elementAddress,
+      userAddress,
+
       // factories
       elfFactoryAddress: elfFactoryContract.address,
       bFactoryAddress: bFactoryContract.address,
