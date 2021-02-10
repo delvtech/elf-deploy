@@ -1,5 +1,5 @@
-import { Tranche, Elf } from "../typechain/";
 import hre from "hardhat";
+import { Elf, Tranche } from "types";
 
 export async function deployTranche(elfContract: Elf) {
   const TrancheDeployer = await hre.ethers.getContractFactory("Tranche");

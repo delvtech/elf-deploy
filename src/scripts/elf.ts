@@ -8,7 +8,7 @@ import {
   ElfFactory,
   ERC20,
   YVaultAssetProxy,
-} from "../typechain";
+} from "types";
 
 export async function deployElf<T extends ERC20>(
   elfFactoryContract: ElfFactory,

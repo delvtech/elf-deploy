@@ -1,8 +1,6 @@
-import { Signer } from "ethers";
 import { parseEther, parseUnits } from "ethers/lib/utils";
 import hre from "hardhat";
-
-import { BPool, ERC20 } from "../typechain/";
+import { BPool, ERC20 } from "types";
 
 interface PoolOptions {
   /**

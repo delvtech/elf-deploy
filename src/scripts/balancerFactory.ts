@@ -1,5 +1,5 @@
+import { BFactory } from "types";
 import hre from "hardhat";
-import { BFactory } from "../typechain/BFactory";
 
 export async function deployBalancerFactory() {
   const [signer] = await hre.ethers.getSigners();
