@@ -6,9 +6,10 @@ import fs from "fs";
 //
 // When running the script with `hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
-import hre from "hardhat";
 
-import { BFactory, ElfFactory, ERC20, USDC, WETH } from "../typechain";
+import hre from "hardhat";
+import { BFactory, ElfFactory, ERC20, USDC, WETH } from "types";
+
 import { deployBalancerFactory } from "./balancerFactory";
 import { deployBalancerPool } from "./balancerPool";
 import { deployBaseAssets } from "./baseAssets";
@@ -24,6 +25,8 @@ const MAX_ALLOWANCE = parseEther("1000000");
 async function main() {
   const elementSigner = await getSigner(SIGNER.ELEMENT);
   const elementAddress = await elementSigner.getAddress();
+  const userSigner = await getSigner(SIGNER.USER);
+  const userAddress = await userSigner.getAddress();
 
   const [wethContract, usdcContract] = await deployBaseAssets(elementSigner);
 
@@ -56,6 +59,10 @@ async function main() {
 
   const addresses = JSON.stringify(
     {
+      // signer addresses
+      elementAddress,
+      userAddress,
+
       // factories
       elfFactoryAddress: elfFactoryContract.address,
       bFactoryAddress: bFactoryContract.address,

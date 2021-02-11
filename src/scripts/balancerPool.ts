@@ -1,9 +1,7 @@
 import { Signer } from "ethers";
-import { parseUnits } from "ethers/lib/utils";
 import hre from "hardhat";
-
-import { BFactory, IERC20 } from "../typechain/";
-import { BPool__factory } from "../typechain/factories/BPool__factory";
+import { BFactory } from "types";
+import { BPool__factory } from "../types";
 
 export async function deployBalancerPool(
   bFactoryContract: BFactory,

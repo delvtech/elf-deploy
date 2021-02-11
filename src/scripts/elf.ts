@@ -1,15 +1,8 @@
 import { Signer } from "ethers";
 import hre from "hardhat";
 
-import {
-  AYVault,
-  Elf,
-  Elf__factory,
-  ElfFactory,
-  ERC20,
-  YVaultAssetProxy,
-} from "../typechain";
-
+import { AYVault, Elf, ElfFactory, ERC20, YVaultAssetProxy } from "types";
+import { Elf__factory } from "../types";
 export async function deployElf<T extends ERC20>(
   elfFactoryContract: ElfFactory,
   baseAssetContract: T,

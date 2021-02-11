@@ -14,6 +14,10 @@ task("accounts", "Prints the list of accounts", async (_, hre) => {
 });
 
 const config: HardhatUserConfig = {
+  paths: {
+    sources: "src/contracts",
+    tests: "src/tests",
+  },
   solidity: {
     compilers: [
       {
@@ -23,6 +27,10 @@ const config: HardhatUserConfig = {
         version: "0.8.0",
       },
     ],
+  },
+  typechain: {
+    outDir: "src/types",
+    target: "ethers-v5",
   },
 
   networks: {

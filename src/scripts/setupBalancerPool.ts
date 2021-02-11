@@ -1,8 +1,6 @@
-import { Signer } from "ethers";
 import { parseEther, parseUnits } from "ethers/lib/utils";
 import hre from "hardhat";
-
-import { BPool, ERC20 } from "../typechain/";
+import { BPool, ERC20 } from "types";
 
 interface PoolOptions {
   /**
@@ -59,7 +57,6 @@ export async function setupBalancerPool<B extends ERC20, Y extends ERC20>(
   };
 
   const isFinalized = await bPoolContract.isFinalized();
-  console.log("isFinalized", isFinalized);
   if (isFinalized) {
     throw new Error("Cannot setup balancer pool, contract already finalized");
   }

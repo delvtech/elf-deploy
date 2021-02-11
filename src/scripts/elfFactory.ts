@@ -1,7 +1,6 @@
 import { Contract, Signer } from "ethers";
 import hre from "hardhat";
-
-import { ElfFactory } from "../typechain";
+import { ElfFactory } from "types";
 
 export async function deployElfFactory<T extends Contract>(
   signer: Signer
