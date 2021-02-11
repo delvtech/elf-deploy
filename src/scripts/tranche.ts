@@ -8,6 +8,5 @@ export async function deployTranche(elfContract: Elf) {
     86400 // time length of tranche in seconds
   )) as Tranche;
 
-  console.log("Tranche deployed to:", trancheContract.address);
   return trancheContract;
 }
