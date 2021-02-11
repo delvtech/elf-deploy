@@ -14,6 +14,9 @@ task("accounts", "Prints the list of accounts", async (_, hre) => {
 });
 
 const config: HardhatUserConfig = {
+  paths: {
+    root: "src",
+  },
   solidity: {
     compilers: [
       {
