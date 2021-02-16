@@ -8,6 +8,7 @@ import fs from "fs";
 // Runtime Environment's members available in the global scope.
 
 import hre from "hardhat";
+import { deployUserProxy } from "./userProxy";
 import { BFactory, ElfFactory, ERC20, USDC, WETH } from "types";
 
 import { deployBalancerFactory } from "./balancerFactory";
@@ -57,11 +58,19 @@ async function main() {
     elementAddress
   );
 
+  const userProxyContract = await deployUserProxy(
+    elementSigner,
+    wethContract.address
+  );
+
   const addresses = JSON.stringify(
     {
       // signer addresses
       elementAddress,
       userAddress,
+
+      // user proxy
+      userProxyContractAddress: userProxyContract.address,
 
       // factories
       elfFactoryAddress: elfFactoryContract.address,
