@@ -33,7 +33,7 @@ $ npx hardhat node
 Deploy the contracts
 
 ```bash
-$ npx hardhat run scripts/main.ts --network localhost
+$ npx hardhat run scripts/src/main.ts --network localhost --no-compile
 ```
 
 Now all the contracts are loaded to the local testnet!
