@@ -1,9 +1,0 @@
-export ETH_RPC_URL=http://127.0.0.1:8545
-
-# Set an address as the default sender
-export ETH_FROM=0x64d7bc670699d91B20Bd6142F260D3b44061D70D
-
-export ETH_KEYSTORE=./keystore
-
-export ETH_PASSWORD=./passwd
-
