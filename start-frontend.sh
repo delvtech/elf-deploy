@@ -14,7 +14,8 @@ fi
 popd
 
 echo "Copying over contracts.json"
-sh copy-contracts-into-frontend.sh
+# TODO: fix this to copy address.json, typechain, etc
+# sh copy-contracts-into-frontend.sh
 
 echo "Installing and building frontend..."
 pushd frontend/efi-frontend/frontend
