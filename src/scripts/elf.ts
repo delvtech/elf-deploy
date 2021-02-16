@@ -1,7 +1,12 @@
 import { Signer } from "ethers";
 import hre from "hardhat";
-import { AYVault, Elf, ElfFactory, ERC20, YVaultAssetProxy } from "types";
-import { Elf__factory } from "../types";
+import { Elf, ElfFactory, ERC20 } from "types";
+
+import {
+  AYVault__factory,
+  Elf__factory,
+  YVaultAssetProxy__factory,
+} from "../types";
 
 export async function deployElf<T extends ERC20>(
   elfFactoryContract: ElfFactory,
@@ -9,19 +14,15 @@ export async function deployElf<T extends ERC20>(
   signer: Signer
 ): Promise<Elf> {
   // TODO: make the vault type configurable
-  const VaultDeployer = await hre.ethers.getContractFactory("AYVault");
-  const vaultContract = (await VaultDeployer.deploy(
-    baseAssetContract.address
-  )) as AYVault;
+  const VaultDeployer = new AYVault__factory(signer);
+  const vaultContract = await VaultDeployer.deploy(baseAssetContract.address);
 
   // TODO: make the asset proxy type configurable
-  const AssetProxyDeployer = await hre.ethers.getContractFactory(
-    "YVaultAssetProxy"
-  );
-  const assetProxyContract = (await AssetProxyDeployer.deploy(
+  const AssetProxyDeployer = new YVaultAssetProxy__factory(signer);
+  const assetProxyContract = await AssetProxyDeployer.deploy(
     vaultContract.address,
     baseAssetContract.address
-  )) as YVaultAssetProxy;
+  );
 
   await elfFactoryContract.newPool(
     baseAssetContract.address,

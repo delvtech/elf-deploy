@@ -22,7 +22,7 @@ const getLastDeployedBPool = async (
   const filter = bFactoryContract.filters.LOG_NEW_POOL(signerAddress, null);
   const results = await bFactoryContract.queryFilter(filter);
   // ugly line to grab the second argument passed to the event, which is the pool address.
-  const bPoolAddress = results[results.length - 1]?.args?.[1] as string;
+  const bPoolAddress = results[results.length - 1]?.args?.pool as string;
   const bPoolContract = BPool__factory.connect(bPoolAddress, signer);
   await bPoolContract.deployed();
 

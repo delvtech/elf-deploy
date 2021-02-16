@@ -1,13 +1,10 @@
-import { BFactory } from "types";
-import hre from "hardhat";
+import { Signer } from "ethers";
 
-export async function deployBalancerFactory() {
-  const [signer] = await hre.ethers.getSigners();
-  const BFactoryDeployer = await hre.ethers.getContractFactory(
-    "BFactory",
-    signer
-  );
-  const bFactoryContract = (await BFactoryDeployer.deploy()) as BFactory;
+import { BFactory__factory } from "../types";
+
+export async function deployBalancerFactory(signer: Signer) {
+  const bFactoryDeployer = new BFactory__factory(signer);
+  const bFactoryContract = await bFactoryDeployer.deploy();
 
   await bFactoryContract.deployed();
 
