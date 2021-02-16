@@ -1,12 +1,14 @@
-import hre from "hardhat";
+import { Signer } from "ethers";
 import { Elf, Tranche } from "types";
 
-export async function deployTranche(elfContract: Elf) {
-  const TrancheDeployer = await hre.ethers.getContractFactory("Tranche");
-  const trancheContract = (await TrancheDeployer.deploy(
+import { Tranche__factory } from "../types";
+
+export async function deployTranche(elfContract: Elf, signer: Signer) {
+  const TrancheDeployer = new Tranche__factory(signer);
+  const trancheContract = await TrancheDeployer.deploy(
     elfContract.address,
     86400 // time length of tranche in seconds
-  )) as Tranche;
+  );
 
   return trancheContract;
 }

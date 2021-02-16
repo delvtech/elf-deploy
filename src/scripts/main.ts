@@ -32,7 +32,7 @@ async function main() {
   const [wethContract, usdcContract] = await deployBaseAssets(elementSigner);
 
   const elfFactoryContract = await deployElfFactory(elementSigner);
-  const bFactoryContract = await deployBalancerFactory();
+  const bFactoryContract = await deployBalancerFactory(elementSigner);
 
   const {
     elfContract: elfWethContract,
@@ -118,7 +118,7 @@ async function setupElfTrancheAndMarket(
     baseAssetContract,
     elementSigner
   );
-  const trancheContract = await deployTranche(elfContract);
+  const trancheContract = await deployTranche(elfContract, elementSigner);
 
   const bPoolContract = await deployBalancerPool(
     bFactoryContract,
