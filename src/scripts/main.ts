@@ -126,11 +126,16 @@ async function setupElfTrancheAndMarket(
   );
 
   // Get some FYTs to seed the balancer pool with
+  // allow elf contract to take user's base asset tokens
   await baseAssetContract.approve(elfContract.address, MAX_ALLOWANCE);
+  // deposit base asset into elf
   await elfContract.deposit(elementAddress, parseEther("100"));
+  // allow tranche contract to take user's elf tokens
   await elfContract.approve(trancheContract.address, MAX_ALLOWANCE);
+  // deposit elf into tranche contract
   await trancheContract.deposit(parseEther("100"));
 
+  // allow balancer pool to take user's fyt and base tokens
   await baseAssetContract.approve(bPoolContract.address, MAX_ALLOWANCE);
   await trancheContract.approve(bPoolContract.address, MAX_ALLOWANCE);
 

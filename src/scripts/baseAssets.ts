@@ -1,6 +1,5 @@
 import { Signer } from "ethers";
 import hre from "hardhat";
-
 import { USDC, WETH } from "types";
 
 export async function deployBaseAssets(signer: Signer): Promise<[WETH, USDC]> {

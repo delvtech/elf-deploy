@@ -1,11 +1,9 @@
-localnet/deploy.sh
-localnet/out
-localnet/elf-contracts
 .DS_Store
 
 node_modules/
 cache/
 artifacts/
-frontend/
+efi-frontend/
+elf-contracts/
 src/types/
 addresses.json
