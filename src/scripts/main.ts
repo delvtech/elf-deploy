@@ -1,5 +1,10 @@
 import { Signer } from "ethers";
-import { parseEther } from "ethers/lib/utils";
+import {
+  formatEther,
+  formatUnits,
+  parseEther,
+  parseUnits,
+} from "ethers/lib/utils";
 import fs from "fs";
 // We require the Hardhat Runtime Environment explicitly here. This is optional
 // but useful for running the script in a standalone fashion through `node <script>`.
@@ -62,6 +67,19 @@ async function main() {
     elementSigner,
     wethContract.address
   );
+
+  const mintWethTx = await wethContract.mint(userAddress, parseEther("1000"));
+  await mintWethTx.wait(1);
+  const mintUsdcTx = await usdcContract.mint(
+    userAddress,
+    parseUnits("1000", 6)
+  );
+  await mintUsdcTx.wait(1);
+  const wethBalance = await wethContract.balanceOf(userAddress);
+  const usdcBalance = await usdcContract.balanceOf(userAddress);
+  console.log("user1 supplied with");
+  console.log(formatEther(wethBalance), "WETH");
+  console.log(formatUnits(usdcBalance), "USDC");
 
   const addresses = JSON.stringify(
     {
