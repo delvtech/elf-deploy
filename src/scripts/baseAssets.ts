@@ -10,7 +10,7 @@ export async function deployBaseAssets(signer: Signer): Promise<[WETH, USDC]> {
   await wethContract.deployed();
 
   const usdcDeployer = new USDC__factory(signer);
-  const usdcContract = await wethDeployer.deploy(signerAddress);
+  const usdcContract = await usdcDeployer.deploy(signerAddress);
   await usdcContract.deployed();
 
   return [wethContract, usdcContract];
