@@ -30,9 +30,9 @@ interface PoolOptions {
 
 const defaultPoolOptions: PoolOptions = {
   swapFee: "0.003",
-  baseAssetBalance: "1",
+  baseAssetBalance: "10000",
   baseAssetRatio: "1",
-  yieldAssetBalance: "1",
+  yieldAssetBalance: "10000",
   yieldAssetRatio: "1",
 };
 

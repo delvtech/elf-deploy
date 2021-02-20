@@ -35,6 +35,16 @@ async function main() {
   const userAddress = await userSigner.getAddress();
 
   const [wethContract, usdcContract] = await deployBaseAssets(elementSigner);
+  const e_mintWethTx = await wethContract.mint(
+    elementAddress,
+    parseEther("1000000")
+  );
+  await e_mintWethTx.wait(1);
+  const e_mintUsdcTx = await usdcContract.mint(
+    elementAddress,
+    parseUnits("1000000", 6)
+  );
+  await e_mintUsdcTx.wait(1);
 
   const elfFactoryContract = await deployElfFactory(elementSigner);
   const bFactoryContract = await deployBalancerFactory(elementSigner);
@@ -68,11 +78,14 @@ async function main() {
     wethContract.address
   );
 
-  const mintWethTx = await wethContract.mint(userAddress, parseEther("1000"));
+  const mintWethTx = await wethContract.mint(
+    userAddress,
+    parseEther("1000000")
+  );
   await mintWethTx.wait(1);
   const mintUsdcTx = await usdcContract.mint(
     userAddress,
-    parseUnits("1000", 6)
+    parseUnits("1000000", 6)
   );
   await mintUsdcTx.wait(1);
   const wethBalance = await wethContract.balanceOf(userAddress);
@@ -147,11 +160,11 @@ async function setupElfTrancheAndMarket(
   // allow elf contract to take user's base asset tokens
   await baseAssetContract.approve(elfContract.address, MAX_ALLOWANCE);
   // deposit base asset into elf
-  await elfContract.deposit(elementAddress, parseEther("100"));
+  await elfContract.deposit(elementAddress, parseEther("10000"));
   // allow tranche contract to take user's elf tokens
   await elfContract.approve(trancheContract.address, MAX_ALLOWANCE);
   // deposit elf into tranche contract
-  await trancheContract.deposit(parseEther("100"));
+  await trancheContract.deposit(parseEther("10000"));
 
   // allow balancer pool to take user's fyt and base tokens
   await baseAssetContract.approve(bPoolContract.address, MAX_ALLOWANCE);
