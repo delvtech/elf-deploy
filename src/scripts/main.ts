@@ -63,6 +63,20 @@ async function main() {
     elementAddress
   );
 
+  /**
+   * remove these consoles when USDC price verified in frontend
+   */
+  const wethMarketBalance = await bPoolWethFYTContract.getBalance(
+    wethContract.address
+  );
+  console.log("wethMarketBalance", formatEther(wethMarketBalance));
+
+  const fyWethMarketBalance = await bPoolWethFYTContract.getBalance(
+    trancheWethContract.address
+  );
+  console.log("fyWethMarketBalance", formatEther(fyWethMarketBalance));
+  /************************************************************** */
+
   const {
     elfContract: elfUsdcContract,
     trancheContract: trancheUsdcContract,
@@ -74,6 +88,20 @@ async function main() {
     bFactoryContract,
     elementAddress
   );
+
+  /**
+   * remove these consoles when USDC price verified in frontend
+   */
+  const usdcMarketBalance = await bPoolUsdcFYTContract.getBalance(
+    usdcContract.address
+  );
+  console.log("usdcMarketBalance", formatUnits(usdcMarketBalance, 6));
+
+  const fyUsdcMarketBalance = await bPoolUsdcFYTContract.getBalance(
+    trancheUsdcContract.address
+  );
+  console.log("fyUsdcMarketBalance", formatUnits(fyUsdcMarketBalance, 6));
+  /************************************************************** */
 
   // deploy user proxy
   const userProxyContract = await deployUserProxy(
@@ -165,11 +193,16 @@ async function setupElfTrancheAndMarket(
   // allow elf contract to take user's base asset tokens
   await baseAssetContract.approve(elfContract.address, MAX_ALLOWANCE);
   // deposit base asset into elf
-  await elfContract.deposit(elementAddress, parseEther("10000"));
+  const baseAssetDecimals = await baseAssetContract.decimals();
+  await elfContract.deposit(
+    elementAddress,
+    parseUnits("10000", baseAssetDecimals)
+  );
+  const balance = await elfContract.balanceOf(elementAddress);
   // allow tranche contract to take user's elf tokens
   await elfContract.approve(trancheContract.address, MAX_ALLOWANCE);
   // deposit elf into tranche contract
-  await trancheContract.deposit(parseEther("10000"));
+  await trancheContract.deposit(parseUnits("10000", baseAssetDecimals));
 
   // allow balancer pool to take user's fyt and base tokens
   await baseAssetContract.approve(bPoolContract.address, MAX_ALLOWANCE);
