@@ -13,9 +13,9 @@ interface PoolOptions {
    */
   baseAssetBalance: string;
   /**
-   *  1- 100 ratio for the token to be kept at. i.e. "50" for 50%.  Defaults to "50".
+   *  1 - 50 denormalized weight value for the token to be kept at.  Sum of all values must be lte to 50.
    */
-  baseAssetRatio: string;
+  baseAssetWeight: string;
 
   /**
    * Initial balance to seed pool with, in the tokens, nominal amount.  i.e. "1" for 1 ether.
@@ -23,17 +23,17 @@ interface PoolOptions {
   yieldAssetBalance: string;
 
   /**
-   *  1- 100 ratio for the pool token to be kept at. i.e. "50" for 50%.  Defaults to "50"
+   *  1 - 50 denormalized weight value for the token to be kept at.  Sum of all values must be lte to 50.
    */
-  yieldAssetRatio: string;
+  yieldAssetWeight: string;
 }
 
 const defaultPoolOptions: PoolOptions = {
   swapFee: "0.003",
   baseAssetBalance: "10000",
-  baseAssetRatio: "1",
+  baseAssetWeight: "1",
   yieldAssetBalance: "10000",
-  yieldAssetRatio: "1",
+  yieldAssetWeight: "1",
 };
 
 /**
@@ -64,14 +64,14 @@ export async function setupBalancerPool<B extends ERC20, Y extends ERC20>(
   await bPoolContract.bind(
     baseAssetContract.address,
     parseUnits(options.baseAssetBalance, baseAssetDecimals.toString()),
-    parseEther(options.baseAssetRatio)
+    parseEther(options.baseAssetWeight)
   );
 
   const yieldAssetDecimals = await yieldAssetContract.decimals();
   await bPoolContract.bind(
     yieldAssetContract.address,
     parseUnits(options.yieldAssetBalance, baseAssetDecimals.toString()),
-    parseEther(options.yieldAssetRatio)
+    parseEther(options.yieldAssetWeight)
   );
 
   // DON'T call this. Let the consumer call this so they can verify or change settings if needs be.
