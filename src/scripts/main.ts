@@ -34,6 +34,7 @@ async function main() {
   const userSigner = await getSigner(SIGNER.USER);
   const userAddress = await userSigner.getAddress();
 
+  // deploy base assets, give element address some extra tokens
   const [wethContract, usdcContract] = await deployBaseAssets(elementSigner);
   const e_mintWethTx = await wethContract.mint(
     elementAddress,
@@ -46,6 +47,7 @@ async function main() {
   );
   await e_mintUsdcTx.wait(1);
 
+  // deploy elf, tranches and markets
   const elfFactoryContract = await deployElfFactory(elementSigner);
   const bFactoryContract = await deployBalancerFactory(elementSigner);
 
@@ -61,6 +63,20 @@ async function main() {
     elementAddress
   );
 
+  /**
+   * remove these consoles when USDC price verified in frontend
+   */
+  const wethMarketBalance = await bPoolWethFYTContract.getBalance(
+    wethContract.address
+  );
+  console.log("wethMarketBalance", formatEther(wethMarketBalance));
+
+  const fyWethMarketBalance = await bPoolWethFYTContract.getBalance(
+    trancheWethContract.address
+  );
+  console.log("fyWethMarketBalance", formatEther(fyWethMarketBalance));
+  /************************************************************** */
+
   const {
     elfContract: elfUsdcContract,
     trancheContract: trancheUsdcContract,
@@ -73,11 +89,27 @@ async function main() {
     elementAddress
   );
 
+  /**
+   * remove these consoles when USDC price verified in frontend
+   */
+  const usdcMarketBalance = await bPoolUsdcFYTContract.getBalance(
+    usdcContract.address
+  );
+  console.log("usdcMarketBalance", formatUnits(usdcMarketBalance, 6));
+
+  const fyUsdcMarketBalance = await bPoolUsdcFYTContract.getBalance(
+    trancheUsdcContract.address
+  );
+  console.log("fyUsdcMarketBalance", formatUnits(fyUsdcMarketBalance, 6));
+  /************************************************************** */
+
+  // deploy user proxy
   const userProxyContract = await deployUserProxy(
     elementSigner,
     wethContract.address
   );
 
+  // supply user with WETH and USDC
   const mintWethTx = await wethContract.mint(
     userAddress,
     parseEther("1000000")
@@ -88,11 +120,12 @@ async function main() {
     parseUnits("1000000", 6)
   );
   await mintUsdcTx.wait(1);
+
   const wethBalance = await wethContract.balanceOf(userAddress);
   const usdcBalance = await usdcContract.balanceOf(userAddress);
   console.log("user1 supplied with");
   console.log(formatEther(wethBalance), "WETH");
-  console.log(formatUnits(usdcBalance), "USDC");
+  console.log(formatUnits(usdcBalance, 6), "USDC");
 
   const addresses = JSON.stringify(
     {
@@ -160,11 +193,16 @@ async function setupElfTrancheAndMarket(
   // allow elf contract to take user's base asset tokens
   await baseAssetContract.approve(elfContract.address, MAX_ALLOWANCE);
   // deposit base asset into elf
-  await elfContract.deposit(elementAddress, parseEther("10000"));
+  const baseAssetDecimals = await baseAssetContract.decimals();
+  await elfContract.deposit(
+    elementAddress,
+    parseUnits("10000", baseAssetDecimals)
+  );
+  const balance = await elfContract.balanceOf(elementAddress);
   // allow tranche contract to take user's elf tokens
   await elfContract.approve(trancheContract.address, MAX_ALLOWANCE);
   // deposit elf into tranche contract
-  await trancheContract.deposit(parseEther("10000"));
+  await trancheContract.deposit(parseUnits("10000", baseAssetDecimals));
 
   // allow balancer pool to take user's fyt and base tokens
   await baseAssetContract.approve(bPoolContract.address, MAX_ALLOWANCE);
