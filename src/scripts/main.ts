@@ -12,7 +12,6 @@ import fs from "fs";
 // When running the script with `hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
 
-import hre from "hardhat";
 import { deployUserProxy } from "./userProxy";
 import { BFactory, ElfFactory, ERC20, USDC, WETH } from "types";
 
@@ -182,7 +181,11 @@ async function setupElfTrancheAndMarket(
     baseAssetContract,
     elementSigner
   );
-  const trancheContract = await deployTranche(elfContract, elementSigner);
+  const trancheContract = await deployTranche(
+    elfContract,
+    "SIX_MONTHS",
+    elementSigner
+  );
 
   const bPoolContract = await deployBalancerPool(
     bFactoryContract,
@@ -198,7 +201,6 @@ async function setupElfTrancheAndMarket(
     elementAddress,
     parseUnits("10000", baseAssetDecimals)
   );
-  const balance = await elfContract.balanceOf(elementAddress);
   // allow tranche contract to take user's elf tokens
   await elfContract.approve(trancheContract.address, MAX_ALLOWANCE);
   // deposit elf into tranche contract
@@ -212,8 +214,15 @@ async function setupElfTrancheAndMarket(
   await setupBalancerPool(
     bPoolContract,
     (baseAssetContract as unknown) as ERC20,
-    trancheContract
+    trancheContract,
+    { yieldAssetBalance: "9500" }
   );
+
+  const spotPrice = await bPoolContract.getSpotPrice(
+    baseAssetContract.address,
+    trancheContract.address
+  );
+  console.log("spotPrice", formatUnits(spotPrice));
 
   await bPoolContract.finalize();
 
