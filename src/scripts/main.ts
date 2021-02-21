@@ -1,3 +1,4 @@
+import { YC__factory } from "./../types/factories/YC__factory";
 import { Signer } from "ethers";
 import {
   formatEther,
@@ -53,8 +54,9 @@ async function main() {
   const {
     elfContract: elfWethContract,
     trancheContract: trancheWethContract,
-    bPoolContract: bPoolWethFYTContract,
-  } = await setupElfTrancheAndMarket(
+    marketFYTContract: marketWethFYTContract,
+    marketYCContract: marketWethYCContract,
+  } = await setupElfTrancheAndMarkets(
     elfFactoryContract,
     wethContract,
     elementSigner,
@@ -65,12 +67,12 @@ async function main() {
   /**
    * remove these consoles when USDC price verified in frontend
    */
-  const wethMarketBalance = await bPoolWethFYTContract.getBalance(
+  const wethMarketBalance = await marketWethFYTContract.getBalance(
     wethContract.address
   );
   console.log("wethMarketBalance", formatEther(wethMarketBalance));
 
-  const fyWethMarketBalance = await bPoolWethFYTContract.getBalance(
+  const fyWethMarketBalance = await marketWethFYTContract.getBalance(
     trancheWethContract.address
   );
   console.log("fyWethMarketBalance", formatEther(fyWethMarketBalance));
@@ -79,8 +81,9 @@ async function main() {
   const {
     elfContract: elfUsdcContract,
     trancheContract: trancheUsdcContract,
-    bPoolContract: bPoolUsdcFYTContract,
-  } = await setupElfTrancheAndMarket(
+    marketFYTContract: marketUsdcFYTContract,
+    marketYCContract: marketUsdcYCContract,
+  } = await setupElfTrancheAndMarkets(
     elfFactoryContract,
     usdcContract,
     elementSigner,
@@ -91,12 +94,12 @@ async function main() {
   /**
    * remove these consoles when USDC price verified in frontend
    */
-  const usdcMarketBalance = await bPoolUsdcFYTContract.getBalance(
+  const usdcMarketBalance = await marketUsdcFYTContract.getBalance(
     usdcContract.address
   );
   console.log("usdcMarketBalance", formatUnits(usdcMarketBalance, 6));
 
-  const fyUsdcMarketBalance = await bPoolUsdcFYTContract.getBalance(
+  const fyUsdcMarketBalance = await marketUsdcFYTContract.getBalance(
     trancheUsdcContract.address
   );
   console.log("fyUsdcMarketBalance", formatUnits(fyUsdcMarketBalance, 6));
@@ -143,13 +146,16 @@ async function main() {
       wethAddress: wethContract.address,
       elfWethAddress: elfWethContract.address,
       trancheWethAddress: trancheWethContract.address,
-      bPoolWethAddress: bPoolWethFYTContract.address,
+      marketWethFYTAddress: marketWethFYTContract.address,
+      marketWethYCAddress: marketWethYCContract.address,
 
       //usdc addresses
       usdcAddress: usdcContract.address,
       elfUsdcAddress: elfUsdcContract.address,
       trancheUsdcAddress: trancheUsdcContract.address,
-      bPoolUsdcAddress: bPoolUsdcFYTContract.address,
+      bPoolUsdcAddress: marketUsdcFYTContract.address,
+      marketUsdcFYTAddress: marketUsdcFYTContract.address,
+      marketUsdcYCAddress: marketUsdcYCContract.address,
     },
     null,
     2
@@ -169,7 +175,7 @@ main()
 
 // TODO: add options for the tranche and balancer pools
 // TODO: add options to initialize market with YCs
-async function setupElfTrancheAndMarket(
+async function setupElfTrancheAndMarkets(
   elfFactoryContract: ElfFactory,
   baseAssetContract: WETH | USDC,
   elementSigner: Signer,
@@ -187,48 +193,89 @@ async function setupElfTrancheAndMarket(
     elementSigner
   );
 
-  const bPoolContract = await deployBalancerPool(
+  const marketFYTContract = await deployBalancerPool(
     bFactoryContract,
     elementSigner
   );
 
-  // Get some FYTs to seed the balancer pool with
   // allow elf contract to take user's base asset tokens
   await baseAssetContract.approve(elfContract.address, MAX_ALLOWANCE);
-  // deposit base asset into elf
   const baseAssetDecimals = await baseAssetContract.decimals();
+
+  // deposit base asset into elf
   await elfContract.deposit(
     elementAddress,
     parseUnits("10000", baseAssetDecimals)
   );
+
   // allow tranche contract to take user's elf tokens
   await elfContract.approve(trancheContract.address, MAX_ALLOWANCE);
+
   // deposit elf into tranche contract
   await trancheContract.deposit(parseUnits("10000", baseAssetDecimals));
 
+  /********************************************** */
+  /* Get some FYTs to seed the balancer pool with */
+  /********************************************** */
+
   // allow balancer pool to take user's fyt and base tokens
-  await baseAssetContract.approve(bPoolContract.address, MAX_ALLOWANCE);
-  await trancheContract.approve(bPoolContract.address, MAX_ALLOWANCE);
+  await baseAssetContract.approve(marketFYTContract.address, MAX_ALLOWANCE);
+  await trancheContract.approve(marketFYTContract.address, MAX_ALLOWANCE);
 
   // Seed the pool with inital liquidity
   await setupBalancerPool(
-    bPoolContract,
+    marketFYTContract,
     (baseAssetContract as unknown) as ERC20,
     trancheContract,
     { yieldAssetBalance: "9500" }
   );
 
-  const spotPrice = await bPoolContract.getSpotPrice(
+  // check spot price
+  const spotPriceFYT = await marketFYTContract.getSpotPrice(
     baseAssetContract.address,
     trancheContract.address
   );
-  console.log("spotPrice", formatUnits(spotPrice));
+  console.log("spotPrice FYT", formatUnits(spotPriceFYT));
 
-  await bPoolContract.finalize();
+  await marketFYTContract.finalize();
+
+  const marketYCContract = await deployBalancerPool(
+    bFactoryContract,
+    elementSigner
+  );
+  /********************************************** */
+
+  /********************************************** */
+  /* Get some YCs to seed the balancer pool with */
+  /********************************************** */
+  // allow balancer pool to take user's yc and base tokens
+  await baseAssetContract.approve(marketYCContract.address, MAX_ALLOWANCE);
+  const ycAddress = await trancheContract.yc();
+  const ycContract = YC__factory.connect(ycAddress, elementSigner);
+  await ycContract.approve(marketYCContract.address, MAX_ALLOWANCE);
+
+  // Seed the pool with inital liquidity
+  await setupBalancerPool(
+    marketYCContract,
+    (baseAssetContract as unknown) as ERC20,
+    ycContract,
+    { yieldAssetBalance: "5000" }
+  );
+
+  // check spot price
+  const spotPriceYC = await marketYCContract.getSpotPrice(
+    baseAssetContract.address,
+    ycContract.address
+  );
+  console.log("spotPrice YC", formatUnits(spotPriceYC));
+
+  await marketYCContract.finalize();
+  /********************************************** */
 
   return {
     elfContract,
     trancheContract,
-    bPoolContract,
+    marketFYTContract,
+    marketYCContract,
   };
 }
