@@ -11,11 +11,11 @@ contract USDC is ERC20Permit {
     using Address for address;
 
     constructor(address sender)
-      ERC20("USD Coin", "USDC")
-      ERC20Permit("USD Coin")
+        ERC20("USD Coin", "USDC")
+        ERC20Permit("USD Coin")
     {
         _setupDecimals(6);
-        mint(sender, 1000000000000000000000000000000000000000);
+        mint(sender, 1e6 * 1000000);
     }
 
     function mint(address account, uint256 amount) public {

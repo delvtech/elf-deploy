@@ -34,6 +34,7 @@ async function main() {
   const userSigner = await getSigner(SIGNER.USER);
   const userAddress = await userSigner.getAddress();
 
+  // deploy base assets, give element address some extra tokens
   const [wethContract, usdcContract] = await deployBaseAssets(elementSigner);
   const e_mintWethTx = await wethContract.mint(
     elementAddress,
@@ -46,6 +47,7 @@ async function main() {
   );
   await e_mintUsdcTx.wait(1);
 
+  // deploy elf, tranches and markets
   const elfFactoryContract = await deployElfFactory(elementSigner);
   const bFactoryContract = await deployBalancerFactory(elementSigner);
 
@@ -73,11 +75,13 @@ async function main() {
     elementAddress
   );
 
+  // deploy user proxy
   const userProxyContract = await deployUserProxy(
     elementSigner,
     wethContract.address
   );
 
+  // supply user with WETH and USDC
   const mintWethTx = await wethContract.mint(
     userAddress,
     parseEther("1000000")
@@ -88,11 +92,12 @@ async function main() {
     parseUnits("1000000", 6)
   );
   await mintUsdcTx.wait(1);
+
   const wethBalance = await wethContract.balanceOf(userAddress);
   const usdcBalance = await usdcContract.balanceOf(userAddress);
   console.log("user1 supplied with");
   console.log(formatEther(wethBalance), "WETH");
-  console.log(formatUnits(usdcBalance), "USDC");
+  console.log(formatUnits(usdcBalance, 6), "USDC");
 
   const addresses = JSON.stringify(
     {
