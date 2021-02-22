@@ -24,6 +24,9 @@ contract Tranche is ERC20Permit {
     // The timestamp when FYTs and YCs can be redeemed.
     uint256 public unlockTimestamp;
 
+    // The timestamp when FYTs and YCs can be redeemed.
+    uint256 public immutable lockDuration;
+
     /**
     @param _elfContract The Elf contract to use.
     @param _lockDuration The lock duration (seconds).
@@ -35,6 +38,7 @@ contract Tranche is ERC20Permit {
         yc = new YC(address(this));
         elf = IElf(_elfContract);
         unlockTimestamp = block.timestamp + _lockDuration;
+        lockDuration = _lockDuration;
     }
 
     /**
