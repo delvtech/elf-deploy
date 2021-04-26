@@ -1,3 +1,5 @@
+🛑 WARNING:  THIS REPO IS NO LONGER IN USE 🛑 
+
 # ELF Deploy
 
 The purpose of this repo is automate the setup of a local testnet to run the elf-contracts.
