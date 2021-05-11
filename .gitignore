@@ -6,5 +6,4 @@ artifacts
 efi-frontend
 elf-contracts
 src/types
-addresses.json
 contracts
