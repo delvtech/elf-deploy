@@ -43,12 +43,15 @@ networks.forEach(network => {
         let info = file.split('/');
         // info[1] is goerli
         if (info[1]==network){
+            let url = "https://raw.githubusercontent.com/element-fi/elf-deploy/release-management/changelog/releases/" 
             // info[2] is v1.0.0-a.1
-            releases[index].push(info[2])
+            url = url + network + "/" + info[2] + "/addresses.json"
+            releases[index].push({ title: info[2], source: url })
         }
     })
 });
 // console.log(releases);
+
 
 let json = [
     { h1: "Element Finance Changelog" },
