@@ -12,5 +12,4 @@ then
 else
     set -e
     echo "No changes since last run"
-    git status
 fi
