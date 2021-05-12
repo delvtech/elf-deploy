@@ -8,3 +8,4 @@ elf-contracts
 src/types
 addresses.json
 contracts
+typechain

@@ -1,0 +1,64 @@
+{
+    "tokens": {
+        "usdc": "",
+        "weth": ""
+    },
+    "wrappedPositions": {
+        "yearn": {
+            "usdc": "",
+            "weth": ""
+        }
+    },
+    "vaults": {
+        "yearn": {
+            "usdc": "",
+            "weth": ""
+        }
+    },
+    "trancheFactory": "",
+    "userProxy": "",
+    "balancerVault": "",
+    "weightedPoolFactory": "",
+    "convergentCurvePoolFactory": "",
+    "tranches": {
+        "yearn": {
+            "usdc": [
+                {
+                    "expiration": 0,
+                    "address": "",
+                    "ptPool": {
+                        "address": "",
+                        "timeStretch": 0
+                    },
+                    "ytPool": {
+                        "address": "0"
+                    }
+                }
+            ],
+            "weth": [
+                {
+                    "expiration": 0,
+                    "address": "",
+                    "ptPool": {
+                        "address": "",
+                        "timeStretch": 0
+                    },
+                    "ytPool": {
+                        "address": ""
+                    }
+                },
+                {
+                    "expiration": 0,
+                    "address": "",
+                    "ptPool": {
+                        "address": "",
+                        "timeStretch": 0
+                    },
+                    "ytPool": {
+                        "address": ""
+                    }
+                }
+            ]
+        }
+    }
+}

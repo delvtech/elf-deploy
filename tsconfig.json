@@ -1,23 +1,22 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
     "module": "commonjs",
-    "esModuleInterop": true,
-    "moduleResolution": "node",
     "strict": true,
-    "outDir": "./build/",
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "resolveJsonModule": true,
     "paths": {
-      "types": ["./src/types"],
-      "types/*": ["./src/types/*"],
-      "scripts": ["./src/scripts"],
-      "scripts/*": ["./src/scripts/*"],
-      "test": ["./src/test"],
-      "test/*": ["./src/test/*"],
-      "contracts": ["./src/contracts"],
-      "contracts/*": ["./src/contracts/*"],
+      "test": ["./test"],
+      "test/*": ["./test/*"],
+      "typechain": ["./typechain"],
+      "typechain/*": ["./typechain/*"],
     },
   },
-  "include": ["./src/**/*", "./hardhat.config.ts"],
-  "exclude": ["./frontend/**/*"],
-  "files": ["./src/**/*", "./hardhat.config.ts"]
+  "include": [
+    "./scripts",
+    "./test",
+    "./typechain"
+  ],
+  "files": ["./hardhat.config.ts"]
 }
