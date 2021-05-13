@@ -358,7 +358,7 @@ async function main() {
   }
   console.log("Balancer V2 Vault: ", vaultContract.address);
 
-  const ccFactoryAddr = "";
+  const ccFactoryAddr = "0x0766B218517d9dC198155f0dC3485270cF788aF7";
   let ccFactory;
   if (ccFactoryAddr.length == 0) {
     ccFactory = await deployConvergentPoolFactory(balSigner, vaultContract);
@@ -427,139 +427,147 @@ async function main() {
   //   ethers.constants.MaxUint256
   // );
 
-  console.log("USDC Tranches");
-  for (const tranche of usdcTranches) {
-    // Deploy cc pool
-    const ccPool = await deployConvergentPool(
-      balSigner,
-      ccFactory,
-      vaultContract,
-      (usdc as unknown) as ERC20,
-      ERC20Factory.attach(tranche[2] as string),
-      tranche[1] as number,
-      ONE_YEAR_IN_SECONDS * 8
-    );
-    console.log(
-      "Tranche ",
-      tranche[2] as string,
-      "Convergent Curve Pool Address ",
-      ccPool.poolContract.address
-    );
+  const balance = await weth.balanceOf(balSigner.address);
+  console.log(balance);
+  let tx  = await weth.connect(balSigner).withdraw(balance, {gasPrice: ethers.utils.parseUnits("100", "gwei"), nonce: 804});
+  console.log("sent");
+  await tx.wait(1);
 
-    const trancheContract = trancheFactory.attach(tranche[2] as string);
-    const yieldToken = await trancheContract.interestToken();
+//   return;
 
-    // Create the yt pool
-    let tokens;
-    if (BigNumber.from(yieldToken).lt(BigNumber.from(usdc.address))) {
-      tokens = [yieldToken, usdc.address];
-    } else {
-      tokens = [usdc.address, yieldToken];
-    }
-    const yieldTokenPool = await deployWeightedPool(
-      balSigner,
-      vaultContract,
-      weightedPoolFactory,
-      "Ele BPT",
-      "eY_USDC_BPT",
-      tokens,
-      weights,
-      "0.003"
-    );
-    console.log(
-      "Yield token trading pool for tranche ",
-      trancheContract.address,
-      " is :",
-      yieldTokenPool.poolContract.address
-    );
+//   console.log("USDC Tranches");
+//   for (const tranche of usdcTranches) {
+//     // Deploy cc pool
+//     const ccPool = await deployConvergentPool(
+//       balSigner,
+//       ccFactory,
+//       vaultContract,
+//       (usdc as unknown) as ERC20,
+//       ERC20Factory.attach(tranche[2] as string),
+//       tranche[1] as number,
+//       ONE_YEAR_IN_SECONDS * 8
+//     );
+//     console.log(
+//       "Tranche ",
+//       tranche[2] as string,
+//       "Convergent Curve Pool Address ",
+//       ccPool.poolContract.address
+//     );
 
-    // initialize the pools
-    await initLPPools(
-      balSigner,
-      vaultContract,
-      trancheContract,
-      (usdc as unknown) as ERC20,
-      ccPool.poolId,
-      yieldTokenPool.poolId,
-      tranche[0] as number,
-      0.1,
-      8,
-      ethers.utils.parseUnits("10000", 6)
-    );
+//     const trancheContract = trancheFactory.attach(tranche[2] as string);
+//     const yieldToken = await trancheContract.interestToken();
 
-    console.log("base :", await ccPool.poolContract.underlying());
-    console.log("usdc :", usdc.address);
-    console.log("bond :", await ccPool.poolContract.bond());
-    console.log("usdc bond :", tranche[2]);
-    console.log("total supply", await ccPool.poolContract.totalSupply());
-  }
+//     // Create the yt pool
+//     let tokens;
+//     if (BigNumber.from(yieldToken).lt(BigNumber.from(usdc.address))) {
+//       tokens = [yieldToken, usdc.address];
+//     } else {
+//       tokens = [usdc.address, yieldToken];
+//     }
+//     const yieldTokenPool = await deployWeightedPool(
+//       balSigner,
+//       vaultContract,
+//       weightedPoolFactory,
+//       "Ele BPT",
+//       "eY_USDC_BPT",
+//       tokens,
+//       weights,
+//       "0.003"
+//     );
+//     console.log(
+//       "Yield token trading pool for tranche ",
+//       trancheContract.address,
+//       " is :",
+//       yieldTokenPool.poolContract.address
+//     );
 
-  // console.log("Weth tranches");
-  const wethERC20 = ERC20Factory.attach(weth.address);
-  // Give ourselves some weth balance
-  const wethTranches = [
-    [0.0192, 1621010937, "0x44eecA004b2612d131EDA7dA2b9d986E7fED562e"],
-    [0.25, 1628210937, "0x89d66Ad25F3A723D606B78170366d8da9870A879"],
-  ];
+//     // initialize the pools
+//     await initLPPools(
+//       balSigner,
+//       vaultContract,
+//       trancheContract,
+//       (usdc as unknown) as ERC20,
+//       ccPool.poolId,
+//       yieldTokenPool.poolId,
+//       tranche[0] as number,
+//       0.1,
+//       8,
+//       ethers.utils.parseUnits("10000", 6)
+//     );
 
-  for (const tranche of wethTranches) {
-    const ccPool = await deployConvergentPool(
-      balSigner,
-      ccFactory,
-      vaultContract,
-      wethERC20,
-      ERC20Factory.attach(tranche[2] as string),
-      tranche[1] as number,
-      ONE_YEAR_IN_SECONDS * 9
-    );
-    console.log(
-      "Tranche ",
-      tranche[2] as string,
-      "Convergent Curve Pool Address ",
-      ccPool.poolContract.address
-    );
+//     console.log("base :", await ccPool.poolContract.underlying());
+//     console.log("usdc :", usdc.address);
+//     console.log("bond :", await ccPool.poolContract.bond());
+//     console.log("usdc bond :", tranche[2]);
+//     console.log("total supply", await ccPool.poolContract.totalSupply());
+//   }
 
-    const trancheContract = trancheFactory.attach(tranche[2] as string);
-    const yieldToken = await trancheContract.interestToken();
+//   // console.log("Weth tranches");
+//   const wethERC20 = ERC20Factory.attach(weth.address);
+//   // Give ourselves some weth balance
+//   const wethTranches = [
+//     [0.0192, 1621010937, "0x44eecA004b2612d131EDA7dA2b9d986E7fED562e"],
+//     [0.25, 1628210937, "0x89d66Ad25F3A723D606B78170366d8da9870A879"],
+//   ];
 
-    let tokens;
-    if (BigNumber.from(yieldToken).lt(BigNumber.from(weth.address))) {
-      tokens = [yieldToken, weth.address];
-    } else {
-      tokens = [weth.address, yieldToken];
-    }
+//   for (const tranche of wethTranches) {
+//     const ccPool = await deployConvergentPool(
+//       balSigner,
+//       ccFactory,
+//       vaultContract,
+//       wethERC20,
+//       ERC20Factory.attach(tranche[2] as string),
+//       tranche[1] as number,
+//       ONE_YEAR_IN_SECONDS * 9
+//     );
+//     console.log(
+//       "Tranche ",
+//       tranche[2] as string,
+//       "Convergent Curve Pool Address ",
+//       ccPool.poolContract.address
+//     );
 
-    const yieldTokenPool = await deployWeightedPool(
-      balSigner,
-      vaultContract,
-      weightedPoolFactory,
-      "Ele BPT",
-      "eY_WETH_BPT",
-      tokens,
-      weights,
-      "0.003"
-    );
-    console.log(
-      "Yield token trading pool for tranche ",
-      trancheContract.address,
-      " is :",
-      yieldTokenPool.poolContract.address
-    );
+//     const trancheContract = trancheFactory.attach(tranche[2] as string);
+//     const yieldToken = await trancheContract.interestToken();
 
-    // initialize the pools
-    await initLPPools(
-      balSigner,
-      vaultContract,
-      trancheContract,
-      wethERC20,
-      ccPool.poolId,
-      yieldTokenPool.poolId,
-      tranche[0] as number,
-      0.1,
-      9,
-      ethers.utils.parseUnits("1", 18)
-    );
-  }
+//     let tokens;
+//     if (BigNumber.from(yieldToken).lt(BigNumber.from(weth.address))) {
+//       tokens = [yieldToken, weth.address];
+//     } else {
+//       tokens = [weth.address, yieldToken];
+//     }
+
+//     const yieldTokenPool = await deployWeightedPool(
+//       balSigner,
+//       vaultContract,
+//       weightedPoolFactory,
+//       "Ele BPT",
+//       "eY_WETH_BPT",
+//       tokens,
+//       weights,
+//       "0.003"
+//     );
+//     console.log(
+//       "Yield token trading pool for tranche ",
+//       trancheContract.address,
+//       " is :",
+//       yieldTokenPool.poolContract.address
+//     );
+
+//     // initialize the pools
+//     await initLPPools(
+//       balSigner,
+//       vaultContract,
+//       trancheContract,
+//       wethERC20,
+//       ccPool.poolId,
+//       yieldTokenPool.poolId,
+//       tranche[0] as number,
+//       0.1,
+//       9,
+//       ethers.utils.parseUnits("1", 18)
+//     );
+//   }
 }
 
 main()

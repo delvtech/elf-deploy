@@ -17,48 +17,50 @@
     },
     "trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
     "userProxy": "0xB8d8DD04385De3cbc84132F31dD84d5DaF0675fD",
-    "balancerVault": "0xCdfcbaE31FA5328d8BE6Ff472B8b338200f0A726",
-    "weightedPoolFactory": "0x2F3072bcD7dFFeD2d4580bf5C3beaF893d0e91FE",
+    "balancerVault": "0x65748E8287Ce4B9E6D83EE853431958851550311",
+    "weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
     "convergentCurvePoolFactory": "0x0766B218517d9dC198155f0dC3485270cF788aF7",
     "tranches": {
-        "yearn": {
-            "usdc": [
-                {
-                    "expiration": 1628211057,
-                    "address": "0x80272c960b862B4d6542CDB7338Ad1f727E0D18d",
-                    "ptPool": {
-                        "address": "0x40bf8A2eCB62c6B880302b55a5552A4e315b5827",
-                        "timeStretch": 9
-                    },
-                    "ytPool": {
-                        "address": "0x252797e51F51631b6956545C45F9d3F9fFCb0940"
-                    }
-                }
-            ],
-            "weth": [
-                {
-                    "expiration": 1628210937,
-                    "address": "0x89d66Ad25F3A723D606B78170366d8da9870A879",
-                    "ptPool": {
-                        "address": "0x9eB7F54C0eCc4d0D2dfF28a1276e36d598F2B0D1",
-                        "timeStretch": 8
-                    },
-                    "ytPool": {
-                        "address": "0xD75bfF2444FF738d443066ff4688691e6852b217"
-                    }
+        "usdc": [
+            {
+                "expiration": 1628211057,
+                "address": "0x80272c960b862B4d6542CDB7338Ad1f727E0D18d",
+                "ptPool": {
+                    "address": "0x40bf8A2eCB62c6B880302b55a5552A4e315b5827",
+                    "poolId": "",
+                    "fee": "",
+                    "timeStretch": 9
                 },
-                {
-                    "expiration": 1621010937,
-                    "address": "0x44eecA004b2612d131EDA7dA2b9d986E7fED562e",
-                    "ptPool": {
-                        "address": "0x5941DB4d6C500C4FFa57c359eE0C55c6b41D0b61",
-                        "timeStretch": 8
-                    },
-                    "ytPool": {
-                        "address": "0xcF6894C48c2AF3ddD433CC1EDfEfC74e654cC9B4"
-                    }
+                "ytPool": {
+                    "address": "0x252797e51F51631b6956545C45F9d3F9fFCb0940",
+                    "poolId": "",
+                    "fee": ""
                 }
-            ]
-        }
+            }
+        ],
+        "weth": [
+            {
+                "expiration": 1628210937,
+                "address": "0x89d66Ad25F3A723D606B78170366d8da9870A879",
+                "ptPool": {
+                    "address": "0x9eB7F54C0eCc4d0D2dfF28a1276e36d598F2B0D1",
+                    "timeStretch": 8
+                },
+                "ytPool": {
+                    "address": "0xD75bfF2444FF738d443066ff4688691e6852b217"
+                }
+            },
+            {
+                "expiration": 1621010937,
+                "address": "0x44eecA004b2612d131EDA7dA2b9d986E7fED562e",
+                "ptPool": {
+                    "address": "0x5941DB4d6C500C4FFa57c359eE0C55c6b41D0b61",
+                    "timeStretch": 8
+                },
+                "ytPool": {
+                    "address": "0xcF6894C48c2AF3ddD433CC1EDfEfC74e654cC9B4"
+                }
+            }
+        ]
     }
 }

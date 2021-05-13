@@ -20,10 +20,14 @@ export async function deployConvergentPoolFactory(
     const convergentPoolFactoryDeployer = new ConvergentPoolFactory__factory(
       signer
     );
+    const gas = readline.question("gas price: ");
     console.log("Deploying convergent curve pool")
     const convergentPoolFactoryContract = await convergentPoolFactoryDeployer.deploy(
       balancerVaultContract.address,
-      signerAddress
+      signerAddress,
+      {
+        gasPrice: ethers.utils.parseUnits(gas, 'gwei')
+      }
     );
     await convergentPoolFactoryContract.deployed();
     console.log("Convergent Curve pool deployed at address: ", convergentPoolFactoryContract.address);
