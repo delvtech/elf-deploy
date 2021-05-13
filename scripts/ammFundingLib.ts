@@ -9,9 +9,11 @@ import {ERC20__factory} from "../typechain/factories/ERC20__factory";
 async function neededBonds(
     initialBase: number,
     expectedApy: number,
-    timeStretch: number
+    timeStretch: number,
+    trancheLength: number,
   ) {
-    const rho = Math.pow(1 + expectedApy, timeStretch);
+    const t = trancheLength/timeStretch;
+    const rho = Math.pow(1 + expectedApy*t, 1/t);
     return (initialBase * (rho - 1)) / (1 + rho);
   }
 
@@ -46,7 +48,7 @@ export async function initYieldPool(
     const yieldToken = ERC20Factory.attach(yieldTokenAddr);
     // Load other data
     const signerAddress = await signer.getAddress();
-    const decimals = await token.decimal();
+    const decimals = await token.decimals();
     const one = ethers.utils.parseUnits("1", decimals);
     console.log("Your token balance is :", (await token.balanceOf(signerAddress)).div(one).toNumber());
     console.log("Your yt balance is :", (await yieldToken.balanceOf(signerAddress)).div(one).toNumber());
@@ -138,7 +140,8 @@ export async function initPtPool(
     token: ERC20,
     ccPoolId: BytesLike,
     expectedAPY: number,
-    timeStretch: number
+    timeStretch: number,
+    trancheLength: number
   ) {
     console.log("Attempting to initialize lp pool");
     // Load the ptoken and cast it's address as erc20
@@ -146,7 +149,7 @@ export async function initPtPool(
     const pt = ERC20Factory.attach(tranche.address);
     // Load other data
     const signerAddress = await signer.getAddress();
-    const decimals = await token.decimal();
+    const decimals = await token.decimals();
     const one = ethers.utils.parseUnits("1", decimals);
     console.log("Your token balance is :", (await token.balanceOf(signerAddress)).div(one).toNumber());
     console.log("Your pt balance is :", (await pt.balanceOf(signerAddress)).div(one).toNumber());
@@ -166,7 +169,7 @@ export async function initPtPool(
         console.log("Deposit Completed");
     }
 
-    const depositAmountStr = readline.question("Deposit amount of yt [decimal]: ");
+    const depositAmountStr = readline.question("Deposit amount of pt [decimal]: ");
     const depositAmount = one.mul(Number.parseInt(depositAmountStr));
 
     console.log("Checking allowances");
@@ -223,10 +226,10 @@ export async function initPtPool(
   
     // Trade into the pool to get the correct apy
     const rawMintAmount = depositAmount.div(one).toNumber();
-    const tradeIn = await neededBonds(rawMintAmount, expectedAPY, timeStretch);
+    const tradeIn = await neededBonds(rawMintAmount, expectedAPY, timeStretch, trancheLength);
     gas = await gasPrice();
-    const minOut = readline.question("Min trade output [in decimals]: ");
     console.log("Trading in ", tradeIn, " bonds to set pool rate");
+    const minOut = readline.question("Min trade output [in decimals]: ");
     console.log("Trade into the cc pool to set rate");
     tx = await vault.connect(signer).swap(
       {

@@ -36,14 +36,13 @@ async function fundWithAddresses(addresses: any) {
         }
     
         for (let storedTranche of addresses.tranches[name]) {
-            console.log(storedTranche);
             if (storedTranche.address == trancheAddress) {
                 ind = i;
             }
             i ++;
         }
 
-        ptData = addresses.tranches[name][ind].ptData;
+        ptData = addresses.tranches[name][ind].ptPool;
         assert(ptData != undefined);
     } catch {
         console.log("un inited pools or other formatting problem");
@@ -54,7 +53,8 @@ async function fundWithAddresses(addresses: any) {
     const vault = balancerFactory.attach(addresses.balancerVault);
 
     const expectedApy = Number.parseFloat(readline.question("Expected APY: "));
-    
+    const trancheLength = Number.parseFloat(readline.question("Tranche Length [fraction of year]: "));
+
     await initPtPool(
         signer,
         vault,
@@ -62,13 +62,13 @@ async function fundWithAddresses(addresses: any) {
         underlyingErc,
         ptData.poolId,
         expectedApy,
-        ptData.timeStretch
+        ptData.timeStretch,
+        trancheLength
     )
 }
 
 async function main() {
     let network = readline.question("network: ");
-    console.log(network)
     switch(network) {
         case "goerli" : {
             

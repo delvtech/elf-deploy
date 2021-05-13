@@ -56,6 +56,8 @@ const defaultOptions = {
     swapFee: ".05",
 };
 
+const ONE_YEAR_IN_SECONDS = 31556952;
+
 export async function deployConvergentPool(
     signer: Signer,
     convergentPoolFactory: ConvergentPoolFactory,
@@ -72,11 +74,11 @@ export async function deployConvergentPool(
     const baseAssetSymbol = await baseAssetContract.symbol();
   
     const gas = readline.question("gasPrice: ");
-    const createTx = await convergentPoolFactory.create(
+    const createTx = await convergentPoolFactory.connect(signer).create(
       baseAssetContract.address,
       yieldAssetContract.address,
       expiration,
-      tParam,
+      tParam*ONE_YEAR_IN_SECONDS,
       ethers.utils.parseEther(swapFee),
       `Element ${baseAssetSymbol} - fy${baseAssetSymbol}`,
       `${baseAssetSymbol}-fy${baseAssetSymbol}`,
@@ -138,7 +140,6 @@ async function deployWithAddresses(addresses: any) {
 
     // Load the yt
     const ytAddress = await tranche.interestToken();
-    console.log(ytAddress);
     const ytFactory = new InterestToken__factory(signer);
     const yt = ytFactory.attach(ytAddress);
 
@@ -201,6 +202,8 @@ async function deployWithAddresses(addresses: any) {
 
         const swapFeeString = readline.question("swap fee [decimal form] : ");
         const t = Number.parseInt(readline.question("t stretch in years :"));
+        console.log(swapFeeString);
+        console.log(t);
 
         console.log("Deploying new pool");
         const deployment = await deployConvergentPool(
@@ -235,7 +238,6 @@ async function deployWithAddresses(addresses: any) {
     }
 
     for (let storedTranche of addresses.tranches[name]) {
-        console.log(storedTranche);
         if (storedTranche.address == trancheAddress) {
             ind = i;
         }
@@ -272,13 +274,13 @@ async function main() {
         case "goerli" : {
             const result = await deployWithAddresses(goerli);
             console.log("writing changed address to output file 'addresses/goerli.json'")
-            fs.writeFile('addresses/goerli.json', JSON.stringify(result), 'utf8', () => {});
+            fs.writeFileSync('addresses/goerli.json', JSON.stringify(result, null, '\t'), 'utf8');
             break;
         };
         case "mainnet" : {
-            await deployWithAddresses(mainnet);
+            const resuslt = await deployWithAddresses(mainnet);
             console.log("writing changed address to output file 'addresses/mainnet.json'")
-            fs.writeFile('addresses/mainnet.json', JSON.stringify(mainnet), 'utf8', () => {});
+            fs.writeFileSync('addresses/mainnet.json', JSON.stringify(mainnet, null, '\t'), 'utf8');
             break;
         };
         default: {

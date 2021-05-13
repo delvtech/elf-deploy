@@ -55,7 +55,6 @@ async function deployWithAddresses(addresses: any) {
 
     const feeString = readline.question("gov fee percent [raw decimal form]: ");
     const feeBN = ethers.utils.parseEther(feeString);
-    console.log(feeBN);
     
     let newContract = await deployConvergentPoolFactory(signer, vault, feeBN);
     addresses.convergentCurvePoolFactory = newContract.address;
@@ -64,18 +63,17 @@ async function deployWithAddresses(addresses: any) {
 
 async function main() {
     let network = readline.question("network: ");
-    console.log(network)
     switch(network) {
         case "goerli" : {
             const result = await deployWithAddresses(goerli);
             console.log("writing changed address to output file 'addresses/goerli.json'")
-            fs.writeFile('addresses/goerli.json', JSON.stringify(result), 'utf8', () => {});
+            fs.writeFileSync('addresses/goerli.json', JSON.stringify(result, null, '\t'), 'utf8');
             break;
         };
         case "mainnet" : {
-            await deployWithAddresses(mainnet);
+            const result = await deployWithAddresses(mainnet);
             console.log("writing changed address to output file 'addresses/mainnet.json'")
-            fs.writeFile('addresses/mainnet.json', JSON.stringify(mainnet), 'utf8', () => {});
+            fs.writeFileSync('addresses/mainnet.json', JSON.stringify(result, null, '\t'), 'utf8');
             break;
         };
         default: {

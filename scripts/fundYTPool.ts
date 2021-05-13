@@ -36,14 +36,13 @@ async function fundWithAddresses(addresses: any) {
         }
     
         for (let storedTranche of addresses.tranches[name]) {
-            console.log(storedTranche);
             if (storedTranche.address == trancheAddress) {
                 ind = i;
             }
             i ++;
         }
 
-        ytData = addresses.tranches[name][ind].ytData;
+        ytData = addresses.tranches[name][ind].ytPool;
         assert(ytData != undefined);
     } catch {
         console.log("un inited pools or other formatting problem");
@@ -69,7 +68,6 @@ async function fundWithAddresses(addresses: any) {
 
 async function main() {
     let network = readline.question("network: ");
-    console.log(network)
     switch(network) {
         case "goerli" : {
             
