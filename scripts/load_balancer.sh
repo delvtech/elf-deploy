@@ -12,10 +12,10 @@ else
 fi
 
 # blow away old-contracts
-rm -rf contracts/balancer-v2-core
+rm -rf contracts/balancer-core-v2
 
 echo "Copying latest contracts..."
-mv balancer-core-v2/contracts contracts/balancer-v2-core
+mv balancer-core-v2/contracts contracts/balancer-core-v2
 
 echo "Removing unused balancer code"
 rm -rf balancer-core-v2

@@ -1,0 +1,66 @@
+{
+	"tokens": {
+		"usdc": "0x78dEca24CBa286C0f8d56370f5406B48cFCE2f86",
+		"weth": "0x9A1000D492d40bfccbc03f413A48F5B6516Ec0Fd"
+	},
+	"wrappedPositions": {
+		"yearn": {
+			"usdc": "0x814C447a9F58A2b823504Fe2775bA48c843925B6",
+			"weth": "0x6F643Ba6894D8C50c476A3539e1D1690B2194018"
+		}
+	},
+	"vaults": {
+		"yearn": {
+			"usdc": "0x23c3C6C06d7684207fB09076914A15B16aba02c5",
+			"weth": "0xdD82595F5eB0e7477D7432B24E44be7c0252bbf1"
+		}
+	},
+	"trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
+	"userProxy": "0xB8d8DD04385De3cbc84132F31dD84d5DaF0675fD",
+	"balancerVault": "0x65748E8287Ce4B9E6D83EE853431958851550311",
+	"weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
+	"convergentCurvePoolFactory": "0x8Daa3451751c3C0d6d36568dD98Fdb48F003ac30",
+	"tranches": {
+		"usdc": [
+			{
+				"expiration": 1628211057,
+				"address": "0x80272c960b862B4d6542CDB7338Ad1f727E0D18d",
+				"ptPool": {
+					"address": "0x93a41bc4b2FeECc11BcaDBb7E14DB0E37907e1e1",
+					"poolId": "0x93a41bc4b2feecc11bcadbb7e14db0e37907e1e100020000000000000000006c",
+					"fee": "0.1",
+					"timeStretch": 20
+				},
+				"ytPool": {
+					"address": "0x5dBBf9B7B5c63da8B925c185C7FeB99fC7912D66",
+					"poolId": "0x5dbbf9b7b5c63da8b925c185c7feb99fc7912d6600020000000000000000006b",
+					"fee": "0.1"
+				}
+			}
+		],
+		"weth": [
+			{
+				"expiration": 1628210937,
+				"address": "0x89d66Ad25F3A723D606B78170366d8da9870A879",
+				"ptPool": {
+					"address": "0x9eB7F54C0eCc4d0D2dfF28a1276e36d598F2B0D1",
+					"timeStretch": 8
+				},
+				"ytPool": {
+					"address": "0xD75bfF2444FF738d443066ff4688691e6852b217"
+				}
+			},
+			{
+				"expiration": 1621010937,
+				"address": "0x44eecA004b2612d131EDA7dA2b9d986E7fED562e",
+				"ptPool": {
+					"address": "0x5941DB4d6C500C4FFa57c359eE0C55c6b41D0b61",
+					"timeStretch": 8
+				},
+				"ytPool": {
+					"address": "0xcF6894C48c2AF3ddD433CC1EDfEfC74e654cC9B4"
+				}
+			}
+		]
+	}
+}
