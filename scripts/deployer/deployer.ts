@@ -7,6 +7,7 @@ import { InterestTokenFactory__factory } from "../../typechain/factories/Interes
 import { YVaultAssetProxy__factory } from "../../typechain/factories/YVaultAssetProxy__factory";
 import { DateString__factory } from "../../typechain/factories/DateString__factory";
 import { UserProxy__factory } from "../../typechain/factories/UserProxy__factory";
+import * as readline from "readline-sync";
 
 const provider = ethers.providers.getDefaultProvider("goerli")
 
@@ -44,10 +45,14 @@ interface PostExecutionTransactionReceipt extends providers.TransactionReceipt {
 export async function deployUserProxy(deploymentData: UserProxyData) {
     const [signer] = await ethers.getSigners()
     const proxyFactory = new UserProxy__factory(signer);
+    const gas = readline.question("user proxy gasPrice: ");
     const proxy = await proxyFactory.deploy(
         deploymentData.weth,
         deploymentData.trancheFactory,
-        deploymentData.trancheBytecodeHash
+        deploymentData.trancheBytecodeHash,
+        {
+            gasPrice: ethers.utils.parseUnits(gas, 'gwei')
+        }
     );
     console.log("User Proxy", proxy.address);
     return proxy.address
@@ -56,18 +61,30 @@ export async function deployUserProxy(deploymentData: UserProxyData) {
 async function deployFactories() {
     const [signer] = await ethers.getSigners()
     const interestTokenFactoryFactory = new InterestTokenFactory__factory(signer);
-    const interestTokenFactory = await interestTokenFactoryFactory.deploy();
+    const ytFactoryGas = readline.question("yt factory gasPrice: ");
+    const interestTokenFactory = await interestTokenFactoryFactory.deploy(
+        {
+            gasPrice: ethers.utils.parseUnits(ytFactoryGas, 'gwei')
+        });
     console.log("Interest Token Factory", interestTokenFactory.address);
 
     //get datestring lib
     const trancheFactoryFactory = new TrancheFactory__factory(signer);
     const dateLibFactory = new DateString__factory(signer);
-    const dateLib = await dateLibFactory.deploy();
+    const dateLibGas = readline.question("datelib gasPrice: ");
+    const dateLib = await dateLibFactory.deploy(
+        {
+            gasPrice: ethers.utils.parseUnits(dateLibGas, 'gwei')
+        });
 
     // Deploy the tranche factory
+    const trancheFactoryGas = readline.question("tranche factory gasPrice: ");
     const trancheFactory = await trancheFactoryFactory.deploy(
         interestTokenFactory.address,
-        dateLib.address
+        dateLib.address,
+        {
+            gasPrice: ethers.utils.parseUnits(trancheFactoryGas, 'gwei')
+        }
     );
     console.log("Tranche Factory", trancheFactory.address);
     return trancheFactory.address
@@ -78,11 +95,15 @@ export async function deployWrappedPosition(deploymentData: WrappedPositionData)
 
     const yAssetWPFactory = new YVaultAssetProxy__factory(signer);
 
+    const gas = readline.question("wrapped position gasPrice: ");
     const wrappedPosition = await yAssetWPFactory.deploy(
         deploymentData.vault,
         deploymentData.underlying,
         deploymentData.name,
-        deploymentData.symbol
+        deploymentData.symbol,
+        {
+            gasPrice: ethers.utils.parseUnits(gas, 'gwei')
+        }
     );
     console.log("Wrapped Position", wrappedPosition.address);
     return wrappedPosition.address
@@ -116,9 +137,14 @@ export async function deployTranche(deploymentData: TrancheData) {
     for (let i = 0; i < deploymentData.expirations.length; i++) {
         let expiration = deploymentData.expirations[i]
         // Deploy the tranche for this timestamp
+        const gas = readline.question("tranche gasPrice: ");
 
         const txReceipt = (await (
-            await trancheFactory.deployTranche(expiration + timestamp, deploymentData.wrappedPosition)
+            await trancheFactory.deployTranche(expiration + timestamp, deploymentData.wrappedPosition,
+                {
+                    gasPrice: ethers.utils.parseUnits(gas, 'gwei')
+                }
+            )
         ).wait()) as PostExecutionTransactionReceipt;
 
         const returned = txReceipt.events.filter(
