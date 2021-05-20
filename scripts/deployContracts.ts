@@ -1,0 +1,63 @@
+import {
+    UserProxyData,
+    WrappedPositionData,
+    TrancheData,
+    deployTranche,
+    deployUserProxy,
+    deployWrappedPosition
+  } from "./deployer/deployer";
+  import { ethers } from "hardhat";
+  import * as readline from "readline-sync";
+  import fs from "fs";
+  import data from "../artifacts/contracts/Tranche.sol/Tranche.json";
+
+  import goerli from "../addresses/goerli.json";
+  import mainnet from "../addresses/mainnet.json";
+
+  // An example of deplying a contract using the deployer. This deploys the user Proxy.
+  async function deployWithAddresses(addresses: any) {
+      const weth = addresses.tokens.weth
+      const trancheFactory = addresses.trancheFactory
+      const trancheBytecodeHash = ethers.utils.solidityKeccak256(
+        ["bytes"],
+        [data.bytecode]
+    );
+
+    const userProxyDeployData: UserProxyData = {
+        weth,
+        trancheFactory,
+        trancheBytecodeHash
+    }
+    const proxyAddress = await deployUserProxy(userProxyDeployData);
+    addresses.userProxy = proxyAddress
+    console.log(proxyAddress)
+    return addresses
+}
+
+
+async function main() {
+    let network = readline.question("network: ");
+    switch(network) {
+        case "goerli" : {
+            const result = await deployWithAddresses(goerli);
+            console.log("writing changed address to output file 'addresses/goerli.json'")
+            fs.writeFileSync('addresses/goerli.json', JSON.stringify(result, null, '\t'), 'utf8');
+            break;
+        };
+        case "mainnet" : {
+            const result = await deployWithAddresses(mainnet);
+            console.log("writing changed address to output file 'addresses/mainnet.json'")
+            fs.writeFileSync('addresses/mainnet.json', JSON.stringify(result, null, '\t'), 'utf8');
+            break;
+        };
+        default: {
+            console.log("Unsupported network");
+        }
+    }
+}
+main()
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.error(error);
+        process.exit(1);
+    });
