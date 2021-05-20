@@ -23,18 +23,18 @@ async function deployWithAddresses(addresses: any) {
         return;
     }
     
-    const expiration = Number.parseInt(readline.question("expiration unix seconds: "));
+    const duration = Number.parseInt(readline.question("duration unix seconds: "));
 
     const data = await deployTranche( {
         wrappedPosition: addresses.wrappedPositions[wpType][assetSymbol],
-        expirations: [expiration], 
+        expirations: [duration], 
         trancheFactory: addresses.trancheFactory, 
     });
 
     addresses.tranches[assetSymbol].push(
         {
-            "expiration": expiration,
-            "address": data[0]
+            "expiration": data[0].trancheExpirations[0],
+            "address": data[0].trancheAddresses[0]
         }
     );
 

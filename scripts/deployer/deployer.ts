@@ -166,6 +166,6 @@ export async function deployTranche(deploymentData: TrancheData) {
         trancheExpirations: trancheExpirations
     });
 
-    return trancheAddresses
+    return deploymentResult.elfDeployments
 }
 
