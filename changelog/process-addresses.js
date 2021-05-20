@@ -11,12 +11,11 @@ let addresses = JSON.parse(rawdata);
 
 let safeList = [];
 
-for(let i=0;i<addresses["tranches"]["usdc"].length;i++){
-    safeList.push(addresses["tranches"]["usdc"][i]["address"])
-}
-
-for(let i=0;i<addresses["tranches"]["weth"].length;i++){
-    safeList.push(addresses["tranches"]["weth"][i]["address"])
+for (const trancheListKey in addresses["tranches"]) {
+    const trancheList = addresses["tranches"][trancheListKey];
+    for (const tranche of trancheList) {
+        safeList.push(tranche.address)
+    }
 }
 
 let chainid = 5;  // TODO
@@ -33,8 +32,9 @@ let frontend = {
     },
     chainId: chainid,
     safelist: safeList
-  }
+};
  
+
 let frontendJson = JSON.stringify(frontend, null, 4);
-console.log(frontendJson)
+console.log(frontendJson);
 fs.writeFileSync('../addresses/frontend.json', frontendJson);
