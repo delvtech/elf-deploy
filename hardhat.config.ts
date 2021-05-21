@@ -5,6 +5,10 @@ import "solidity-coverage";
 
 import { HardhatUserConfig } from "hardhat/config";
 
+const ALCHEMY_KEY = process.env.ALCHEMY_KEY || '';
+const DEPLOYER_PRIVATE_KEY =
+  process.env.DEPLOYER_PRIVATE_KEY || '0000000000000000000000000000000000000000000000000000000000000000';
+
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
   solidity: {
@@ -63,7 +67,16 @@ const config: HardhatUserConfig = {
       },
     },
     goerli: {
-      url: `https://eth-goerli.alchemyapi.io/v2/QVlgzuZvDZ0tDtlN_AldyN0Y9ZgeTvDV`
+      url: `https://eth-goerli.alchemyapi.io/v2/${ALCHEMY_KEY}`,
+      accounts: [
+        `0x${DEPLOYER_PRIVATE_KEY}`
+      ],
+    },
+    mainnet: {
+      url: `https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_KEY}`,
+      accounts: [
+        `0x${DEPLOYER_PRIVATE_KEY}`
+      ],
     },
   },
 };
