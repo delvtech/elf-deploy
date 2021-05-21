@@ -145,7 +145,8 @@ export async function deployTranche(deploymentData: TrancheData) {
                     gasPrice: ethers.utils.parseUnits(gas, 'gwei')
                 }
             )
-        ).wait()) as PostExecutionTransactionReceipt;
+        ).wait(1)) as PostExecutionTransactionReceipt;
+
 
         const returned = txReceipt.events.filter(
             (event) => event.event == "TrancheCreated"
@@ -165,7 +166,6 @@ export async function deployTranche(deploymentData: TrancheData) {
         trancheExpirations: trancheExpirations
     });
 
-    console.log(JSON.stringify(deploymentResult, (k, v) => v, 4))
-    return trancheAddresses
+    return deploymentResult.elfDeployments
 }
 

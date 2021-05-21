@@ -13,7 +13,7 @@ async function neededBonds(
     trancheLength: number,
   ) {
     const t = trancheLength/timeStretch;
-    const rho = Math.pow(1 + expectedApy*t, 1/t);
+    const rho = Math.pow(1 - expectedApy*trancheLength, 1/-t);
     return (initialBase * (rho - 1)) / (1 + rho);
   }
 
@@ -169,8 +169,8 @@ export async function initPtPool(
         console.log("Deposit Completed");
     }
 
-    const depositAmountStr = readline.question("Deposit amount of pt [decimal]: ");
-    const depositAmount = one.mul(Number.parseInt(depositAmountStr));
+    let depositAmountStr = readline.question("Deposit amount of pt [decimal]: ");
+    let depositAmount = one.mul(Number.parseInt(depositAmountStr));
 
     console.log("Checking allowances");
 
@@ -204,25 +204,33 @@ export async function initPtPool(
       ptAmounts = [depositAmount, 0];
     }
   
-    // Make the initalizing deposit into the ccPool
-    console.log("Initial deposit into cc pool");
-    let gas = await gasPrice()
-    // The manual gas limit here is because the estimator wasn't working well
-    // real gas usage should be ~180k
-    let tx = await vault.connect(signer).joinPool(
-      ccPoolId,
-      signerAddress,
-      signerAddress,
-      {
-        assets: ptAssets,
-        maxAmountsIn: ptAmounts,
-        userData: ethers.utils.defaultAbiCoder.encode(["uint256[]"], [ptAmounts]),
-        fromInternalBalance: false,
-      },
-      { gasLimit: 250000, gasPrice: gas}
-    );
-    await tx.wait(1);
-    console.log("Initial deposit finished");
+    let gas;
+    let tx;
+    if (depositAmount.gt(0)) {
+      // Make the initalizing deposit into the ccPool
+      console.log("Initial deposit into cc pool");
+      gas = await gasPrice()
+      // The manual gas limit here is because the estimator wasn't working well
+      // real gas usage should be ~180k
+      tx = await vault.connect(signer).joinPool(
+        ccPoolId,
+        signerAddress,
+        signerAddress,
+        {
+          assets: ptAssets,
+          maxAmountsIn: ptAmounts,
+          userData: ethers.utils.defaultAbiCoder.encode(["uint256[]"], [ptAmounts]),
+          fromInternalBalance: false,
+        },
+        { gasLimit: 250000, gasPrice: gas}
+      );
+      await tx.wait(1);
+      console.log("Initial deposit finished");
+    } else {
+      depositAmountStr = readline.question("Deposit amount of pt [decimal]: ");
+      depositAmount = one.mul(Number.parseInt(depositAmountStr));
+    }
+
   
     // Trade into the pool to get the correct apy
     const rawMintAmount = depositAmount.div(one).toNumber();
