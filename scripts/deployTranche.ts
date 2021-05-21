@@ -42,15 +42,16 @@ async function deployWithAddresses(addresses: any) {
 }
 
 async function main() {
-    let network = readline.question("network: ");
-    switch(network) {
-        case "goerli" : {
+    const [signer] = await ethers.getSigners();
+    const network = await signer.provider?.getNetwork();
+    switch(network?.chainId) {
+        case 5 : {
             const result = await deployWithAddresses(goerli);
             console.log("writing changed address to output file 'addresses/goerli.json'")
             fs.writeFileSync('addresses/goerli.json', JSON.stringify(result, null, '\t'), 'utf8');
             break;
         };
-        case "mainnet" : {
+        case 1 : {
             const result = await deployWithAddresses(mainnet);
             console.log("writing changed address to output file 'addresses/mainnet.json'")
             fs.writeFileSync('addresses/mainnet.json', JSON.stringify(result, null, '\t'), 'utf8');

@@ -67,14 +67,17 @@ async function fundWithAddresses(addresses: any) {
 }
 
 async function main() {
-    let network = readline.question("network: ");
-    switch(network) {
-        case "goerli" : {
+    const [signer] = await ethers.getSigners();
+    const network = await signer.provider?.getNetwork();
+    console.log(network?.chainId)
+    switch(network?.chainId) {
+        // Goerli
+        case 5 : {
             
             await fundWithAddresses(goerli);
             break;
         };
-        case "mainnet" : {
+        case 1 : {
             await fundWithAddresses(mainnet);
             break;
         };
