@@ -1,7 +1,11 @@
 {
   "scripts": {
     "load-contracts": "sh load_scripts/load_element.sh && sh load_scripts/load_balancer.sh",
-    "build": "npx hardhat compile && rm ./typechain/index.ts"
+    "build": "npx hardhat compile && rm ./typechain/index.ts",
+    "deployPool": "npx hardhat run scripts/deployAMMPools.ts --no-compile",
+    "deployTranche": "npx hardhat run scripts/deployTranche.ts --no-compile",
+    "fundPtPool": "npx hardhat run scripts/fundPTPool.ts --no-compile",
+    "fundYtPool": "npx hardhat run scripts/fundYTPool.ts --no-compile"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.1",
