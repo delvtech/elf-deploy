@@ -46,4 +46,10 @@ npm run fundPtPool -- --network mainnet
 npm run fundYtPool -- --network mainnet
 ```
 
+To generate json file for the frontend to process:
+
+```bash
+npm run processAddresses -- --network mainnet
+```
+
 To run any of these commands on the goerli testnet replace `--network mainnet` with `--network goerli`
