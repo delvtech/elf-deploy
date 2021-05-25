@@ -69,7 +69,6 @@ async function fundWithAddresses(addresses: any) {
 async function main() {
     const [signer] = await ethers.getSigners();
     const network = await signer.provider?.getNetwork();
-    console.log(network?.chainId)
     switch(network?.chainId) {
         // Goerli
         case 5 : {
