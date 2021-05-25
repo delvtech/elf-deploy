@@ -71,7 +71,8 @@ export async function deployConvergentPool(
     }
   ) {
     const { swapFee } = { ...defaultOptions, ...options };
-    const baseAssetSymbol = await baseAssetContract.symbol();
+    const assetSymbol = await yieldAssetContract.symbol();
+    const assetName = await yieldAssetContract.name();
   
     const gas = readline.question("gasPrice: ");
     const createTx = await convergentPoolFactory.connect(signer).create(
@@ -80,8 +81,8 @@ export async function deployConvergentPool(
       expiration,
       tParam*ONE_YEAR_IN_SECONDS,
       ethers.utils.parseEther(swapFee),
-      `Element ${baseAssetSymbol} - fy${baseAssetSymbol}`,
-      `${baseAssetSymbol}-fy${baseAssetSymbol}`,
+      `LP ${assetName}`,
+      `LP:${assetSymbol}`,
       {
         gasPrice: ethers.utils.parseUnits(gas, 'gwei')
       }
@@ -160,8 +161,10 @@ async function deployWithAddresses(addresses: any) {
             swapFee = "0.003";
         }
 
-        const lpTokenName = readline.question("lp token name: ");
-        const lpTokenSymbol = readline.question("lp token symbol: ");
+        const ytName = await yt.name();
+        const lpTokenName = `LP ${ytName}`;
+        const ytSymbol = await yt.name();
+        const lpTokenSymbol = `LP:${ytSymbol}`;
 
         let tokens;
         let weights;
