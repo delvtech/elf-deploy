@@ -16,6 +16,8 @@ async function main() {
         const trancheList = addresses["tranches"][trancheListKey];
         for (const tranche of trancheList) {
             safeList.push(tranche.address)
+            safeList.push(tranche.ptPool.address)
+            safeList.push(tranche.ytPool.address)
         }
     }
 

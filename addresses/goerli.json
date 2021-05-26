@@ -29,7 +29,7 @@
 					"address": "0x93a41bc4b2FeECc11BcaDBb7E14DB0E37907e1e1",
 					"poolId": "0x93a41bc4b2feecc11bcadbb7e14db0e37907e1e100020000000000000000006c",
 					"fee": "0.1",
-					"timeStretch": 20
+					"timeStretch": 9
 				},
 				"ytPool": {
 					"address": "0x5dBBf9B7B5c63da8B925c185C7FeB99fC7912D66",
