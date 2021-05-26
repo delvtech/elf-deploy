@@ -19,7 +19,7 @@
 	"userProxy": "0xB8d8DD04385De3cbc84132F31dD84d5DaF0675fD",
 	"balancerVault": "0x65748E8287Ce4B9E6D83EE853431958851550311",
 	"weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
-	"convergentCurvePoolFactory": "0x8Daa3451751c3C0d6d36568dD98Fdb48F003ac30",
+	"convergentCurvePoolFactory": "0x0766B218517d9dC198155f0dC3485270cF788aF7",
 	"tranches": {
 		"usdc": [
 			{
@@ -41,8 +41,8 @@
 				"expiration": 1622661612,
 				"address": "0x7D64aD2b83a62C0d02514a43E5B4582C671E5F72",
 				"ptPool": {
-					"address": "0xeF7655d546F58E672D3399F47DDEadb7DA5Fa365",
-					"poolId": "0xef7655d546f58e672d3399f47ddeadb7da5fa365000200000000000000000071",
+					"address": "0x5e5D0F28D52eBC7dfe101542e3BfD32f09065F15",
+					"poolId": "0x5e5d0f28d52ebc7dfe101542e3bfd32f09065f15000200000000000000000072",
 					"fee": "0.1",
 					"timeStretch": 11
 				},

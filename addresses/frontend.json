@@ -1,7 +1,7 @@
 {
     "addresses": {
         "balancerVaultAddress": "0x65748E8287Ce4B9E6D83EE853431958851550311",
-        "convergentPoolFactoryAddress": "0x8Daa3451751c3C0d6d36568dD98Fdb48F003ac30",
+        "convergentPoolFactoryAddress": "0x0766B218517d9dC198155f0dC3485270cF788aF7",
         "trancheFactoryAddress": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
         "usdcAddress": "0x78dEca24CBa286C0f8d56370f5406B48cFCE2f86",
         "userProxyContractAddress": "0xB8d8DD04385De3cbc84132F31dD84d5DaF0675fD",
