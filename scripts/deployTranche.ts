@@ -3,6 +3,7 @@ import {ethers} from "hardhat";
 import * as readline from "readline-sync";
 import fs from "fs";
 import {deployTranche} from "./deployer/deployer";
+import hre from "hardhat";
 
 // Edit to import the correct version
 import goerli from "../addresses/goerli.json";
@@ -37,6 +38,29 @@ async function deployWithAddresses(addresses: any) {
             "address": data[0].trancheAddresses[0]
         }
     );
+
+    // We auto verify on etherscan
+    const [signer] = await ethers.getSigners();
+    const network = await signer.provider?.getNetwork();
+    let networkName;
+    switch(network?.chainId) {
+        case 5 : {
+            networkName = "goerli"
+            break;
+        };
+        case 1 : {
+            networkName = "mainnet"
+            break;
+        };
+        default: {
+            console.log("Unsupported network");
+        }
+    }
+    await hre.run("verify:verify", {
+        network: networkName,
+        address: data[0].trancheAddresses[0],
+        constructorArguments: [],
+    })
 
     return addresses;
 }
