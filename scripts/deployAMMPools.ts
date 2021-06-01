@@ -253,7 +253,10 @@ async function deployWithAddresses(addresses: any) {
                 "expiration": unlockTimestamp,
                 "address": trancheAddress,
                 "ptPool": ptDeployData,
-                "ytPool": ytDeployData
+                "ytPool": ytDeployData,
+                "trancheFactory": addresses.trancheFactory,
+                "weightedPoolFactory": addresses.weightedPoolFactory,
+                "convergentCurvePoolFactory": addresses.convergentCurvePoolFactory,
             });
     } else {
         // We want to make sure to not overwrite old data
@@ -266,6 +269,8 @@ async function deployWithAddresses(addresses: any) {
 
         addresses.tranches[name][ind].ptPool = ptDeployData;
         addresses.tranches[name][ind].ytPool = ytDeployData;
+        addresses.tranches[name][ind].weightedPoolFactory = addresses.weightedPoolFactory,
+        addresses.convergentCurvePoolFactory = addresses.convergentCurvePoolFactory,
     }
 
     return addresses;
