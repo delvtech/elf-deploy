@@ -1,6 +1,8 @@
 import { providers } from "ethers";
 import * as fs from "fs";
 import * as hre from "hardhat";
+import * as readline from "readline-sync";
+
 
 async function main() {
     // get the network name
@@ -41,6 +43,11 @@ async function main() {
     let frontendJson = JSON.stringify(frontend, null, 4);
     console.log(frontendJson);
     fs.writeFileSync('addresses/frontend.json', frontendJson,'utf8');
+
+    // get release version
+    const releaseVersion = readline.question("Release Version (e.g. vX.X.X): ");
+    fs.mkdirSync("changelog/releases/"+network+"/"+releaseVersion)
+    fs.copyFileSync("addresses/"+network+".json","changelog/releases/"+network+"/"+releaseVersion+"/addresses.json")
 }
 
 main()
