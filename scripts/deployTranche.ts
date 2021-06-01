@@ -35,7 +35,8 @@ async function deployWithAddresses(addresses: any) {
     addresses.tranches[assetSymbol].push(
         {
             "expiration": data[0].trancheExpirations[0],
-            "address": data[0].trancheAddresses[0]
+            "address": data[0].trancheAddresses[0],
+            "trancheFactory": addresses.trancheFactory
         }
     );
 
