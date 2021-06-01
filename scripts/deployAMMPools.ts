@@ -269,8 +269,8 @@ async function deployWithAddresses(addresses: any) {
 
         addresses.tranches[name][ind].ptPool = ptDeployData;
         addresses.tranches[name][ind].ytPool = ytDeployData;
-        addresses.tranches[name][ind].weightedPoolFactory = addresses.weightedPoolFactory,
-        addresses.convergentCurvePoolFactory = addresses.convergentCurvePoolFactory,
+        addresses.tranches[name][ind].weightedPoolFactory = addresses.weightedPoolFactory;
+        addresses.tranches[name][ind].convergentCurvePoolFactory = addresses.convergentCurvePoolFactory;
     }
 
     return addresses;
