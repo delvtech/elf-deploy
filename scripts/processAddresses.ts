@@ -46,7 +46,7 @@ async function main() {
 
     // get release version
     const releaseVersion = readline.question("Release Version (e.g. vX.X.X): ");
-    fs.mkdirSync("changelog/releases/"+network+"/"+releaseVersion)
+    fs.mkdirSync("changelog/releases/"+network+"/"+releaseVersion, { recursive: true })
     fs.copyFileSync("addresses/"+network+".json","changelog/releases/"+network+"/"+releaseVersion+"/addresses.json")
 }
 

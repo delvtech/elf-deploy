@@ -1,0 +1,111 @@
+{
+	"tokens": {
+		"usdc": "0x78dEca24CBa286C0f8d56370f5406B48cFCE2f86",
+		"weth": "0x9A1000D492d40bfccbc03f413A48F5B6516Ec0Fd"
+	},
+	"wrappedPositions": {
+		"yearn": {
+			"usdc": "0x814C447a9F58A2b823504Fe2775bA48c843925B6",
+			"weth": "0x6F643Ba6894D8C50c476A3539e1D1690B2194018"
+		}
+	},
+	"vaults": {
+		"yearn": {
+			"usdc": "0x23c3C6C06d7684207fB09076914A15B16aba02c5",
+			"weth": "0xdD82595F5eB0e7477D7432B24E44be7c0252bbf1"
+		}
+	},
+	"trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
+	"userProxy": "0xB8d8DD04385De3cbc84132F31dD84d5DaF0675fD",
+	"balancerVault": "0x65748E8287Ce4B9E6D83EE853431958851550311",
+	"weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
+	"convergentCurvePoolFactory": "0x0766B218517d9dC198155f0dC3485270cF788aF7",
+	"tranches": {
+		"usdc": [
+			{
+				"expiration": 1628211057,
+				"address": "0x80272c960b862B4d6542CDB7338Ad1f727E0D18d",
+				"ptPool": {
+					"address": "0x93a41bc4b2FeECc11BcaDBb7E14DB0E37907e1e1",
+					"poolId": "0x93a41bc4b2feecc11bcadbb7e14db0e37907e1e100020000000000000000006c",
+					"fee": "0.1",
+					"timeStretch": 9
+				},
+				"ytPool": {
+					"address": "0x5dBBf9B7B5c63da8B925c185C7FeB99fC7912D66",
+					"poolId": "0x5dbbf9b7b5c63da8b925c185c7feb99fc7912d6600020000000000000000006b",
+					"fee": "0.1"
+				},
+				"trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
+				"weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
+				"convergentCurvePoolFactory": "0x0766B218517d9dC198155f0dC3485270cF788aF7"
+			},
+			{
+				"expiration": 1622661612,
+				"address": "0x7D64aD2b83a62C0d02514a43E5B4582C671E5F72",
+				"ptPool": {
+					"address": "0x5e5D0F28D52eBC7dfe101542e3BfD32f09065F15",
+					"poolId": "0x5e5d0f28d52ebc7dfe101542e3bfd32f09065f15000200000000000000000072",
+					"fee": "0.1",
+					"timeStretch": 11
+				},
+				"ytPool": {
+					"address": "0x7dfD3ec2Dd0020b7F85E0555b6D499156420D796",
+					"poolId": "0x7dfd3ec2dd0020b7f85e0555b6d499156420d796000200000000000000000070",
+					"fee": "0.003"
+				},
+				"trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
+				"weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
+				"convergentCurvePoolFactory": "0x0766B218517d9dC198155f0dC3485270cF788aF7"
+			},
+			{
+				"expiration": 1623266597,
+				"address": "0x8Bd721BB84a30c0078aF4a5a732c7169C5BE6eDB",
+				"trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
+				"ptPool": {
+					"address": "0x680C7914E2CAE78A2ac94DABf6277692EF652353",
+					"poolId": "0x680c7914e2cae78a2ac94dabf6277692ef652353000200000000000000000074",
+					"fee": "0.1",
+					"timeStretch": 11
+				},
+				"ytPool": {
+					"address": "0xcdEe31456e502EF883316d4F6A3CF12027554afE",
+					"poolId": "0xcdee31456e502ef883316d4f6a3cf12027554afe000200000000000000000073",
+					"fee": "0.003"
+				},
+				"weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
+				"convergentCurvePoolFactory": "0x0766B218517d9dC198155f0dC3485270cF788aF7"
+			}
+		],
+		"weth": [
+			{
+				"expiration": 1628210937,
+				"address": "0x89d66Ad25F3A723D606B78170366d8da9870A879",
+				"ptPool": {
+					"address": "0x9eB7F54C0eCc4d0D2dfF28a1276e36d598F2B0D1",
+					"timeStretch": 8
+				},
+				"ytPool": {
+					"address": "0xD75bfF2444FF738d443066ff4688691e6852b217"
+				},
+				"trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
+				"weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
+				"convergentCurvePoolFactory": "0x0766B218517d9dC198155f0dC3485270cF788aF7"
+			},
+			{
+				"expiration": 1621010937,
+				"address": "0x44eecA004b2612d131EDA7dA2b9d986E7fED562e",
+				"ptPool": {
+					"address": "0x5941DB4d6C500C4FFa57c359eE0C55c6b41D0b61",
+					"timeStretch": 8
+				},
+				"ytPool": {
+					"address": "0xcF6894C48c2AF3ddD433CC1EDfEfC74e654cC9B4"
+				},
+				"trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
+				"weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
+				"convergentCurvePoolFactory": "0x0766B218517d9dC198155f0dC3485270cF788aF7"
+			}
+		]
+	}
+}
