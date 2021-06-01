@@ -13,6 +13,7 @@ import {Tranche__factory} from "../typechain/factories/Tranche__factory";
 import {ConvergentCurvePool__factory} from "../typechain/factories/ConvergentCurvePool__factory";
 import {ERC20__factory} from "../typechain/factories/ERC20__factory";
 import {InterestToken__factory} from "../typechain/factories/InterestToken__factory";
+import hre from "hardhat";
 
 
 // Edit to import the correct version
@@ -28,7 +29,8 @@ export async function deployWeightedPool(
     symbol: string,
     tokens: string[],
     weights: BigNumber[],
-    swapFee: string
+    swapFee: string,
+    network: string
   ) {
     const gas = readline.question("gasPrice: ");
     const createTx = await poolFactory
@@ -49,6 +51,27 @@ export async function deployWeightedPool(
     const results = await vaultContract.queryFilter(filter);
     const poolId = results[results.length - 1]?.args?.poolId;
     const poolAddress = results[results.length - 1]?.args?.poolAddress;
+
+    const vault = await poolFactory.getVault();
+    const pauseConfig = await poolFactory.getPauseConfiguration();
+    await hre.run("verify:verify", {
+        network: network,
+        address: poolAddress,
+        constructorArguments: 
+        [
+            vault,
+            name,
+            symbol,
+            tokens,
+            weights,
+            ethers.utils.parseEther(swapFee),
+            pauseConfig.pauseWindowDuration,
+            pauseConfig.bufferPeriodDuration,
+            await signer.getAddress()
+        ],
+    });
+
+
     return { poolId, poolAddress };
   }
 
@@ -66,6 +89,7 @@ export async function deployConvergentPool(
     yieldAssetContract: ERC20,
     expiration: number,
     tParam: number,
+    network: string,
     options?: {
       swapFee?: string;
     }
@@ -102,11 +126,32 @@ export async function deployConvergentPool(
       poolAddress,
       signer
     );
+
+    const vault = await convergentPoolFactory.getVault();
+    const feeGov = await convergentPoolFactory.percentFeeGov();
+    const gov = await convergentPoolFactory.governance();
+    await hre.run("verify:verify", {
+        network: network,
+        address: poolAddress,
+        constructorArguments: 
+        [
+            baseAssetContract.address,
+            yieldAssetContract.address,
+            expiration,
+            tParam*ONE_YEAR_IN_SECONDS,
+            vault,
+            ethers.utils.parseEther(swapFee),
+            feeGov,
+            gov,
+            `LP ${assetName}`,
+            `LP:${assetSymbol}`,
+        ],
+    });
   
     return { poolId, poolContract };
 }
 
-async function deployWithAddresses(addresses: any) {
+async function deployWithAddresses(addresses: any, network: string) {
 
     const [signer] = await ethers.getSigners();
 
@@ -185,7 +230,8 @@ async function deployWithAddresses(addresses: any) {
             lpTokenSymbol,
             tokens,
             weights,
-            swapFee
+            swapFee,
+            network
         )
 
         console.log("successfully deployed yt pool");
@@ -217,6 +263,7 @@ async function deployWithAddresses(addresses: any) {
             tranche as unknown as ERC20,
             unlockTimestamp,
             t,
+            network,
             {
                 swapFee: swapFeeString
             }
@@ -276,15 +323,15 @@ async function main() {
     const network = await signer.provider?.getNetwork();
     switch(network?.chainId) {
         case 5 : {
-            const result = await deployWithAddresses(goerli);
+            const result = await deployWithAddresses(goerli, "goerli");
             console.log("writing changed address to output file 'addresses/goerli.json'")
             fs.writeFileSync('addresses/goerli.json', JSON.stringify(result, null, '\t'), 'utf8');
             break;
         };
         case 1 : {
-            const resuslt = await deployWithAddresses(mainnet);
+            const result = await deployWithAddresses(mainnet, "mainnet");
             console.log("writing changed address to output file 'addresses/mainnet.json'")
-            fs.writeFileSync('addresses/mainnet.json', JSON.stringify(mainnet, null, '\t'), 'utf8');
+            fs.writeFileSync('addresses/mainnet.json', JSON.stringify(result, null, '\t'), 'utf8');
             break;
         };
         default: {
