@@ -57,6 +57,24 @@
 				"trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
 				"weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
 				"convergentCurvePoolFactory": "0x0766B218517d9dC198155f0dC3485270cF788aF7"
+			},
+			{
+				"expiration": 1623266597,
+				"address": "0x8Bd721BB84a30c0078aF4a5a732c7169C5BE6eDB",
+				"trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
+				"ptPool": {
+					"address": "0x680C7914E2CAE78A2ac94DABf6277692EF652353",
+					"poolId": "0x680c7914e2cae78a2ac94dabf6277692ef652353000200000000000000000074",
+					"fee": "0.1",
+					"timeStretch": 11
+				},
+				"ytPool": {
+					"address": "0xcdEe31456e502EF883316d4F6A3CF12027554afE",
+					"poolId": "0xcdee31456e502ef883316d4f6a3cf12027554afe000200000000000000000073",
+					"fee": "0.003"
+				},
+				"weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
+				"convergentCurvePoolFactory": "0x0766B218517d9dC198155f0dC3485270cF788aF7"
 			}
 		],
 		"weth": [

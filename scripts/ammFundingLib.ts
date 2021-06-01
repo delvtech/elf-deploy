@@ -58,11 +58,14 @@ export async function initYieldPool(
         const howMuch = readline.question("how much [decimal form]: ");
         const mintAmount = one.mul(Number.parseInt(howMuch));
         // We mint using the input amount
-        await token
-        .connect(signer)
-        .approve(tranche.address, ethers.constants.MaxUint256);
-        const gas = await gasPrice();
+        if(BigNumber.from(await token.allowance(signerAddress, tranche.address)).lt(mintAmount)) {
+          console.log("setting allowance");
+          const gas = await gasPrice();
+          let tx = await token.approve(tranche.address, ethers.constants.MaxUint256, {gasPrice: gas});
+          await tx.wait(1);
+        }
         console.log("Deposited into tranche");
+        const gas = await gasPrice();
         let tx = await tranche.connect(signer).deposit(mintAmount, signerAddress, {gasPrice: gas});
         await tx.wait(1);
         console.log("Deposit Completed");
@@ -158,12 +161,15 @@ export async function initPtPool(
     if (mintMore == "y") {
         const howMuch = readline.question("how much [decimal form]: ");
         const mintAmount = one.mul(Number.parseInt(howMuch));
+        if(BigNumber.from(await token.allowance(signerAddress, tranche.address)).lt(mintAmount)) {
+          console.log("setting allowance");
+          const gas = await gasPrice();
+          let tx = await token.approve(tranche.address, ethers.constants.MaxUint256, {gasPrice: gas});
+          await tx.wait(1);
+        }
         // We mint using the input amount
-        await token
-        .connect(signer)
-        .approve(tranche.address, ethers.constants.MaxUint256);
-        const gas = await gasPrice();
         console.log("Deposited into tranche");
+        const gas = await gasPrice();
         let tx = await tranche.connect(signer).deposit(mintAmount, signerAddress, {gasPrice: gas});
         await tx.wait(1);
         console.log("Deposit Completed");
