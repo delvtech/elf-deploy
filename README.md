@@ -52,4 +52,10 @@ To generate json file for the frontend to process:
 npm run processAddresses -- --network mainnet
 ```
 
+When prompted for the version, enter something like:
+
+```bash
+Release Version (e.g. vX.X.X): v1.0.0-a.2
+```
+
 To run any of these commands on the goerli testnet replace `--network mainnet` with `--network goerli`

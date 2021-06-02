@@ -6,8 +6,7 @@ then
     set -e
     git config --global user.name "github-actions[bot]"
     git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-    git add index.html
-    git add changelog/README.md
+    git add .
     git commit -m "Rebuild Changelog"
     git push
 else
