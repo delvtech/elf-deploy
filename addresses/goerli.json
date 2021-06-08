@@ -107,7 +107,7 @@
 				"ytPool": {
 					"address": "0xcF6894C48c2AF3ddD433CC1EDfEfC74e654cC9B4",
 					"poolId": "0xcF6894C48c2AF3ddD433CC1EDfEfC74e654cC9B4000000000000000000000000",
-					"fee": "0.1",
+					"fee": "0.1"
 				},
 				"trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
 				"weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
