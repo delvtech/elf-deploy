@@ -88,7 +88,7 @@
 					"timeStretch": 8
 				},
 				"ytPool": {
-					"address": "0xD75bfF2444FF738d443066ff4688691e6852b217"
+					"address": "0xD75bfF2444FF738d443066ff4688691e6852b217",
 					"poolId": "0xD75bfF2444FF738d443066ff4688691e6852b217000000000000000000000000",
 					"fee": "0.1"
 				},
