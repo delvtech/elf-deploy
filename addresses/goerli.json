@@ -101,6 +101,7 @@
 				"address": "0x44eecA004b2612d131EDA7dA2b9d986E7fED562e",
 				"ptPool": {
 					"address": "0x5941DB4d6C500C4FFa57c359eE0C55c6b41D0b61",
+					"poolId": "0x5941DB4d6C500C4FFa57c359eE0C55c6b41D0b61000000000000000000000000",
 					"fee": "0.1",
 					"timeStretch": 8
 				},
