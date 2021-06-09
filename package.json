@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "load-contracts": "sh load_scripts/load_element.sh && sh load_scripts/load_balancer.sh",
+    "load-contracts": "sh scripts/load_element.sh && sh scripts/load_balancer.sh",
     "build": "npx hardhat compile && rm ./typechain/index.ts",
     "deployPool": "npx hardhat run scripts/deployAMMPools.ts --no-compile",
     "deployTranche": "npx hardhat run scripts/deployTranche.ts --no-compile",
