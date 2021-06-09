@@ -83,10 +83,14 @@
 				"address": "0x89d66Ad25F3A723D606B78170366d8da9870A879",
 				"ptPool": {
 					"address": "0x9eB7F54C0eCc4d0D2dfF28a1276e36d598F2B0D1",
+					"poolId": "0x9eb7f54c0ecc4d0d2dff28a1276e36d598f2b0d1000200000000000000000066",
+					"fee": "0.1",
 					"timeStretch": 8
 				},
 				"ytPool": {
-					"address": "0xD75bfF2444FF738d443066ff4688691e6852b217"
+					"address": "0xD75bfF2444FF738d443066ff4688691e6852b217",
+					"poolId": "0xd75bff2444ff738d443066ff4688691e6852b217000200000000000000000067",
+					"fee": "0.1"
 				},
 				"trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
 				"weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
@@ -97,10 +101,14 @@
 				"address": "0x44eecA004b2612d131EDA7dA2b9d986E7fED562e",
 				"ptPool": {
 					"address": "0x5941DB4d6C500C4FFa57c359eE0C55c6b41D0b61",
+					"poolId": "0x5941db4d6c500c4ffa57c359ee0c55c6b41d0b61000200000000000000000064",
+					"fee": "0.1",
 					"timeStretch": 8
 				},
 				"ytPool": {
-					"address": "0xcF6894C48c2AF3ddD433CC1EDfEfC74e654cC9B4"
+					"address": "0xcF6894C48c2AF3ddD433CC1EDfEfC74e654cC9B4",
+					"poolId": "0xcf6894c48c2af3ddd433cc1edfefc74e654cc9b4000200000000000000000065",
+					"fee": "0.1"
 				},
 				"trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
 				"weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
