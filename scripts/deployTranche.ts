@@ -4,10 +4,13 @@ import * as readline from "readline-sync";
 import fs from "fs";
 import {deployTranche} from "./deployer/deployer";
 import hre from "hardhat";
+import { Tranche__factory } from "typechain/factories/Tranche__factory";
+import { WrappedPosition__factory } from "typechain/factories/WrappedPosition__factory";
 
 // Edit to import the correct version
 import goerli from "../addresses/goerli.json";
 import mainnet from "../addresses/mainnet.json"
+import { WeightedPool__factory } from "typechain";
 
 async function deployWithAddresses(addresses: any) {
 
@@ -57,10 +60,25 @@ async function deployWithAddresses(addresses: any) {
             console.log("Unsupported network");
         }
     }
+    // Verify the tranche
     await hre.run("verify:verify", {
         network: networkName,
         address: data[0].trancheAddresses[0],
         constructorArguments: [],
+    })
+
+    // Load the data to verify the interest token
+    const trancheFactory = new Tranche__factory(signer);
+    const tranche = trancheFactory.attach(data[0].trancheAddresses[0]);
+    const yt = await tranche.interestToken();
+    const wpFactory = new WeightedPool__factory(signer);
+    const wp = wpFactory.attach(addresses.wrappedPositions[wpType][assetSymbol]);
+    const wpSymbol = await wp.symbol();
+    // Verify the interest token
+    await hre.run("verify:verify", {
+        network: networkName,
+        address: yt,
+        constructorArguments: [tranche.address, wpSymbol, data[0].trancheExpirations[0], await tranche.decimals()],
     })
 
     return addresses;

@@ -106,7 +106,7 @@ export async function deployConvergentPool(
       tParam*ONE_YEAR_IN_SECONDS,
       ethers.utils.parseEther(swapFee),
       `LP ${assetName}`,
-      `LP:${assetSymbol}`,
+      `Lp${assetSymbol}`,
       {
         gasPrice: ethers.utils.parseUnits(gas, 'gwei')
       }
@@ -144,7 +144,7 @@ export async function deployConvergentPool(
             feeGov,
             gov,
             `LP ${assetName}`,
-            `LP:${assetSymbol}`,
+            `Lp${assetSymbol}`,
         ],
     });
   
