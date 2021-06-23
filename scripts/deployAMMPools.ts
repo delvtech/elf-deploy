@@ -207,9 +207,9 @@ async function deployWithAddresses(addresses: any, network: string) {
         }
 
         const ytName = await yt.name();
-        const lpTokenName = `LP ${ytName}`;
+        const lpTokenName = `Lp ${ytName}`;
         const ytSymbol = await yt.name();
-        const lpTokenSymbol = `LP:${ytSymbol}`;
+        const lpTokenSymbol = `Lp${ytSymbol}`;
 
         let tokens;
         let weights;
