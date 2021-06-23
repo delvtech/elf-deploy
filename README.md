@@ -55,7 +55,12 @@ npm run processAddresses -- --network mainnet
 When prompted for the version, enter something like:
 
 ```bash
-Release Version (e.g. vX.X.X): v1.0.0-a.2
+Release Version (e.g. vX.X.X:X): v1.0.0-a.1:2
 ```
+
+The format for the release version is: vMAJOR.MINOR.PATCH:TERMNUM.  Where:
+
+- `vMAJOR.MINOR.PATCH` is the corresponding tagged release in the smart contract repo
+- `TERMNUM` is incremented by 1 each time a new term is released under a tagged release in the smart contract repo. 
 
 To run any of these commands on the goerli testnet replace `--network mainnet` with `--network goerli`
