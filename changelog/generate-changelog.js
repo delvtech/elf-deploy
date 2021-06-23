@@ -47,7 +47,7 @@ networks.forEach(network => {
         let info = file.split('/');
         // info[1] is goerli
         if (info[1]==network){
-            let url = "https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/" 
+            let url = "https://raw.githubusercontent.com/element-fi/elf-deploy/numbering-scheme-update/changelog/releases/"
             // info[2] is v1.0.0-a.1:1
             url = url + network + "/" + info[2] + "/addresses.json"
             releases[index].push({ link: { title: info[2], source: url } })
