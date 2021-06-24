@@ -2,18 +2,18 @@
     "addresses": {
         "balancerVaultAddress": "0x65748E8287Ce4B9E6D83EE853431958851550311",
         "convergentPoolFactoryAddress": "0x0766B218517d9dC198155f0dC3485270cF788aF7",
-        "daiAddress": "0x5bD768CCE8C529CDF23B136bB486a81f64985B92",
         "trancheFactoryAddress": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
-        "usdcAddress": "0x78dEca24CBa286C0f8d56370f5406B48cFCE2f86",
         "userProxyContractAddress": "0xB8d8DD04385De3cbc84132F31dD84d5DaF0675fD",
         "weightedPoolFactoryAddress": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
-        "wethAddress": "0x9A1000D492d40bfccbc03f413A48F5B6516Ec0Fd"
+        "usdcAddress": "0x78dEca24CBa286C0f8d56370f5406B48cFCE2f86",
+        "wethAddress": "0x9A1000D492d40bfccbc03f413A48F5B6516Ec0Fd",
+        "daiAddress": "0x5bD768CCE8C529CDF23B136bB486a81f64985B92"
     },
     "chainId": 5,
     "safelist": [
         "0x80272c960b862B4d6542CDB7338Ad1f727E0D18d",
-        "0x93a41bc4b2FeECc11BcaDBb7E14DB0E37907e1e1",
-        "0x5dBBf9B7B5c63da8B925c185C7FeB99fC7912D66",
+        "0x40bf8A2eCB62c6B880302b55a5552A4e315b5827",
+        "0x252797e51F51631b6956545C45F9d3F9fFCb0940",
         "0x7D64aD2b83a62C0d02514a43E5B4582C671E5F72",
         "0x5e5D0F28D52eBC7dfe101542e3BfD32f09065F15",
         "0x7dfD3ec2Dd0020b7F85E0555b6D499156420D796",
