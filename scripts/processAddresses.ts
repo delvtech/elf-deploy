@@ -42,7 +42,7 @@ async function main() {
 
     let frontendJson = JSON.stringify(frontend, null, 4);
     console.log(frontendJson);
-    fs.writeFileSync('addresses/frontend.json', frontendJson,'utf8');
+    fs.writeFileSync('addresses/frontend-'+network+'.json', frontendJson,'utf8');
 
     // get release version
     const releaseVersion = readline.question("Release Version (e.g. vX.X.X:X): ");
