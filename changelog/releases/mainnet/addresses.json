@@ -1,0 +1,45 @@
+{
+	"tokens": {
+		"usdc": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+		"weth": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+		"dai": "0x6b175474e89094c44da98b954eedeac495271d0f",
+		"lusd": "0xed279fdd11ca84beef15af5d39bb4d4bee23f0ca"
+	},
+	"wrappedPositions": {
+		"yearn": {
+			"lusd": "0x53b1aEAa018da00b4F458Cc13d40eB3e8d1B85d6"
+		}
+	},
+	"vaults": {
+		"yearn": {
+			"lusd": "0x5fA5B62c8AF877CB37031e0a3B2f34A78e3C56A6"
+		}
+	},
+	"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
+	"userProxy": "0xEe4e158c03A10CBc8242350d74510779A364581C",
+	"balancerVault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+	"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
+	"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD",
+	"tranches": {
+		"lusd3crv-f": [
+			{
+				"expiration": 1625028466,
+				"address": "0xD44bF95Bf21C83B46049BF9E34633F3300B280F6",
+				"ptPool": {
+					"address": "0x22939E40Cf467DE8F5Db4F05A4027e5D4c1C658c",
+					"poolId": "0x22939e40cf467de8f5db4f05a4027e5d4c1c658c000200000000000000000059",
+					"fee": "0.1",
+					"timeStretch": 20
+				},
+				"ytPool": {
+					"address":"0xe2cd73cfeb471f9f2b08a18afbc87ff2324ef24e",
+					"poolId": "0xe2cd73cfeb471f9f2b08a18afbc87ff2324ef24e000200000000000000000058",
+					"fee": "0.0035"
+				},
+				"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
+				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
+				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
+			}
+		]
+	}
+}

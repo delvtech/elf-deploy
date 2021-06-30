@@ -39,24 +39,6 @@
 				},
 				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
 				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
-			},
-			{
-				"expiration": 1640620258,
-				"address": "0xa2b3d083AA1eaa8453BfB477f062A208Ed85cBBF",
-				"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
-				"ptPool": {
-					"address": "0x893B30574BF183d69413717f30b17062eC9DFD8b",
-					"poolId": "0x893b30574bf183d69413717f30b17062ec9dfd8b000200000000000000000061",
-					"fee": "0.1",
-					"timeStretch": 24
-				},
-				"ytPool": {
-					"address": "0x67F8FCb9D3c463da05DE1392EfDbB2A87F8599Ea",
-					"poolId": "0x67f8fcb9d3c463da05de1392efdbb2a87f8599ea000200000000000000000060",
-					"fee": "0.003"
-				},
-				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
-				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
 			}
 		]
 	}
