@@ -10,12 +10,14 @@ async function main() {
 
     // read in address file and parse
     let rawdata = fs.readFileSync("addresses/"+network+".json").toString();
-    let addresses = JSON.parse(rawdata);
+    let addressesFile = JSON.parse(rawdata);
 
     let safeList = [];
+    let baseAssets = [];
     // get addresses for safelist
-    for (const trancheListKey in addresses["tranches"]) {
-        const trancheList = addresses["tranches"][trancheListKey];
+    for (const trancheListKey in addressesFile["tranches"]) {
+        baseAssets.push(trancheListKey);
+        const trancheList = addressesFile["tranches"][trancheListKey];
         for (const tranche of trancheList) {
             safeList.push(tranche.address)
             safeList.push(tranche.ptPool.address)
@@ -25,27 +27,35 @@ async function main() {
 
     let chainid = providers.getNetwork(network).chainId;
 
+    let addresses: any = {}
+    // add the rest of the known address types
+    addresses = {
+        balancerVaultAddress: addressesFile["balancerVault"],
+        convergentPoolFactoryAddress: addressesFile["convergentCurvePoolFactory"],
+        trancheFactoryAddress: addressesFile["trancheFactory"],
+        userProxyContractAddress: addressesFile["userProxy"],
+        weightedPoolFactoryAddress: addressesFile["weightedPoolFactory"],
+    }
+
+    // add base asset tokens
+    for (const baseAsset of baseAssets) {
+        const keyName = baseAsset+"Address"
+        addresses[keyName]=addressesFile["tokens"][baseAsset]
+    }
+
+    // frontend json structure
     let frontend = {
-        addresses: {
-        balancerVaultAddress: addresses["balancerVault"],
-        convergentPoolFactoryAddress: addresses["convergentCurvePoolFactory"],
-        trancheFactoryAddress: addresses["trancheFactory"],
-        usdcAddress: addresses["tokens"]["usdc"],
-        userProxyContractAddress: addresses["userProxy"],
-        weightedPoolFactoryAddress: addresses["weightedPoolFactory"],
-        wethAddress: addresses["tokens"]["weth"]
-        },
+        addresses: addresses,
         chainId: chainid,
         safelist: safeList
     };
 
-
     let frontendJson = JSON.stringify(frontend, null, 4);
     console.log(frontendJson);
-    fs.writeFileSync('addresses/frontend.json', frontendJson,'utf8');
+    fs.writeFileSync('addresses/frontend-'+network+'.json', frontendJson,'utf8');
 
     // get release version
-    const releaseVersion = readline.question("Release Version (e.g. vX.X.X): ");
+    const releaseVersion = readline.question("Release Version (e.g. vX.X.X:X): ");
     fs.mkdirSync("changelog/releases/"+network+"/"+releaseVersion, { recursive: true })
     fs.copyFileSync("addresses/"+network+".json","changelog/releases/"+network+"/"+releaseVersion+"/addresses.json")
 }
