@@ -9,6 +9,8 @@
     
  - [v1.0.0-a.1:3](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/goerli/v1.0.0-a.1:3/addresses.json)
     
+ - [v1.0.0:1](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/goerli/v1.0.0:1/addresses.json)
+    
 
 ## mainnet
 
