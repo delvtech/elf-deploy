@@ -1,11 +1,11 @@
 import { Vault__factory } from "../typechain/factories/Vault__factory";
 import { Vault } from "../typechain/Vault";
-import { ConvergentPoolFactory } from "../typechain/ConvergentPoolFactory";
 import { ConvergentPoolFactory__factory } from "../typechain/factories/ConvergentPoolFactory__factory";
 import { Signer, BigNumber } from "ethers";
 import {ethers} from "hardhat";
 import * as readline from "readline-sync";
 import fs from "fs";
+import hre from "hardhat";
 
 // Edit to import the correct version
 import goerli from "../addresses/goerli.json";
@@ -31,6 +31,12 @@ export async function deployConvergentPoolFactory(
     );
     await convergentPoolFactoryContract.deployed();
     console.log("Convergent Curve pool deployed at address: ", convergentPoolFactoryContract.address);
+
+    await hre.run("verify:verify", {
+      network: "mainnet",
+      address: balancerVaultContract.address,
+      constructorArguments: [balancerVaultContract.address, signerAddress],
+    })
 
     if (fee.gt(0)) {
         console.log("Setting gov fee");

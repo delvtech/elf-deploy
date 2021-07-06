@@ -52,26 +52,6 @@ export async function deployWeightedPool(
     const poolId = results[results.length - 1]?.args?.poolId;
     const poolAddress = results[results.length - 1]?.args?.poolAddress;
 
-    const vault = await poolFactory.getVault();
-    const pauseConfig = await poolFactory.getPauseConfiguration();
-    await hre.run("verify:verify", {
-        network: network,
-        address: poolAddress,
-        constructorArguments: 
-        [
-            vault,
-            name,
-            symbol,
-            tokens,
-            weights,
-            ethers.utils.parseEther(swapFee),
-            pauseConfig.pauseWindowDuration,
-            pauseConfig.bufferPeriodDuration,
-            await signer.getAddress()
-        ],
-    });
-
-
     return { poolId, poolAddress };
   }
 
@@ -103,10 +83,10 @@ export async function deployConvergentPool(
       baseAssetContract.address,
       yieldAssetContract.address,
       expiration,
-      tParam*ONE_YEAR_IN_SECONDS,
+      Math.round(tParam*ONE_YEAR_IN_SECONDS),
       ethers.utils.parseEther(swapFee),
       `LP ${assetName}`,
-      `Lp${assetSymbol}`,
+      `LP${assetSymbol}`,
       {
         gasPrice: ethers.utils.parseUnits(gas, 'gwei')
       }
@@ -138,13 +118,13 @@ export async function deployConvergentPool(
             baseAssetContract.address,
             yieldAssetContract.address,
             expiration,
-            tParam*ONE_YEAR_IN_SECONDS,
+            Math.round(tParam*ONE_YEAR_IN_SECONDS),
             vault,
             ethers.utils.parseEther(swapFee),
             feeGov,
             gov,
             `LP ${assetName}`,
-            `Lp${assetSymbol}`,
+            `LP${assetSymbol}`,
         ],
     });
   
@@ -207,9 +187,9 @@ async function deployWithAddresses(addresses: any, network: string) {
         }
 
         const ytName = await yt.name();
-        const lpTokenName = `Lp ${ytName}`;
-        const ytSymbol = await yt.name();
-        const lpTokenSymbol = `Lp${ytSymbol}`;
+        const lpTokenName = `LP ${ytName}`;
+        const ytSymbol = await yt.symbol();
+        const lpTokenSymbol = `LP${ytSymbol}`;
 
         let tokens;
         let weights;
@@ -250,9 +230,7 @@ async function deployWithAddresses(addresses: any, network: string) {
     if (newCCPool == "y") {
 
         const swapFeeString = readline.question("swap fee [decimal form] : ");
-        const t = Number.parseInt(readline.question("t stretch in years :"));
-        console.log(swapFeeString);
-        console.log(t);
+        const t = Number.parseFloat(readline.question("t stretch in years :"));
 
         console.log("Deploying new pool");
         const deployment = await deployConvergentPool(
