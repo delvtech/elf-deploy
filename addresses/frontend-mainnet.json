@@ -3,10 +3,10 @@
         "balancerVaultAddress": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
         "convergentPoolFactoryAddress": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD",
         "trancheFactoryAddress": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
-        "usdcAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
         "userProxyContractAddress": "0xEe4e158c03A10CBc8242350d74510779A364581C",
         "weightedPoolFactoryAddress": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
-        "wethAddress": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+        "lusd3crv-fAddress": "0xed279fdd11ca84beef15af5d39bb4d4bee23f0ca",
+        "crvtricryptoAddress": "0xca3d75ac011bf5ad07a98d02f18225f9bd9a6bdf"
     },
     "chainId": 1,
     "safelist": [
@@ -15,6 +15,9 @@
         "0xDe620bb8BE43ee54d7aa73f8E99A7409Fe511084",
         "0xa2b3d083AA1eaa8453BfB477f062A208Ed85cBBF",
         "0x893B30574BF183d69413717f30b17062eC9DFD8b",
-        "0x67F8FCb9D3c463da05DE1392EfDbB2A87F8599Ea"
+        "0x67F8FCb9D3c463da05DE1392EfDbB2A87F8599Ea",
+        "0x237535Da7e2f0aBa1b68262ABCf7C4e60B42600C",
+        "0x3A693EB97b500008d4Bb6258906f7Bbca1D09Cc5",
+        "0xF94A7Df264A2ec8bCEef2cFE54d7cA3f6C6DFC7a"
     ]
 }
