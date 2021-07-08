@@ -1,16 +1,14 @@
-import { Signer, BigNumber } from "ethers";
 import {ethers} from "hardhat";
 import * as readline from "readline-sync";
 import fs from "fs";
 import {deployTranche} from "./deployer/deployer";
 import hre from "hardhat";
-import { Tranche__factory } from "typechain/factories/Tranche__factory";
-import { WrappedPosition__factory } from "typechain/factories/WrappedPosition__factory";
+import { Tranche__factory } from "../typechain/factories/Tranche__factory";
 
 // Edit to import the correct version
 import goerli from "../addresses/goerli.json";
 import mainnet from "../addresses/mainnet.json"
-import { WeightedPool__factory } from "typechain";
+import { WeightedPool__factory } from "../typechain/factories/WeightedPool__factory";
 
 async function deployWithAddresses(addresses: any) {
 
@@ -34,6 +32,10 @@ async function deployWithAddresses(addresses: any) {
         expirations: [duration], 
         trancheFactory: addresses.trancheFactory, 
     });
+
+    if (addresses.tranches[assetSymbol] == undefined) {
+        addresses.tranches[assetSymbol] = [];
+    }
 
     addresses.tranches[assetSymbol].push(
         {

@@ -4,8 +4,8 @@ import hre from 'hardhat';
 async function main() {
 
     await hre.run("verify:verify", {
-        network: "goerli",
-        address: "0x8Bd721BB84a30c0078aF4a5a732c7169C5BE6eDB",
+        network: "mainnet",
+        address: "0x9b44Ed798a10Df31dee52C5256Dcb4754BCf097E",
         constructorArguments: [],
     })
 }

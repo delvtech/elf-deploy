@@ -5,16 +5,17 @@ import { Signer, BigNumber, BigNumberish, BytesLike } from "ethers";
 import * as readline from "readline-sync";
 import {Tranche} from "../typechain/Tranche";
 import {ERC20__factory} from "../typechain/factories/ERC20__factory";
+import {bnFloatMultiplier, fmtFloat} from "./math";
 
 async function neededBonds(
-    initialBase: number,
+    initialBase: BigNumber,
     expectedApy: number,
     timeStretch: number,
     trancheLength: number,
   ) {
     const t = trancheLength/timeStretch;
     const rho = Math.pow(1 - expectedApy*trancheLength, 1/-t);
-    return (initialBase * (rho - 1)) / (1 + rho);
+    return bnFloatMultiplier(bnFloatMultiplier(initialBase, (rho - 1) ), 1 / (1 + rho));
   }
 
 async function gasPrice() {
@@ -50,13 +51,13 @@ export async function initYieldPool(
     const signerAddress = await signer.getAddress();
     const decimals = await token.decimals();
     const one = ethers.utils.parseUnits("1", decimals);
-    console.log("Your token balance is :", (await token.balanceOf(signerAddress)).div(one).toNumber());
-    console.log("Your yt balance is :", (await yieldToken.balanceOf(signerAddress)).div(one).toNumber());
+    console.log("Your token balance is : ", fmtFloat(await token.balanceOf(signerAddress), one));
+    console.log("Your yt balance is : ", fmtFloat(await yieldToken.balanceOf(signerAddress), one));
 
     const mintMore = readline.question("do you need to deposit (y/n): ");
     if (mintMore == "y") {
         const howMuch = readline.question("how much [decimal form]: ");
-        const mintAmount = one.mul(Number.parseInt(howMuch));
+        const mintAmount = bnFloatMultiplier(one, Number.parseFloat(howMuch));
         // We mint using the input amount
         if(BigNumber.from(await token.allowance(signerAddress, tranche.address)).lt(mintAmount)) {
           console.log("setting allowance");
@@ -72,7 +73,7 @@ export async function initYieldPool(
     }
 
     const depositAmountStr = readline.question("Deposit amount of yt [decimal]: ");
-    const depositAmount = one.mul(Number.parseInt(depositAmountStr));
+    const depositAmount = bnFloatMultiplier(one, Number.parseFloat(depositAmountStr));
 
     console.log("Checking allowances");
 
@@ -107,7 +108,7 @@ export async function initYieldPool(
     const stakedTokenYT = depositAmount
       .mul(ytRatio)
       .div(ethers.utils.parseUnits("1", tokenDecimals));
-    console.log("Depositing: ", stakedTokenYT.div(one).toNumber(), " underlying");
+    console.log("Depositing: ", fmtFloat(stakedTokenYT, one), " underlying");
     // We have to order these inputs
     if (BigNumber.from(yieldToken.address).lt(token.address)) {
       ytAssets = [yieldToken.address, token.address];
@@ -154,13 +155,13 @@ export async function initPtPool(
     const signerAddress = await signer.getAddress();
     const decimals = await token.decimals();
     const one = ethers.utils.parseUnits("1", decimals);
-    console.log("Your token balance is :", (await token.balanceOf(signerAddress)).div(one).toNumber());
-    console.log("Your pt balance is :", (await pt.balanceOf(signerAddress)).div(one).toNumber());
+    console.log("Your token balance is : ", fmtFloat(await token.balanceOf(signerAddress), one));
+    console.log("Your pt balance is : ", fmtFloat(await pt.balanceOf(signerAddress), one));
 
     const mintMore = readline.question("do you need to deposit (y/n): ");
     if (mintMore == "y") {
         const howMuch = readline.question("how much [decimal form]: ");
-        const mintAmount = one.mul(Number.parseInt(howMuch));
+        const mintAmount = bnFloatMultiplier(one, Number.parseFloat(howMuch));
         if(BigNumber.from(await token.allowance(signerAddress, tranche.address)).lt(mintAmount)) {
           console.log("setting allowance");
           const gas = await gasPrice();
@@ -176,7 +177,7 @@ export async function initPtPool(
     }
 
     let depositAmountStr = readline.question("Deposit amount of pt [decimal]: ");
-    let depositAmount = one.mul(Number.parseInt(depositAmountStr));
+    let depositAmount = bnFloatMultiplier(one, Number.parseFloat(depositAmountStr));
 
     console.log("Checking allowances");
 
@@ -234,15 +235,14 @@ export async function initPtPool(
       console.log("Initial deposit finished");
     } else {
       depositAmountStr = readline.question("Deposit amount of pt [decimal]: ");
-      depositAmount = one.mul(Number.parseInt(depositAmountStr));
+      depositAmount =  bnFloatMultiplier(one, Number.parseFloat(depositAmountStr));
     }
 
   
     // Trade into the pool to get the correct apy
-    const rawMintAmount = depositAmount.div(one).toNumber();
-    const tradeIn = await neededBonds(rawMintAmount, expectedAPY, timeStretch, trancheLength);
+    const tradeIn = await neededBonds(depositAmount, expectedAPY, timeStretch, trancheLength);
     gas = await gasPrice();
-    console.log("Trading in ", tradeIn, " bonds to set pool rate");
+    console.log("Trading in ", fmtFloat(tradeIn, one), " bonds to set pool rate");
     const minOut = readline.question("Min trade output [in decimals]: ");
     console.log("Trade into the cc pool to set rate");
     tx = await vault.connect(signer).swap(
@@ -251,10 +251,7 @@ export async function initPtPool(
         kind: 0,
         assetIn: tranche.address,
         assetOut: token.address,
-        amount: ethers.utils.parseUnits(
-          tradeIn.toFixed(decimals).toString(),
-          decimals
-        ),
+        amount: tradeIn,
         userData: "0x",
       },
       {

@@ -8,6 +8,7 @@ import { YVaultAssetProxy__factory } from "../../typechain/factories/YVaultAsset
 import { DateString__factory } from "../../typechain/factories/DateString__factory";
 import { UserProxy__factory } from "../../typechain/factories/UserProxy__factory";
 import * as readline from "readline-sync";
+import { YVaultV4AssetProxy__factory } from "../../typechain/factories/YVaultV4AssetProxy__factory";
 
 const provider = ethers.providers.getDefaultProvider("goerli")
 
@@ -54,11 +55,22 @@ export async function deployUserProxy(deploymentData: UserProxyData) {
             gasPrice: ethers.utils.parseUnits(gas, 'gwei')
         }
     );
+    await proxy.deployed();
+
+    await hre.run("verify:verify", {
+        network: "mainnet",
+        address: "0xEe4e158c03A10CBc8242350d74510779A364581C",
+        constructorArguments: [
+            deploymentData.weth,
+            deploymentData.trancheFactory,
+            deploymentData.trancheBytecodeHash],
+    })
+
     console.log("User Proxy", proxy.address);
     return proxy.address
 }
 
-async function deployFactories() {
+export async function deployFactories() {
     const [signer] = await ethers.getSigners()
     const interestTokenFactoryFactory = new InterestTokenFactory__factory(signer);
     const ytFactoryGas = readline.question("yt factory gasPrice: ");
@@ -66,6 +78,7 @@ async function deployFactories() {
         {
             gasPrice: ethers.utils.parseUnits(ytFactoryGas, 'gwei')
         });
+    await interestTokenFactory.deployed();
     console.log("Interest Token Factory", interestTokenFactory.address);
 
     //get datestring lib
@@ -76,6 +89,13 @@ async function deployFactories() {
         {
             gasPrice: ethers.utils.parseUnits(dateLibGas, 'gwei')
         });
+    await dateLib.deployed();
+    
+    await hre.run("verify:verify", {
+        network: "mainnet",
+        address: dateLib.address,
+        constructorArguments: [],
+    })
 
     // Deploy the tranche factory
     const trancheFactoryGas = readline.question("tranche factory gasPrice: ");
@@ -86,14 +106,29 @@ async function deployFactories() {
             gasPrice: ethers.utils.parseUnits(trancheFactoryGas, 'gwei')
         }
     );
+    await trancheFactory.deployed();
+
+    await hre.run("verify:verify", {
+        network: "mainnet",
+        address: trancheFactory.address,
+        constructorArguments: [ 
+            interestTokenFactory.address,
+            dateLib.address],
+    })
+
     console.log("Tranche Factory", trancheFactory.address);
     return trancheFactory.address
 }
 
-export async function deployWrappedPosition(deploymentData: WrappedPositionData) {
+export async function deployWrappedPosition(deploymentData: WrappedPositionData, v4: boolean) {
     const [signer] = await ethers.getSigners()
 
-    const yAssetWPFactory = new YVaultAssetProxy__factory(signer);
+    let yAssetWPFactory;
+    if (v4) {
+        yAssetWPFactory = new YVaultV4AssetProxy__factory(signer);
+    } else {
+        yAssetWPFactory = new YVaultAssetProxy__factory(signer);
+    }
 
     const gas = readline.question("wrapped position gasPrice: ");
     const wrappedPosition = await yAssetWPFactory.deploy(
@@ -105,6 +140,15 @@ export async function deployWrappedPosition(deploymentData: WrappedPositionData)
             gasPrice: ethers.utils.parseUnits(gas, 'gwei')
         }
     );
+    await wrappedPosition.deployed();
+    await hre.run("verify:verify", {
+        network: "mainnet",
+        address: wrappedPosition.address,
+        constructorArguments: [deploymentData.vault,
+            deploymentData.underlying,
+            deploymentData.name,
+            deploymentData.symbol],
+    })
     console.log("Wrapped Position", wrappedPosition.address);
     return wrappedPosition.address
 }
