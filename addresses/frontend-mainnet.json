@@ -5,11 +5,15 @@
         "trancheFactoryAddress": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
         "userProxyContractAddress": "0xEe4e158c03A10CBc8242350d74510779A364581C",
         "weightedPoolFactoryAddress": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
+        "stecrvAddress": "0x06325440D014e39736583c165C2963BA99fAf14E",
         "lusd3crv-fAddress": "0xed279fdd11ca84beef15af5d39bb4d4bee23f0ca",
         "crvtricryptoAddress": "0xca3d75ac011bf5ad07a98d02f18225f9bd9a6bdf"
     },
     "chainId": 1,
     "safelist": [
+        "0x26941C63F4587796aBE199348ecd3d7C44F9aE0C",
+        "0xce16E7ed7654a3453E8FaF748f2c82E57069278f",
+        "0xD5D7bc115B32ad1449C6D0083E43C87be95F2809",
         "0x9b44Ed798a10Df31dee52C5256Dcb4754BCf097E",
         "0xA8D4433BAdAa1A35506804B43657B0694deA928d",
         "0xDe620bb8BE43ee54d7aa73f8E99A7409Fe511084",
