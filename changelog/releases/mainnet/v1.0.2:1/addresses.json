@@ -109,24 +109,6 @@
 		],
 		"dai": [
 			{
-				"expiration": 1702000550,
-				"address": "0x46a6c6aa64c148386af77C76a4666da961f8c65c",
-				"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
-				"ptPool": {
-					"address": "0x85DCA8667D020e694FDfF06E7eE85e0c5C7C61a4",
-					"poolId": "0x85dca8667d020e694fdff06e7ee85e0c5c7c61a4000200000000000000000076",
-					"fee": "0.1",
-					"timeStretch": 22.19
-				},
-				"ytPool": {
-					"address": "0x15432bA000e58E3c0aE52A5dEc0579215EBC75D0",
-					"poolId": "0x15432ba000e58e3c0ae52a5dec0579215ebc75d0000200000000000000000075",
-					"fee": "0.003"
-				},
-				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
-				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
-			},
-			{
 				"expiration": 1634346845,
 				"address": "0xb1cc77e701de60FE246607565CF7eDC9D9b6b963",
 				"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
