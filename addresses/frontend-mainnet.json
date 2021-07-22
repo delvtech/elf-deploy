@@ -7,7 +7,8 @@
         "weightedPoolFactoryAddress": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
         "stecrvAddress": "0x06325440D014e39736583c165C2963BA99fAf14E",
         "lusd3crv-fAddress": "0xed279fdd11ca84beef15af5d39bb4d4bee23f0ca",
-        "crvtricryptoAddress": "0xca3d75ac011bf5ad07a98d02f18225f9bd9a6bdf"
+        "crvtricryptoAddress": "0xca3d75ac011bf5ad07a98d02f18225f9bd9a6bdf",
+        "daiAddress": "0x6B175474E89094C44Da98b954EedeAC495271d0F"
     },
     "chainId": 1,
     "safelist": [
@@ -22,6 +23,9 @@
         "0x67F8FCb9D3c463da05DE1392EfDbB2A87F8599Ea",
         "0x237535Da7e2f0aBa1b68262ABCf7C4e60B42600C",
         "0x3A693EB97b500008d4Bb6258906f7Bbca1D09Cc5",
-        "0xF94A7Df264A2ec8bCEef2cFE54d7cA3f6C6DFC7a"
+        "0xF94A7Df264A2ec8bCEef2cFE54d7cA3f6C6DFC7a",
+        "0xb1cc77e701de60FE246607565CF7eDC9D9b6b963",
+        "0x71628c66C502F988Fbb9e17081F2bD14e361FAF4",
+        "0xE54B3F5c444a801e61BECDCa93e74CdC1C4C1F90"
     ]
 }
