@@ -12,7 +12,8 @@
 			"lusd3crv-f": "0x53b1aEAa018da00b4F458Cc13d40eB3e8d1B85d6",
 			"crvtricrypto": "0x97278Ce17D4860f8f49afC6E4c1C5AcBf2584cE5",
 			"stecrv": "0xB3295e739380BD68de96802F7c4Dba4e54477206",
-			"dai": "0x21BbC083362022aB8D7e42C18c47D484cc95C193"
+			"dai": "0x21BbC083362022aB8D7e42C18c47D484cc95C193",
+			"usdc": "0xdEa04Ffc66ECD7bf35782C70255852B34102C3b0"
 		}
 	},
 	"vaults": {
@@ -20,7 +21,8 @@
 			"lusd3crv-f": "0x5fA5B62c8AF877CB37031e0a3B2f34A78e3C56A6",
 			"crvtricrypto": "0x3D980E50508CFd41a13837A60149927a11c03731",
 			"stecrv": "0xdCD90C7f6324cfa40d7169ef80b12031770B4325",
-			"dai": "0xdA816459F1AB5631232FE5e97a05BBBb94970c95"
+			"dai": "0xdA816459F1AB5631232FE5e97a05BBBb94970c95",
+			"usdc": "0x5f18C75AbDAe578b483E5F43f12a39cF75b973a9"
 		}
 	},
 	"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
@@ -125,6 +127,13 @@
 				},
 				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
 				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
+			}
+		],
+		"usdc": [
+			{
+				"expiration": 1635528110,
+				"address": "0xf38c3E836Be9cD35072055Ff6a9Ba570e0B70797",
+				"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0"
 			}
 		]
 	}
