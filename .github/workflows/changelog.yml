@@ -7,11 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Validate JSON
-        uses: docker://orrosenblatt/validate-json-action:latest
-        env:
-          INPUT_SCHEMA: ./addresses.schema.json
-          INPUT_JSONS: ./addresses/frontend-mainnet.addresses.json,addresses/frontend-goerli.addresses.json
       - name: generate markdown
         run: |
           cd changelog && npm ci && node generate-changelog.js
