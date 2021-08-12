@@ -8,9 +8,9 @@
         "usdcAddress": "0x78dEca24CBa286C0f8d56370f5406B48cFCE2f86",
         "wethAddress": "0x9A1000D492d40bfccbc03f413A48F5B6516Ec0Fd",
         "daiAddress": "0x5bD768CCE8C529CDF23B136bB486a81f64985B92",
-        "stecrvAddress": "0x0",
-        "lusd3crv-fAddress": "0x0",
-        "crvtricryptoAddress": "0x0"
+        "stecrvAddress": "0x0000000000000000000000000000000000000000",
+        "lusd3crv-fAddress": "0x0000000000000000000000000000000000000000",
+        "crvtricryptoAddress": "0x0000000000000000000000000000000000000000"
     },
     "chainId": 5,
     "safelist": [
