@@ -33,7 +33,7 @@
         "crvalusdAddress": {
           "type": "string"
         },
-        "crvlusdAddress": {
+        "lusd3crv-fAddress": {
           "type": "string"
         },
         "crvtricryptoAddress": {
@@ -50,7 +50,7 @@
         "trancheFactoryAddress",
         "stecrvAddress",
         "usdcAddress",
-        "crvlusdAddress",
+        "lusd3crv-fAddress",
         "crvalusdAddress",
         "crvtricryptoAddress",
         "daiAddress",
