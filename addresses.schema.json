@@ -9,9 +9,6 @@
         "convergentPoolFactoryAddress": {
           "type": "string"
         },
-        "interestTokenFactoryAddress": {
-          "type": "string"
-        },
         "trancheFactoryAddress": {
           "type": "string"
         },
@@ -43,7 +40,6 @@
       "required": [
         "balancerVaultAddress",
         "convergentPoolFactoryAddress",
-        "interestTokenFactoryAddress",
         "trancheFactoryAddress",
         "stecrvAddress",
         "usdcAddress",
