@@ -16,21 +16,28 @@ import {
 
   // An example of deplying a contract using the deployer. This deploys the user Proxy.
   async function deployWithAddresses(addresses: any) {
-      const weth = addresses.tokens.weth
-      const trancheFactory = addresses.trancheFactory
-      const trancheBytecodeHash = ethers.utils.solidityKeccak256(
-        ["bytes"],
-        [data.bytecode]
-    );
+    const data = {
+        name: "element yvCurve-3Crypto",
+        symbol: "yvCurve-3Crypto",
+        underlying: "0xc4AD29ba4B3c580e6D59105FFf484999997675Ff",
+        vault: "0xE537B5cc158EB71037D4125BDD7538421981E6AA"
+    };
+    await deployWrappedPosition(data, true);
+    //   const weth = addresses.tokens.weth
+    //   const trancheFactory = addresses.trancheFactory
+    //   const trancheBytecodeHash = ethers.utils.solidityKeccak256(
+    //     ["bytes"],
+    //     [data.bytecode]
+    // );
 
-    const userProxyDeployData: UserProxyData = {
-        weth,
-        trancheFactory,
-        trancheBytecodeHash
-    }
-    const proxyAddress = await deployUserProxy(userProxyDeployData);
-    addresses.userProxy = proxyAddress
-    console.log(proxyAddress)
+    // const userProxyDeployData: UserProxyData = {
+    //     weth,
+    //     trancheFactory,
+    //     trancheBytecodeHash
+    // }
+    // const proxyAddress = await deployUserProxy(userProxyDeployData);
+    // addresses.userProxy = proxyAddress
+    // console.log(proxyAddress)
     return addresses
 }
 
