@@ -7,7 +7,10 @@
         "weightedPoolFactoryAddress": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
         "usdcAddress": "0x78dEca24CBa286C0f8d56370f5406B48cFCE2f86",
         "wethAddress": "0x9A1000D492d40bfccbc03f413A48F5B6516Ec0Fd",
-        "daiAddress": "0x5bD768CCE8C529CDF23B136bB486a81f64985B92"
+        "daiAddress": "0x5bD768CCE8C529CDF23B136bB486a81f64985B92",
+        "stecrvAddress": "0x0",
+        "lusd3crv-fAddress": "0x0",
+        "crvtricryptoAddress": "0x0"
     },
     "chainId": 5,
     "safelist": [
@@ -28,6 +31,6 @@
         "0xcF6894C48c2AF3ddD433CC1EDfEfC74e654cC9B4",
         "0x6866dFc9A60e9dba922668b9b27931DCaCDF645A",
         "0x00655F8F287848f35538648A012e2cbd13016138",
-        "0x4c3f56cc1ad2bc61293739c7f0550575c9daf313"
+        "0x4c3f56cC1ad2BC61293739C7f0550575c9DAf313"
     ]
 }

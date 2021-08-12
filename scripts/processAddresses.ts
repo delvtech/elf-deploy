@@ -43,6 +43,27 @@ async function main() {
         addresses[keyName]=addressesFile["tokens"][baseAsset]
     }
 
+    // Add base assets that exist in the network that was NOT selected to the json
+
+    // get NOT the network name
+    let notNetwork = network == "mainnet"? "goerli": "mainnet";
+    // read in address file and parse
+    let notNetworkRawdata = fs.readFileSync("addresses/"+notNetwork+".json").toString();
+    let notNetworkAddressesFile = JSON.parse(notNetworkRawdata);
+    let notNetworkBaseAssets = [];
+    // store base assets listed in NOT network json
+    for (const trancheListKey in notNetworkAddressesFile["tranches"]) {
+        notNetworkBaseAssets.push(trancheListKey);
+    }
+
+    // add base asset tokens that are NOT already added
+    for (const notNetworkBaseAsset of notNetworkBaseAssets) {
+        const keyName = notNetworkBaseAsset+"Address"
+        if (!addresses.hasOwnProperty(keyName)){
+            addresses[keyName]="0x0000000000000000000000000000000000000000";
+        }
+    }
+
     // frontend json structure
     let frontend = {
         addresses: addresses,
@@ -52,7 +73,7 @@ async function main() {
 
     let frontendJson = JSON.stringify(frontend, null, 4);
     console.log(frontendJson);
-    fs.writeFileSync('addresses/frontend-'+network+'.json', frontendJson,'utf8');
+    fs.writeFileSync('addresses/frontend-'+network+'.addresses.json', frontendJson,'utf8');
 
     // get release version
     const releaseVersion = readline.question("Release Version (e.g. vX.X.X:X): ");
