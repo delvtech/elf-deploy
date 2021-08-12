@@ -30,9 +30,6 @@
         "stecrvAddress": {
           "type": "string"
         },
-        "crvalusdAddress": {
-          "type": "string"
-        },
         "lusd3crv-fAddress": {
           "type": "string"
         },
@@ -51,7 +48,6 @@
         "stecrvAddress",
         "usdcAddress",
         "lusd3crv-fAddress",
-        "crvalusdAddress",
         "crvtricryptoAddress",
         "daiAddress",
         "userProxyContractAddress",
