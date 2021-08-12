@@ -9,7 +9,8 @@
         "lusd3crv-fAddress": "0xEd279fDD11cA84bEef15AF5D39BB4d4bEE23F0cA",
         "crvtricryptoAddress": "0xcA3d75aC011BF5aD07a98d02f18225F9bD9A6BDF",
         "daiAddress": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-        "usdcAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+        "usdcAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "wethAddress": "0x0000000000000000000000000000000000000000"
     },
     "chainId": 1,
     "safelist": [
@@ -30,6 +31,6 @@
         "0xE54B3F5c444a801e61BECDCa93e74CdC1C4C1F90",
         "0xf38c3E836Be9cD35072055Ff6a9Ba570e0B70797",
         "0x787546Bf2c05e3e19e2b6BDE57A203da7f682efF",
-        "0x2d6e3515c8b47192ca3913770fa741d3c4dac354"
+        "0x2D6e3515C8b47192Ca3913770fa741d3C4Dac354"
     ]
 }

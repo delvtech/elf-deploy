@@ -1,0 +1,10 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "frontend-*.json"
+      ],
+      "url": "./addresses.schema.json"
+    },
+  ],
+}

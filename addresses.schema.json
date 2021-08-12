@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "addresses": {
+      "properties": {
+        "balancerVaultAddress": {
+          "type": "string"
+        },
+        "convergentPoolFactoryAddress": {
+          "type": "string"
+        },
+        "trancheFactoryAddress": {
+          "type": "string"
+        },
+        "usdcAddress": {
+          "type": "string"
+        },
+        "userProxyContractAddress": {
+          "type": "string"
+        },
+        "weightedPoolFactoryAddress": {
+          "type": "string"
+        },
+        "daiAddress": {
+          "type": "string"
+        },
+        "stecrvAddress": {
+          "type": "string"
+        },
+        "lusd3crv-fAddress": {
+          "type": "string"
+        },
+        "crvtricryptoAddress": {
+          "type": "string"
+        },
+        "wethAddress": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "balancerVaultAddress",
+        "convergentPoolFactoryAddress",
+        "trancheFactoryAddress",
+        "stecrvAddress",
+        "usdcAddress",
+        "lusd3crv-fAddress",
+        "crvtricryptoAddress",
+        "daiAddress",
+        "userProxyContractAddress",
+        "weightedPoolFactoryAddress",
+        "wethAddress"
+      ],
+      "type": "object"
+    },
+    "safelist": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "chainId": {
+      "type": "number"
+    }
+  },
+  "required": ["addresses", "chainId", "safelist"],
+  "type": "object"
+}
