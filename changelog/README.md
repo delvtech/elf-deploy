@@ -25,3 +25,5 @@
     
  - [v1.0.2:2](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/mainnet/v1.0.2:2/addresses.json)
     
+ - [v1.0.3:1](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/mainnet/v1.0.3:1/addresses.json)
+    
