@@ -60,7 +60,7 @@ async function main() {
     for (const notNetworkBaseAsset of notNetworkBaseAssets) {
         const keyName = notNetworkBaseAsset+"Address"
         if (!addresses.hasOwnProperty(keyName)){
-            addresses[keyName]="0x0";
+            addresses[keyName]="0x0000000000000000000000000000000000000000";
         }
     }
 
