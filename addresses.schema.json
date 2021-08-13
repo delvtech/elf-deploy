@@ -3,6 +3,9 @@
   "properties": {
     "addresses": {
       "properties": {
+        "crv3cryptoAddress": {
+          "type": "string"
+        },
         "balancerVaultAddress": {
           "type": "string"
         },
@@ -48,7 +51,8 @@
         "daiAddress",
         "userProxyContractAddress",
         "weightedPoolFactoryAddress",
-        "wethAddress"
+        "wethAddress",
+        "crv3cryptoAddress"
       ],
       "type": "object"
     },
