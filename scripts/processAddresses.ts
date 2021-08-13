@@ -1,4 +1,4 @@
-import { providers } from "ethers";
+import { providers, utils } from "ethers";
 import * as fs from "fs";
 import * as hre from "hardhat";
 import * as readline from "readline-sync";
@@ -19,9 +19,9 @@ async function main() {
         baseAssets.push(trancheListKey);
         const trancheList = addressesFile["tranches"][trancheListKey];
         for (const tranche of trancheList) {
-            safeList.push(tranche.address)
-            safeList.push(tranche.ptPool.address)
-            safeList.push(tranche.ytPool.address)
+            safeList.push(utils.getAddress(tranche.address))
+            safeList.push(utils.getAddress(tranche.ptPool.address))
+            safeList.push(utils.getAddress(tranche.ytPool.address))
         }
     }
 
@@ -30,17 +30,17 @@ async function main() {
     let addresses: any = {}
     // add the rest of the known address types
     addresses = {
-        balancerVaultAddress: addressesFile["balancerVault"],
-        convergentPoolFactoryAddress: addressesFile["convergentCurvePoolFactory"],
-        trancheFactoryAddress: addressesFile["trancheFactory"],
-        userProxyContractAddress: addressesFile["userProxy"],
-        weightedPoolFactoryAddress: addressesFile["weightedPoolFactory"],
+        balancerVaultAddress: utils.getAddress(addressesFile["balancerVault"]),
+        convergentPoolFactoryAddress: utils.getAddress(addressesFile["convergentCurvePoolFactory"]),
+        trancheFactoryAddress: utils.getAddress(addressesFile["trancheFactory"]),
+        userProxyContractAddress: utils.getAddress(addressesFile["userProxy"]),
+        weightedPoolFactoryAddress: utils.getAddress(addressesFile["weightedPoolFactory"]),
     }
 
     // add base asset tokens
     for (const baseAsset of baseAssets) {
         const keyName = baseAsset+"Address"
-        addresses[keyName]=addressesFile["tokens"][baseAsset]
+        addresses[keyName]=utils.getAddress(addressesFile["tokens"][baseAsset])
     }
 
     // Add base assets that exist in the network that was NOT selected to the json
