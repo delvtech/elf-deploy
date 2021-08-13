@@ -75,10 +75,12 @@ async function main() {
     console.log(frontendJson);
     fs.writeFileSync('addresses/frontend-'+network+'.addresses.json', frontendJson,'utf8');
 
-    // get release version
-    const releaseVersion = readline.question("Release Version (e.g. vX.X.X:X): ");
-    fs.mkdirSync("changelog/releases/"+network+"/"+releaseVersion, { recursive: true })
-    fs.copyFileSync("addresses/"+network+".json","changelog/releases/"+network+"/"+releaseVersion+"/addresses.json")
+    if(process.env["WRITE_CHANGELOG"]=="1"){
+        // get release version
+        const releaseVersion = readline.question("Release Version (e.g. vX.X.X:X): ");
+        fs.mkdirSync("changelog/releases/"+network+"/"+releaseVersion, { recursive: true })
+        fs.copyFileSync("addresses/"+network+".json","changelog/releases/"+network+"/"+releaseVersion+"/addresses.json")
+    }
 }
 
 main()
