@@ -49,7 +49,7 @@ npm run fundYtPool -- --network mainnet
 To generate json file for the frontend to process:
 
 ```bash
-npm run processAddresses -- --network mainnet
+sh scripts/postProcess.sh mainnet
 ```
 
 When prompted for the version, enter something like:
