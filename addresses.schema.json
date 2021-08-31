@@ -3,6 +3,9 @@
   "properties": {
     "addresses": {
       "properties": {
+        "wbtcAddress": {
+          "type": "string"
+        },
         "crv3cryptoAddress": {
           "type": "string"
         },
@@ -52,7 +55,8 @@
         "userProxyContractAddress",
         "weightedPoolFactoryAddress",
         "wethAddress",
-        "crv3cryptoAddress"
+        "crv3cryptoAddress",
+        "wbtcAddress"
       ],
       "type": "object"
     },
