@@ -64,7 +64,7 @@
         "crv3cryptoAddress",
         "wbtcAddress",
         "alusd3crv-fAddress",
-        "mim-3lp3crv-f"
+        "mim-3lp3crv-fAddress"
       ],
       "type": "object"
     },
