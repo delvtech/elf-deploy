@@ -3,6 +3,9 @@
   "properties": {
     "addresses": {
       "properties": {
+        "mim-3lp3crv-fAddress": {
+          "type": "string"
+        },
         "alusd3crv-fAddress": {
           "type": "string"
         },
@@ -60,7 +63,8 @@
         "wethAddress",
         "crv3cryptoAddress",
         "wbtcAddress",
-        "alusd3crv-fAddress"
+        "alusd3crv-fAddress",
+        "mim-3lp3crv-f"
       ],
       "type": "object"
     },
