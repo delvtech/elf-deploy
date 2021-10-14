@@ -3,6 +3,9 @@
   "properties": {
     "addresses": {
       "properties": {
+        "eurscrvAddress": {
+          "type": "string"
+        },
         "mim-3lp3crv-fAddress": {
           "type": "string"
         },
@@ -64,7 +67,8 @@
         "crv3cryptoAddress",
         "wbtcAddress",
         "alusd3crv-fAddress",
-        "mim-3lp3crv-fAddress"
+        "mim-3lp3crv-fAddress",
+        "eurscrvAddress"
       ],
       "type": "object"
     },
