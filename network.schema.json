@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "tokens": {
+      "type": "object"
+    },
+    "wrappedPositions": {
+      "type": "object",
+      "properties": {
+        "yearn": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "yearn"
+      ]
+    },
+    "vaults": {
+      "type": "object",
+      "properties": {
+        "yearn": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "yearn"
+      ]
+    },
+    "trancheFactory": {
+      "type": "string"
+    },
+    "userProxy": {
+      "type": "string"
+    },
+    "balancerVault": {
+      "type": "string"
+    },
+    "weightedPoolFactory": {
+      "type": "string"
+    },
+    "convergentCurvePoolFactory": {
+      "type": "string"
+    },
+    "tranches": {
+      "type": "object",
+      "properties": {
+        "tranche": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "expiration": {
+                  "type": "integer"
+                },
+                "address": {
+                  "type": "string"
+                },
+                "ptPool": {
+                  "type": "object",
+                  "properties": {
+                    "address": {
+                      "type": "string"
+                    },
+                    "poolId": {
+                      "type": "string"
+                    },
+                    "fee": {
+                      "type": "string"
+                    },
+                    "timeStretch": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "address",
+                    "poolId",
+                    "fee",
+                    "timeStretch"
+                  ]
+                },
+                "ytPool": {
+                  "type": "object",
+                  "properties": {
+                    "address": {
+                      "type": "string"
+                    },
+                    "poolId": {
+                      "type": "string"
+                    },
+                    "fee": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "address",
+                    "poolId",
+                    "fee"
+                  ]
+                },
+                "trancheFactory": {
+                  "type": "string"
+                },
+                "weightedPoolFactory": {
+                  "type": "string"
+                },
+                "convergentCurvePoolFactory": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "expiration",
+                "address",
+                "ptPool",
+                "ytPool",
+                "trancheFactory",
+                "weightedPoolFactory",
+                "convergentCurvePoolFactory"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "tranche"
+      ]
+    }
+  },
+  "required": [
+    "tokens",
+    "wrappedPositions",
+    "vaults",
+    "trancheFactory",
+    "userProxy",
+    "balancerVault",
+    "weightedPoolFactory",
+    "convergentCurvePoolFactory",
+    "tranches"
+  ]
+}
