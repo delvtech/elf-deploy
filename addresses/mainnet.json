@@ -284,10 +284,10 @@
 				"address": "0x418De6227499181B045CAdf554030722E460881a",
 				"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
 				"ptPool": {
-					"address": "0x94C476E4675FAaC1Bf60211c5E39486bCF720cBD",
-					"poolId": "0x94c476e4675faac1bf60211c5e39486bcf720cbd0002000000000000000000a3",
+					"address": "0x09b1b33BaD0e87454ff05696b1151BFbD208a43F",
+					"poolId": "0x09b1b33bad0e87454ff05696b1151bfbd208a43f0002000000000000000000a6",
 					"fee": "0.1",
-					"timeStretch": 5.55
+					"timeStretch": 11.1
 				},
 				"ytPool": {
 					"address": "0x1D310a6238e11c8BE91D83193C88A99eB66279bE",
