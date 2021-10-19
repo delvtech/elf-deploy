@@ -94,8 +94,8 @@
 					"timeStretch": 36.98
 				},
 				"ytPool": {
-					"address": "0x62D3CeAB68Db0bf20F4C7f1438dbc8ACEc73f237",
-					"poolId": "0x62d3ceab68db0bf20f4c7f1438dbc8acec73f2370002000000000000000000aa",
+					"address": "0x062F38735AAC32320DB5e2DBBEb07968351D7C72",
+					"poolId": "0x062f38735aac32320db5e2dbbeb07968351d7c720002000000000000000000ac",
 					"fee": "0.003"
 				},
 				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
