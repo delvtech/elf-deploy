@@ -31,6 +31,15 @@ const config: HardhatUserConfig = {
           },
         },
       },
+      {
+        version: "0.8.3",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 10000,
+          },
+        },
+      },
     ],
     overrides: {
       "contracts/balancer-core-v2/vault/Vault.sol": {
