@@ -82,6 +82,24 @@
 				},
 				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
 				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
+			},
+			{
+				"expiration": 1650025565,
+				"address": "0x2361102893CCabFb543bc55AC4cC8d6d0824A67E",
+				"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
+				"ptPool": {
+					"address": "0xb03C6B351A283bc1Cd26b9cf6d7B0c4556013bDb",
+					"poolId": "0xb03c6b351a283bc1cd26b9cf6d7b0c4556013bdb0002000000000000000000ab",
+					"fee": "0.1",
+					"timeStretch": 36.98
+				},
+				"ytPool": {
+					"address": "0x062F38735AAC32320DB5e2DBBEb07968351D7C72",
+					"poolId": "0x062f38735aac32320db5e2dbbeb07968351d7c720002000000000000000000ac",
+					"fee": "0.003"
+				},
+				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
+				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
 			}
 		],
 		"lusd3crv-f": [
@@ -216,6 +234,24 @@
 				},
 				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
 				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
+			},
+			{
+				"expiration": 1639727861,
+				"address": "0x76a34D72b9CF97d972fB0e390eB053A37F211c74",
+				"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
+				"ytPool": {
+					"address": "0x7C9cF12d783821d5C63d8E9427aF5C44bAd92445",
+					"poolId": "0x7c9cf12d783821d5c63d8e9427af5c44bad924450002000000000000000000b4",
+					"fee": "0.003"
+				},
+				"ptPool": {
+					"address": "0x90ca5cef5b29342b229fb8ae2db5d8f4f894d652",
+					"poolId":"0x90ca5cef5b29342b229fb8ae2db5d8f4f894d6520002000000000000000000b5",
+					"fee": "0.1",
+					"timeStretch": 24.66
+				},
+				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
+				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
 			}
 		],
 		"crv3crypto": [
@@ -284,10 +320,10 @@
 				"address": "0x418De6227499181B045CAdf554030722E460881a",
 				"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
 				"ptPool": {
-					"address": "0x94C476E4675FAaC1Bf60211c5E39486bCF720cBD",
-					"poolId": "0x94c476e4675faac1bf60211c5e39486bcf720cbd0002000000000000000000a3",
+					"address": "0x09b1b33BaD0e87454ff05696b1151BFbD208a43F",
+					"poolId": "0x09b1b33bad0e87454ff05696b1151bfbd208a43f0002000000000000000000a6",
 					"fee": "0.1",
-					"timeStretch": 5.55
+					"timeStretch": 11.1
 				},
 				"ytPool": {
 					"address": "0x1D310a6238e11c8BE91D83193C88A99eB66279bE",
