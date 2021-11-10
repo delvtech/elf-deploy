@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: generate markdown
         run: |
-          cd changelog && npm ci && node generate-changelog.js
+          cd changelog && npm ci && node generate-changelog.js && sh sort-changelog-versions.sh 
       - uses: docker://pandoc/core:2.9
         with:
           args: >-  # allows you to break string into multiple lines
