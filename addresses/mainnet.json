@@ -24,6 +24,9 @@
 			"alusd3crv-f": "0x3b5Dbd685C7ad66f8D3A82E2134320eD74DA4Af2",
 			"mim-3lp3crv-f": "0x270f63b67FF1Ca770D60684366B009A566170AdD",
 			"eurscrv": "0xb601610553071209443Fbae6E71b8dE4Ba78643b"
+		},
+		"yearnv4": {
+			"usdc": "0x62d9855c399fDE8226840eA12D9F1Dd693a49B6A"
 		}
 	},
 	"vaults": {
@@ -38,6 +41,9 @@
 			"alusd3crv-f": "0xA74d4B67b3368E83797a35382AFB776bAAE4F5C8",
 			"mim-3lp3crv-f": "0x2DfB14E32e2F8156ec15a2c21c3A6c053af52Be8",
 			"eurscrv": "0x25212Df29073FfFA7A67399AcEfC2dd75a831A1A"
+		},
+		"yearnv4": {
+			"usdc": "0xa354F35829Ae975e850e23e9615b11Da1B3dC4DE"
 		}
 	},
 	"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
@@ -247,6 +253,24 @@
 				"ptPool": {
 					"address": "0x90ca5cef5b29342b229fb8ae2db5d8f4f894d652",
 					"poolId": "0x90ca5cef5b29342b229fb8ae2db5d8f4f894d6520002000000000000000000b5",
+					"fee": "0.1",
+					"timeStretch": 24.66
+				},
+				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
+				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
+			},
+			{
+				"expiration": 1651253068,
+				"address": "0x52C9886d5D87B0f06EbACBEff750B5Ffad5d17d9",
+				"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
+				"ytPool": {
+					"address": "0x7173b184525feAD2fFbde5FBe6FCB65Ea8246eE7",
+					"poolId": "0x7173b184525fead2ffbde5fbe6fcb65ea8246ee70002000000000000000000c7",
+					"fee": "0.003"
+				},
+				"ptPool": {
+					"address": "0x7edde0cb05ed19e03a9a47cd5e53fc57fde1c80c",
+					"poolId": "0x7edde0cb05ed19e03a9a47cd5e53fc57fde1c80c0002000000000000000000c8",
 					"fee": "0.1",
 					"timeStretch": 24.66
 				},
