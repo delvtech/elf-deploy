@@ -334,24 +334,6 @@
 				},
 				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
 				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
-			},
-			{
-				"expiration": 1651265241,
-				"address": "0x49e9e169f0B661Ea0A883f490564F4CC275123Ed",
-				"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
-				"ptPool": {
-					"address": "0x4bd6D86dEBdB9F5413e631Ad386c4427DC9D01B2",
-					"poolId": "0x4bd6d86debdb9f5413e631ad386c4427dc9d01b20002000000000000000000ec",
-					"fee": "0.1",
-					"timeStretch": 73.96
-				},
-				"ytPool": {
-					"address": "0xCF354603A9AEbD2Ff9f33E1B04246d8Ea204ae95",
-					"poolId": "0xcf354603a9aebd2ff9f33e1b04246d8ea204ae950002000000000000000000eb",
-					"fee": "0.003"
-				},
-				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
-				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
 			}
 		],
 		"alusd3crv-f": [
