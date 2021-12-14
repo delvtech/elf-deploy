@@ -62,12 +62,12 @@ export async function initYieldPool(
         if(BigNumber.from(await token.allowance(signerAddress, tranche.address)).lt(mintAmount)) {
           console.log("setting allowance");
           const gas = await gasPrice();
-          let tx = await token.approve(tranche.address, ethers.constants.MaxUint256, {maxFeePerGas: gas});
+          let tx = await token.approve(tranche.address, ethers.constants.MaxUint256, {gasPrice: gas});
           await tx.wait(1);
         }
         console.log("Deposited into tranche");
         const gas = await gasPrice();
-        let tx = await tranche.connect(signer).deposit(mintAmount, signerAddress, {maxFeePerGas: gas});
+        let tx = await tranche.connect(signer).deposit(mintAmount, signerAddress, {gasPrice: gas});
         await tx.wait(1);
         console.log("Deposit Completed");
     }
@@ -83,7 +83,7 @@ export async function initYieldPool(
         const gas = await gasPrice();
         const tx = await token
         .connect(signer)
-        .approve(vault.address, ethers.constants.MaxUint256, {maxFeePerGas: gas});
+        .approve(vault.address, ethers.constants.MaxUint256, {gasPrice: gas});
         txAwaits.push(tx.wait(1));
     }
     if ((await yieldToken.allowance(signerAddress, vault.address)).lt(depositAmount)) {
@@ -91,7 +91,7 @@ export async function initYieldPool(
         const gas = await gasPrice();
         let tx = await yieldToken
         .connect(signer)
-        .approve(vault.address, ethers.constants.MaxUint256, {maxFeePerGas: gas});
+        .approve(vault.address, ethers.constants.MaxUint256, {gasPrice: gas});
         txAwaits.push(tx.wait(1));
     }
     await Promise.all(txAwaits);
@@ -129,7 +129,7 @@ export async function initYieldPool(
         userData: encodeJoinWeightedPool(ytAmountsIn),
         fromInternalBalance: false
       },        
-      {maxFeePerGas: gas});
+      {gasPrice: gas});
     await tx.wait(1);
     console.log("Pool funded");
 
@@ -165,13 +165,13 @@ export async function initPtPool(
         if(BigNumber.from(await token.allowance(signerAddress, tranche.address)).lt(mintAmount)) {
           console.log("setting allowance");
           const gas = await gasPrice();
-          let tx = await token.approve(tranche.address, ethers.constants.MaxUint256, {maxFeePerGas: gas});
+          let tx = await token.approve(tranche.address, ethers.constants.MaxUint256, {gasPrice: gas});
           await tx.wait(1);
         }
         // We mint using the input amount
         console.log("Deposited into tranche");
         const gas = await gasPrice();
-        let tx = await tranche.connect(signer).deposit(mintAmount, signerAddress, {maxFeePerGas: gas});
+        let tx = await tranche.connect(signer).deposit(mintAmount, signerAddress, {gasPrice: gas});
         await tx.wait(1);
         console.log("Deposit Completed");
     }
@@ -187,7 +187,7 @@ export async function initPtPool(
         const gas = await gasPrice();
         const tx = await token
         .connect(signer)
-        .approve(vault.address, ethers.constants.MaxUint256, {maxFeePerGas: gas});
+        .approve(vault.address, ethers.constants.MaxUint256, {gasPrice: gas});
         txAwaits.push(tx.wait(1));
     }
     if ((await pt.allowance(signerAddress, vault.address)).lt(depositAmount)) {
@@ -195,7 +195,7 @@ export async function initPtPool(
         const gas = await gasPrice();
         let tx = await pt
         .connect(signer)
-        .approve(vault.address, ethers.constants.MaxUint256, {maxFeePerGas: gas});
+        .approve(vault.address, ethers.constants.MaxUint256, {gasPrice: gas});
         txAwaits.push(tx.wait(1));
     }
     await Promise.all(txAwaits);
@@ -229,7 +229,7 @@ export async function initPtPool(
           userData: ethers.utils.defaultAbiCoder.encode(["uint256[]"], [ptAmounts]),
           fromInternalBalance: false,
         },
-        { gasLimit: 250000, maxFeePerGas: gas}
+        { gasLimit: 250000, gasPrice: gas}
       );
       await tx.wait(1);
       console.log("Initial deposit finished");

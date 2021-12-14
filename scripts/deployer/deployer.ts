@@ -52,7 +52,7 @@ export async function deployUserProxy(deploymentData: UserProxyData) {
         deploymentData.trancheFactory,
         deploymentData.trancheBytecodeHash,
         {
-            maxFeePerGas: ethers.utils.parseUnits(gas, 'gwei')
+            gasPrice: ethers.utils.parseUnits(gas, 'gwei')
         }
     );
     await proxy.deployed();
@@ -76,7 +76,7 @@ export async function deployFactories() {
     const ytFactoryGas = readline.question("yt factory gasPrice: ");
     const interestTokenFactory = await interestTokenFactoryFactory.deploy(
         {
-            maxFeePerGas: ethers.utils.parseUnits(ytFactoryGas, 'gwei')
+            gasPrice: ethers.utils.parseUnits(ytFactoryGas, 'gwei')
         });
     await interestTokenFactory.deployed();
     console.log("Interest Token Factory", interestTokenFactory.address);
@@ -87,7 +87,7 @@ export async function deployFactories() {
     const dateLibGas = readline.question("datelib gasPrice: ");
     const dateLib = await dateLibFactory.deploy(
         {
-            maxFeePerGas: ethers.utils.parseUnits(dateLibGas, 'gwei')
+            gasPrice: ethers.utils.parseUnits(dateLibGas, 'gwei')
         });
     await dateLib.deployed();
     
@@ -103,7 +103,7 @@ export async function deployFactories() {
         interestTokenFactory.address,
         dateLib.address,
         {
-            maxFeePerGas: ethers.utils.parseUnits(trancheFactoryGas, 'gwei')
+            gasPrice: ethers.utils.parseUnits(trancheFactoryGas, 'gwei')
         }
     );
     await trancheFactory.deployed();
@@ -137,7 +137,7 @@ export async function deployWrappedPosition(deploymentData: WrappedPositionData,
         deploymentData.name,
         deploymentData.symbol,
         {
-            maxFeePerGas: ethers.utils.parseUnits(gas, 'gwei')
+            gasPrice: ethers.utils.parseUnits(gas, 'gwei')
         }
     );
     await wrappedPosition.deployed();
@@ -186,7 +186,7 @@ export async function deployTranche(deploymentData: TrancheData) {
         const txReceipt = (await (
             await trancheFactory.deployTranche(expiration + timestamp, deploymentData.wrappedPosition,
                 {
-                    maxFeePerGas: ethers.utils.parseUnits(gas, 'gwei')
+                    gasPrice: ethers.utils.parseUnits(gas, 'gwei')
                 }
             )
         ).wait(1)) as PostExecutionTransactionReceipt;

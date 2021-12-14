@@ -26,7 +26,7 @@ export async function deployConvergentPoolFactory(
       balancerVaultContract.address,
       signerAddress,
       {
-        maxFeePerGas: ethers.utils.parseUnits(gas, 'gwei')
+        gasPrice: ethers.utils.parseUnits(gas, 'gwei')
       }
     );
     await convergentPoolFactoryContract.deployed();
