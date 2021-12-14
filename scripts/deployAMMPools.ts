@@ -42,7 +42,7 @@ export async function deployWeightedPool(
         ethers.utils.parseEther(swapFee),
         await signer.getAddress(),
         {
-            maxFeePerGas: ethers.utils.parseUnits(gas, 'gwei')
+            gasPrice: ethers.utils.parseUnits(gas, 'gwei')
         }
       );
     const txReceipt = await createTx.wait(1);
@@ -88,7 +88,7 @@ export async function deployConvergentPool(
       `LP ${assetName}`,
       `LP${assetSymbol}`,
       {
-        maxFeePerGas: ethers.utils.parseUnits(gas, 'gwei')
+        gasPrice: ethers.utils.parseUnits(gas, 'gwei')
       }
     );
     await createTx.wait(1);
