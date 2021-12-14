@@ -144,6 +144,11 @@
 				},
 				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
 				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
+			},
+			{
+				"address": "0x0740A6CfB9468B8b53070C0B327099293DCCB82d",
+				"expiration": 1651264326,
+				"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0"
 			}
 		],
 		"crvtricrypto": [
