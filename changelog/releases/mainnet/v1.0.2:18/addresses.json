@@ -154,6 +154,7 @@
 					"poolId": "0x56f30398d13f111401d6e7ffe758254a0946687d000200000000000000000105",
 					"fee": "0.1",
 					"timeStretch": 27.74
+
 				},
 				"ytPool": {
 					"address": "0x8E9d636BbE6939BD0F52849afc02C0c66F6A3603",
@@ -216,24 +217,6 @@
 				"ytPool": {
 					"address": "0xB70c25D96EF260eA07F650037Bf68F5d6583885e",
 					"poolId": "0xb70c25d96ef260ea07f650037bf68f5d6583885e000200000000000000000096",
-					"fee": "0.003"
-				},
-				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
-				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
-			},
-			{
-				"expiration": 1651275535,
-				"address": "0x2c72692E94E757679289aC85d3556b2c0f717E0E",
-				"trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
-				"ptPool": {
-					"address": "0xEdf085f65b4F6c155e13155502Ef925c9a756003",
-					"poolId": "0xedf085f65b4f6c155e13155502ef925c9a756003000200000000000000000123",
-					"fee": "0.1",
-					"timeStretch": 31.7
-				},
-				"ytPool": {
-					"address": "0x415747EE98D482e6dD9B431fa76Ad5553744F247",
-					"poolId": "0x415747ee98d482e6dd9b431fa76ad5553744f247000200000000000000000122",
 					"fee": "0.003"
 				},
 				"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
