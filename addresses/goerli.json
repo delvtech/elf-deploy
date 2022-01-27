@@ -174,5 +174,9 @@
 				}
 			}
 		]
+	},
+	"wrappedCoveredPrincipalTokenFactory": "0x7E61D33C76C781821138B0972e25b84c4C0150Eb",
+	"wrappedCoveredPrincipalToken": {
+		"dai": "0x0c5383dffbD66c07820DD4278EE3f0CaBa08ED22"
 	}
 }
