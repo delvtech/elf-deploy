@@ -5,9 +5,10 @@ import "@nomiclabs/hardhat-etherscan";
 
 import { HardhatUserConfig } from "hardhat/config";
 
-const ALCHEMY_KEY = process.env.ALCHEMY_KEY || '';
+const ALCHEMY_KEY = process.env.ALCHEMY_KEY || "";
 const DEPLOYER_PRIVATE_KEY =
-  process.env.DEPLOYER_PRIVATE_KEY || '0000000000000000000000000000000000000000000000000000000000000000';
+  process.env.DEPLOYER_PRIVATE_KEY ||
+  "0000000000000000000000000000000000000000000000000000000000000000";
 
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
@@ -68,20 +69,16 @@ const config: HardhatUserConfig = {
     },
     goerli: {
       url: `https://eth-goerli.alchemyapi.io/v2/${ALCHEMY_KEY}`,
-      accounts: [
-        `0x${DEPLOYER_PRIVATE_KEY}`
-      ],
+      accounts: [`0x${DEPLOYER_PRIVATE_KEY}`],
     },
     mainnet: {
       url: `https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_KEY}`,
-      accounts: [
-        `0x${DEPLOYER_PRIVATE_KEY}`
-      ],
+      accounts: [`0x${DEPLOYER_PRIVATE_KEY}`],
     },
   },
   etherscan: {
-    apiKey: "Z73GWKPFXX87ENVY9KK9DK7NJS4ZYA7JM2"
-  }
+    apiKey: "Z73GWKPFXX87ENVY9KK9DK7NJS4ZYA7JM2",
+  },
 };
 
 export default config;

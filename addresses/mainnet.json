@@ -486,5 +486,10 @@
 				"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
 			}
 		]
+	},
+	"wrappedCoveredPrincipalTokenFactory": "0x4eeADD6093418Ca557cf22901EA741810689D263",
+	"wrappedCoveredPrincipalToken": {
+		"usdc": "0x810eeD88CfC3a32CB7A19d597CD6895C90dE0Aae",
+		"dai": "0x761298d1F5749e6523279547821A7DfdB5736B5D"
 	}
 }

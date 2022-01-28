@@ -6,7 +6,9 @@
     "deployTranche": "npx hardhat run scripts/deployTranche.ts --no-compile",
     "fundPtPool": "npx hardhat run scripts/fundPTPool.ts --no-compile",
     "fundYtPool": "npx hardhat run scripts/fundYTPool.ts --no-compile",
-    "processAddresses": "npx hardhat run scripts/processAddresses.ts"
+    "processAddresses": "npx hardhat run scripts/processAddresses.ts",
+    "deployWcptFactory": "npx hardhat run scripts/deployWrappedCoverTokenFactory.ts",
+    "createWcpt":"npx hardhat run scripts/deployWrappedCoverPrincipalToken.ts"
   },
   "devDependencies": {
     "@ethersproject/transactions": "^5.5.0",
@@ -45,7 +47,7 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^3.4.2",
+    "@openzeppelin/contracts": "^4.3.2",
     "ethereumjs-util": "^6.2.1",
     "module-alias": "^2.2.2"
   }
