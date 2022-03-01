@@ -23,6 +23,7 @@ export interface WrappedPositionData {
   symbol: string; // name
   underlying: string; // underlying token address
   vault: string; // yearn vault address
+  version: string; 
 }
 
 export interface TrancheData {
