@@ -52,7 +52,7 @@
 	"userProxy": "0xEe4e158c03A10CBc8242350d74510779A364581C",
 	"balancerVault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
 	"weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
-	"convergentCurvePoolFactory": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD",
+	"convergentCurvePoolFactory": "0xE88628700eaE9213169D715148ac5A5F47B5dCd9",
 	"tranches": {
 		"stecrv": [
 			{
