@@ -7,6 +7,7 @@
  - [v1.0.0-a.1:3](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/goerli/v1.0.0-a.1:3/addresses.json)
  - [v1.0.0-a.1:4](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/goerli/v1.0.0-a.1:4/addresses.json)
  - [v1.0.0-a.1:5](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/goerli/v1.0.0-a.1:5/addresses.json)
+ - [v1.1.0:1](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/goerli/v1.1.0:1/addresses.json)
 
 ## mainnet
 
@@ -33,4 +34,4 @@
  - [v1.0.2:17](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/mainnet/v1.0.2:17/addresses.json)
  - [v1.0.2:18](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/mainnet/v1.0.2:18/addresses.json)
  - [v1.0.2:19](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/mainnet/v1.0.2:19/addresses.json)
- - [v1.0.3:1](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/mainnet/v1.0.3:1/addresses.json)
+ - [v1.1.0:1](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/mainnet/v1.1.0:1/addresses.json)
