@@ -70,6 +70,7 @@ export async function deployConvergentPool(
     expiration: number,
     tParam: number,
     network: string,
+    pauser: string,
     options?: {
       swapFee?: string;
     }
@@ -87,6 +88,7 @@ export async function deployConvergentPool(
       ethers.utils.parseEther(swapFee),
       `LP ${assetName}`,
       `LP${assetSymbol}`,
+      pauser,
       {
         maxFeePerGas: ethers.utils.parseUnits(gas, 'gwei')
       }
@@ -231,6 +233,7 @@ async function deployWithAddresses(addresses: any, network: string) {
 
         const swapFeeString = readline.question("swap fee [decimal form] : ");
         const t = Number.parseFloat(readline.question("t stretch in years :"));
+        const pauser = readline.question("pauser address : "); // Timelock
 
         console.log("Deploying new pool");
         const deployment = await deployConvergentPool(
@@ -242,6 +245,7 @@ async function deployWithAddresses(addresses: any, network: string) {
             unlockTimestamp,
             t,
             network,
+            pauser,
             {
                 swapFee: swapFeeString
             }

@@ -35,6 +35,7 @@ async function main() {
         trancheFactoryAddress: utils.getAddress(addressesFile["trancheFactory"]),
         userProxyContractAddress: utils.getAddress(addressesFile["userProxy"]),
         weightedPoolFactoryAddress: utils.getAddress(addressesFile["weightedPoolFactory"]),
+        deprecatedCCPoolFactoryAddresses: addressesFile["deprecatedCCPoolFactory"]
     }
 
     // add base asset tokens

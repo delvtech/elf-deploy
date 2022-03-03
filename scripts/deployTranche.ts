@@ -17,10 +17,11 @@ async function deployWithAddresses(addresses: any) {
         return;
     }
 
+    const version = (readline.question("version: ")).toLowerCase();
     const wpType = (readline.question("wp type: ")).toLowerCase();
     const assetSymbol = (readline.question("wp underlying symbol: ")).toLowerCase();
 
-    if (addresses.wrappedPositions[wpType][assetSymbol] == undefined || addresses.wrappedPositions[wpType][assetSymbol] == undefined ) {
+    if (addresses.wrappedPositions[version][wpType][assetSymbol] == undefined || addresses.wrappedPositions[wpType][assetSymbol] == undefined ) {
         console.log("Error: please init wp");
         return;
     }
