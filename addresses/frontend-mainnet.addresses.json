@@ -1,23 +1,23 @@
 {
     "addresses": {
+        "alusd3crv-fAddress": "0x43b4FdFD4Ff969587185cDB6f0BD875c5Fc83f8c",
         "balancerVaultAddress": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
-        "convergentPoolFactoryAddress": "0xE88628700eaE9213169D715148ac5A5F47B5dCd9",
-        "trancheFactoryAddress": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
-        "userProxyContractAddress": "0xEe4e158c03A10CBc8242350d74510779A364581C",
-        "weightedPoolFactoryAddress": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
-        "deprecatedCCPoolFactoryAddresses": {
-            "v1": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
+        "convergentPoolFactoryAddress": {
+            "v1": "0xE88628700eaE9213169D715148ac5A5F47B5dCd9",
+            "v1_1": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD"
         },
-        "stecrvAddress": "0x06325440D014e39736583c165C2963BA99fAf14E",
-        "lusd3crv-fAddress": "0xEd279fDD11cA84bEef15AF5D39BB4d4bEE23F0cA",
+        "crv3cryptoAddress": "0xc4AD29ba4B3c580e6D59105FFf484999997675Ff",
         "crvtricryptoAddress": "0xcA3d75aC011BF5aD07a98d02f18225F9bD9A6BDF",
         "daiAddress": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-        "usdcAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-        "crv3cryptoAddress": "0xc4AD29ba4B3c580e6D59105FFf484999997675Ff",
-        "wbtcAddress": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
-        "alusd3crv-fAddress": "0x43b4FdFD4Ff969587185cDB6f0BD875c5Fc83f8c",
-        "mim-3lp3crv-fAddress": "0x5a6A4D54456819380173272A5E8E9B9904BdF41B",
         "eurscrvAddress": "0x194eBd173F6cDacE046C53eACcE9B953F28411d1",
+        "lusd3crv-fAddress": "0xEd279fDD11cA84bEef15AF5D39BB4d4bEE23F0cA",
+        "mim-3lp3crv-fAddress": "0x5a6A4D54456819380173272A5E8E9B9904BdF41B",
+        "stecrvAddress": "0x06325440D014e39736583c165C2963BA99fAf14E",
+        "trancheFactoryAddress": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
+        "usdcAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "userProxyContractAddress": "0xEe4e158c03A10CBc8242350d74510779A364581C",
+        "wbtcAddress": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+        "weightedPoolFactoryAddress": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
         "wethAddress": "0x0000000000000000000000000000000000000000"
     },
     "chainId": 1,

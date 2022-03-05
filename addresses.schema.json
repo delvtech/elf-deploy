@@ -3,25 +3,35 @@
   "properties": {
     "addresses": {
       "properties": {
-        "eurscrvAddress": {
-          "type": "string"
-        },
-        "mim-3lp3crv-fAddress": {
-          "type": "string"
-        },
         "alusd3crv-fAddress": {
-          "type": "string"
-        },
-        "wbtcAddress": {
-          "type": "string"
-        },
-        "crv3cryptoAddress": {
           "type": "string"
         },
         "balancerVaultAddress": {
           "type": "string"
         },
         "convergentPoolFactoryAddress": {
+          "v1": "string",
+          "v1_1": "string"
+        },
+        "crv3cryptoAddress": {
+          "type": "string"
+        },
+        "crvtricryptoAddress": {
+          "type": "string"
+        },
+        "daiAddress": {
+          "type": "string"
+        },
+        "eurscrvAddress": {
+          "type": "string"
+        },
+        "lusd3crv-fAddress": {
+          "type": "string"
+        },
+        "mim-3lp3crv-fAddress": {
+          "type": "string"
+        },
+        "stecrvAddress": {
           "type": "string"
         },
         "trancheFactoryAddress": {
@@ -33,19 +43,10 @@
         "userProxyContractAddress": {
           "type": "string"
         },
+        "wbtcAddress": {
+          "type": "string"
+        },
         "weightedPoolFactoryAddress": {
-          "type": "string"
-        },
-        "daiAddress": {
-          "type": "string"
-        },
-        "stecrvAddress": {
-          "type": "string"
-        },
-        "lusd3crv-fAddress": {
-          "type": "string"
-        },
-        "crvtricryptoAddress": {
           "type": "string"
         },
         "wethAddress": {
@@ -72,16 +73,20 @@
       ],
       "type": "object"
     },
-    "safelist": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
     "chainId": {
       "type": "number"
+    },
+    "safelist": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
     }
   },
-  "required": ["addresses", "chainId", "safelist"],
+  "required": [
+    "addresses",
+    "chainId",
+    "safelist"
+  ],
   "type": "object"
 }
