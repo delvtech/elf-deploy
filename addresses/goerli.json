@@ -22,7 +22,10 @@
 	"userProxy": "0xB8d8DD04385De3cbc84132F31dD84d5DaF0675fD",
 	"balancerVault": "0x65748E8287Ce4B9E6D83EE853431958851550311",
 	"weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
-	"convergentCurvePoolFactory": "0x0766B218517d9dC198155f0dC3485270cF788aF7",
+	"convergentCurvePoolFactory": "0x662a5e11D5769A02E1b444F1952AC575fB8cBB87",
+	"deprecatedCCPoolFactory": {
+		"v1": "0x0766B218517d9dC198155f0dC3485270cF788aF7"
+	},
 	"tranches": {
 		"usdc": [
 			{

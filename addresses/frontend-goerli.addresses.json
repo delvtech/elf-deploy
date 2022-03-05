@@ -1,10 +1,13 @@
 {
     "addresses": {
         "balancerVaultAddress": "0x65748E8287Ce4B9E6D83EE853431958851550311",
-        "convergentPoolFactoryAddress": "0x0766B218517d9dC198155f0dC3485270cF788aF7",
+        "convergentPoolFactoryAddress": "0x662a5e11D5769A02E1b444F1952AC575fB8cBB87",
         "trancheFactoryAddress": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
         "userProxyContractAddress": "0xB8d8DD04385De3cbc84132F31dD84d5DaF0675fD",
         "weightedPoolFactoryAddress": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
+        "deprecatedCCPoolFactoryAddresses": {
+            "v1": "0x0766B218517d9dC198155f0dC3485270cF788aF7"
+        },
         "usdcAddress": "0x78dEca24CBa286C0f8d56370f5406B48cFCE2f86",
         "wethAddress": "0x9A1000D492d40bfccbc03f413A48F5B6516Ec0Fd",
         "daiAddress": "0x5bD768CCE8C529CDF23B136bB486a81f64985B92",
