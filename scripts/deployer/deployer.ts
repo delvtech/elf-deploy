@@ -138,8 +138,8 @@ export async function deployWrappedPosition(
     deploymentData.underlying,
     deploymentData.name,
     deploymentData.symbol,
-    pauser,
     governance,
+    pauser,
     {
       maxFeePerGas: ethers.utils.parseUnits(gas, "gwei"),
     }
@@ -153,6 +153,8 @@ export async function deployWrappedPosition(
       deploymentData.underlying,
       deploymentData.name,
       deploymentData.symbol,
+      governance,
+      pauser
     ],
   });
   console.log("Wrapped Position", wrappedPosition.address);

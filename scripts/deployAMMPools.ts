@@ -127,6 +127,7 @@ export async function deployConvergentPool(
             gov,
             `LP ${assetName}`,
             `LP${assetSymbol}`,
+            pauser,
         ],
     });
   
