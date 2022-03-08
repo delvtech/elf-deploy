@@ -1,6 +1,7 @@
 {
   "balancerVault": "0x65748E8287Ce4B9E6D83EE853431958851550311",
   "convergentCurvePoolFactory": {
+    "latestVersion": "v1_1",
     "v1": "0x0766B218517d9dC198155f0dC3485270cF788aF7",
     "v1_1": "0x662a5e11D5769A02E1b444F1952AC575fB8cBB87"
   },
