@@ -49,10 +49,12 @@ async function main() {
 
   // add the rest of the known address types
   const balancerVaultAddress = utils.getAddress(addressesFile["balancerVault"]);
-  const convergentPoolFactoryAddress = {
-    v1_1: utils.getAddress(addressesFile.convergentCurvePoolFactory.v1_1),
-    v1: utils.getAddress(addressesFile.convergentCurvePoolFactory.v1),
-  };
+  const convergentPoolFactoryAddress: AddressesJsonFile["addresses"]["convergentPoolFactoryAddress"] =
+    {
+      latestVersion: "v1_1",
+      v1_1: utils.getAddress(addressesFile.convergentCurvePoolFactory.v1_1),
+      v1: utils.getAddress(addressesFile.convergentCurvePoolFactory.v1),
+    };
   const trancheFactoryAddress = utils.getAddress(
     addressesFile["trancheFactory"]
   );

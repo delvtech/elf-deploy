@@ -16,8 +16,8 @@ import { InterestToken__factory } from "../typechain/factories/InterestToken__fa
 import hre from "hardhat";
 
 // Edit to import the correct version
-import goerli from "../addresses/goerli.json";
-import mainnet from "../addresses/mainnet.json";
+import goerliJson from "../addresses/goerli.json";
+import mainnetJson from "../addresses/mainnet.json";
 
 export async function deployWeightedPool(
   signer: Signer,
@@ -111,6 +111,7 @@ export async function deployConvergentPool(
   const vault = await convergentPoolFactory.getVault();
   const feeGov = await convergentPoolFactory.percentFeeGov();
   const gov = await convergentPoolFactory.governance();
+
   await hre.run("verify:verify", {
     network: network,
     address: poolAddress,
@@ -132,7 +133,7 @@ export async function deployConvergentPool(
 }
 
 async function deployWithAddresses(
-  addresses: goerliJson | mainnetJson,
+  addresses: typeof goerliJson | typeof mainnetJson,
   network: string
 ) {
   const [signer] = await ethers.getSigners();
@@ -145,19 +146,23 @@ async function deployWithAddresses(
   const balancerFactory = new Vault__factory(signer);
   const vault = balancerFactory.attach(addresses.balancerVault);
 
-  const latestCCPoolFactory = addresses.convergentCurvePoolFactory;
+  const { latestVersion: latestCCPoolFactory } =
+    addresses.convergentCurvePoolFactory;
+
+  const latestCCPoolFactoryAddress =
+    // TODO: type this better
+    addresses.convergentCurvePoolFactory[latestCCPoolFactory as "v1" | "v1_1"];
+
   // Get convergent curve pool factory
   if (
-    addresses.convergentCurvePoolFactory.latest == undefined ||
-    addresses.convergentCurvePoolFactory == ""
+    latestCCPoolFactoryAddress === undefined ||
+    latestCCPoolFactoryAddress === ""
   ) {
     console.log("Error: please init cc pool factory");
     return;
   }
   const ccFactoryFactory = new ConvergentPoolFactory__factory(signer);
-  const ccFactory = ccFactoryFactory.attach(
-    addresses.convergentCurvePoolFactory
-  );
+  const ccFactory = ccFactoryFactory.attach(latestCCPoolFactoryAddress);
 
   // Get the weighted pool factory
   if (
@@ -332,7 +337,7 @@ async function main() {
   const network = await signer.provider?.getNetwork();
   switch (network?.chainId) {
     case 5: {
-      const result = await deployWithAddresses(goerli, "goerli");
+      const result = await deployWithAddresses(goerliJson, "goerli");
       console.log(
         "writing changed address to output file 'addresses/goerli.json'"
       );
@@ -344,7 +349,7 @@ async function main() {
       break;
     }
     case 1: {
-      const result = await deployWithAddresses(mainnet, "mainnet");
+      const result = await deployWithAddresses(mainnetJson, "mainnet");
       console.log(
         "writing changed address to output file 'addresses/mainnet.json'"
       );
