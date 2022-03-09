@@ -21,7 +21,7 @@ async function deployWithAddresses(addresses: any) {
     const wpType = (readline.question("wp type: ")).toLowerCase();
     const assetSymbol = (readline.question("wp underlying symbol: ")).toLowerCase();
 
-    if (addresses.wrappedPositions[version][wpType][assetSymbol] == undefined || addresses.wrappedPositions[wpType][assetSymbol] == undefined ) {
+    if (addresses.wrappedPositions[version][wpType][assetSymbol] == undefined || addresses.wrappedPositions[version][wpType][assetSymbol] == undefined ) {
         console.log("Error: please init wp");
         return;
     }
@@ -29,7 +29,7 @@ async function deployWithAddresses(addresses: any) {
     const duration = Number.parseInt(readline.question("duration unix seconds: "));
 
     const data = await deployTranche( {
-        wrappedPosition: addresses.wrappedPositions[wpType][assetSymbol],
+        wrappedPosition: addresses.wrappedPositions[version][wpType][assetSymbol],
         expirations: [duration], 
         trancheFactory: addresses.trancheFactory, 
     });

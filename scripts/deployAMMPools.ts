@@ -111,7 +111,6 @@ export async function deployConvergentPool(
   const vault = await convergentPoolFactory.getVault();
   const feeGov = await convergentPoolFactory.percentFeeGov();
   const gov = await convergentPoolFactory.governance();
-
   await hre.run("verify:verify", {
     network: network,
     address: poolAddress,
@@ -126,16 +125,14 @@ export async function deployConvergentPool(
       gov,
       `LP ${assetName}`,
       `LP${assetSymbol}`,
+      pauser,
     ],
   });
 
   return { poolId, poolContract };
 }
 
-async function deployWithAddresses(
-  addresses: typeof goerliJson | typeof mainnetJson,
-  network: string
-) {
+async function deployWithAddresses(addresses: any, network: string) {
   const [signer] = await ethers.getSigners();
 
   // Get balancer vault

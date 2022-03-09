@@ -130,12 +130,16 @@ export async function deployWrappedPosition(
     yAssetWPFactory = new YVaultAssetProxy__factory(signer);
   }
 
+  const pauser = readline.question("pauser address: ");
+  const governance = readline.question("governance address: ");
   const gas = readline.question("wrapped position gasPrice: ");
   const wrappedPosition = await yAssetWPFactory.deploy(
     deploymentData.vault,
     deploymentData.underlying,
     deploymentData.name,
     deploymentData.symbol,
+    governance,
+    pauser,
     {
       maxFeePerGas: ethers.utils.parseUnits(gas, "gwei"),
     }
@@ -149,6 +153,8 @@ export async function deployWrappedPosition(
       deploymentData.underlying,
       deploymentData.name,
       deploymentData.symbol,
+      governance,
+      pauser
     ],
   });
   console.log("Wrapped Position", wrappedPosition.address);
