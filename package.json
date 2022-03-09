@@ -7,8 +7,9 @@
     "fundPtPool": "npx hardhat run scripts/fundPTPool.ts --no-compile",
     "fundYtPool": "npx hardhat run scripts/fundYTPool.ts --no-compile",
     "processAddresses": "npx hardhat run scripts/processAddresses.ts",
+    "processAddressesGoerli": "npx hardhat run --network goerli scripts/processAddresses.ts",
     "deployWcptFactory": "npx hardhat run scripts/deployWrappedCoverTokenFactory.ts",
-    "createWcpt":"npx hardhat run scripts/deployWrappedCoverPrincipalToken.ts"
+    "createWcpt": "npx hardhat run scripts/deployWrappedCoverPrincipalToken.ts"
   },
   "devDependencies": {
     "@ethersproject/transactions": "^5.5.0",
