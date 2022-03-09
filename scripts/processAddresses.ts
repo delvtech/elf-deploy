@@ -137,7 +137,7 @@ main()
     process.exit(1);
   });
 
-function getSafeList(tranchesByBaseAsset: Record<string, Tranche[]>): string[] {
+function getSafeList(tranchesByBaseAsset: Record<string, any[]>): string[] {
   const safeList: string[] = [];
   Object.values(tranchesByBaseAsset).forEach((tranches) => {
     tranches.forEach((tranche) => {

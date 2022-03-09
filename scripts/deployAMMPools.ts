@@ -108,35 +108,31 @@ export async function deployConvergentPool(
     signer
   );
 
-    const vault = await convergentPoolFactory.getVault();
-    const feeGov = await convergentPoolFactory.percentFeeGov();
-    const gov = await convergentPoolFactory.governance();
-    await hre.run("verify:verify", {
-        network: network,
-        address: poolAddress,
-        constructorArguments: 
-        [
-            baseAssetContract.address,
-            yieldAssetContract.address,
-            expiration,
-            Math.round(tParam*ONE_YEAR_IN_SECONDS),
-            vault,
-            ethers.utils.parseEther(swapFee),
-            feeGov,
-            gov,
-            `LP ${assetName}`,
-            `LP${assetSymbol}`,
-            pauser,
-        ],
-    });
-  
-    return { poolId, poolContract };
+  const vault = await convergentPoolFactory.getVault();
+  const feeGov = await convergentPoolFactory.percentFeeGov();
+  const gov = await convergentPoolFactory.governance();
+  await hre.run("verify:verify", {
+    network: network,
+    address: poolAddress,
+    constructorArguments: [
+      baseAssetContract.address,
+      yieldAssetContract.address,
+      expiration,
+      Math.round(tParam * ONE_YEAR_IN_SECONDS),
+      vault,
+      ethers.utils.parseEther(swapFee),
+      feeGov,
+      gov,
+      `LP ${assetName}`,
+      `LP${assetSymbol}`,
+      pauser,
+    ],
+  });
+
+  return { poolId, poolContract };
 }
 
-async function deployWithAddresses(
-  addresses: any,
-  network: string
-) {
+async function deployWithAddresses(addresses: any, network: string) {
   const [signer] = await ethers.getSigners();
 
   // Get balancer vault
