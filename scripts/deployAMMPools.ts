@@ -108,27 +108,6 @@ export async function deployConvergentPool(
     signer
   );
 
-  const vault = await convergentPoolFactory.getVault();
-  const feeGov = await convergentPoolFactory.percentFeeGov();
-  const gov = await convergentPoolFactory.governance();
-
-  await hre.run("verify:verify", {
-    network: network,
-    address: poolAddress,
-    constructorArguments: [
-      baseAssetContract.address,
-      yieldAssetContract.address,
-      expiration,
-      Math.round(tParam * ONE_YEAR_IN_SECONDS),
-      vault,
-      ethers.utils.parseEther(swapFee),
-      feeGov,
-      gov,
-      `LP ${assetName}`,
-      `LP${assetSymbol}`,
-    ],
-  });
-
     const vault = await convergentPoolFactory.getVault();
     const feeGov = await convergentPoolFactory.percentFeeGov();
     const gov = await convergentPoolFactory.governance();
@@ -155,7 +134,7 @@ export async function deployConvergentPool(
 }
 
 async function deployWithAddresses(
-  addresses: typeof goerliJson | typeof mainnetJson,
+  addresses: any,
   network: string
 ) {
   const [signer] = await ethers.getSigners();
