@@ -6,7 +6,7 @@ export interface AddressesJsonFile {
     wbtcAddress: string;
     weightedPoolFactoryAddress: string;
     convergentPoolFactoryAddress: {
-      latestVersion: "v1_1";
+      latestVersion: "string";
       v1: string;
       v1_1: string;
     };
