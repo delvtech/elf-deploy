@@ -8,7 +8,6 @@ import { YVaultAssetProxy__factory } from "../../typechain/factories/YVaultAsset
 import { DateString__factory } from "../../typechain/factories/DateString__factory";
 import { UserProxy__factory } from "../../typechain/factories/UserProxy__factory";
 import * as readline from "readline-sync";
-import { YVaultV4AssetProxy__factory } from "../../typechain/factories/YVaultV4AssetProxy__factory";
 
 const provider = ethers.providers.getDefaultProvider("goerli");
 
@@ -118,17 +117,11 @@ export async function deployFactories() {
 }
 
 export async function deployWrappedPosition(
-  deploymentData: WrappedPositionData,
-  v4: boolean
+  deploymentData: WrappedPositionData
 ) {
   const [signer] = await ethers.getSigners();
 
-  let yAssetWPFactory;
-  if (v4) {
-    yAssetWPFactory = new YVaultV4AssetProxy__factory(signer);
-  } else {
-    yAssetWPFactory = new YVaultAssetProxy__factory(signer);
-  }
+  const yAssetWPFactory = new YVaultAssetProxy__factory(signer);
 
   const pauser = readline.question("pauser address: ");
   const governance = readline.question("governance address: ");
