@@ -425,11 +425,7 @@
           "timeStretch": 88.75
         },
         "weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
-        "convergentCurvePoolFactory": {
-          "latestVersion": "v1_1",
-          "v1": "0xb7561f547F3207eDb42A6AfA42170Cd47ADD17BD",
-          "v1_1": "0xE88628700eaE9213169D715148ac5A5F47B5dCd9"
-        }
+        "convergentCurvePoolFactory": "0xE88628700eaE9213169D715148ac5A5F47B5dCd9"
       }
     ],
     "wbtc": [
