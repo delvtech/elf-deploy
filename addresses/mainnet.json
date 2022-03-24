@@ -487,6 +487,7 @@
     }
   },
   "weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
+  "deploymentValidator": "0xc68e2BAb13a7A2344bb81badBeA626012C62C510",
   "wrappedCoveredPrincipalToken": {
     "dai": "0x761298d1F5749e6523279547821A7DfdB5736B5D",
     "usdc": "0x810eeD88CfC3a32CB7A19d597CD6895C90dE0Aae"

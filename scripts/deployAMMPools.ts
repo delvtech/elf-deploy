@@ -18,6 +18,7 @@ import hre from "hardhat";
 // Edit to import the correct version
 import goerliJson from "../addresses/goerli.json";
 import mainnetJson from "../addresses/mainnet.json";
+import { DeploymentValidator, DeploymentValidator__factory } from "typechain";
 
 export async function deployWeightedPool(
   signer: Signer,
@@ -68,6 +69,7 @@ export async function deployConvergentPool(
   tParam: number,
   network: string,
   pauser: string,
+  deploymentValidator: DeploymentValidator,
   options?: {
     swapFee?: string;
   }
@@ -107,6 +109,10 @@ export async function deployConvergentPool(
     poolAddress,
     signer
   );
+
+  // validate pool address
+  console.log("Registering pool address with deployment validator")
+  deploymentValidator.validatePoolAddress(poolAddress);
 
   const vault = await convergentPoolFactory.getVault();
   const feeGov = await convergentPoolFactory.percentFeeGov();
@@ -173,6 +179,11 @@ async function deployWithAddresses(addresses: any, network: string) {
   const weightedPoolFactory = weightedPoolFactoryFactory.attach(
     addresses.weightedPoolFactory
   );
+
+  // Get the deployed address validator
+  const deploymentValidatorAddress = addresses.deploymentValidator;
+  const deploymentValidatorFactory = new DeploymentValidator__factory(signer);
+  const deploymentValidator = deploymentValidatorFactory.attach(deploymentValidatorAddress);
 
   // Load the tranche
   const trancheAddress = readline.question("tranche address: ");
@@ -263,6 +274,7 @@ async function deployWithAddresses(addresses: any, network: string) {
       t,
       network,
       pauser,
+      deploymentValidator,
       {
         swapFee: swapFeeString,
       }

@@ -8,6 +8,7 @@ import { YVaultAssetProxy__factory } from "../../typechain/factories/YVaultAsset
 import { DateString__factory } from "../../typechain/factories/DateString__factory";
 import { UserProxy__factory } from "../../typechain/factories/UserProxy__factory";
 import * as readline from "readline-sync";
+import { DeploymentValidator } from "typechain";
 
 const provider = ethers.providers.getDefaultProvider("goerli");
 
@@ -117,7 +118,8 @@ export async function deployFactories() {
 }
 
 export async function deployWrappedPosition(
-  deploymentData: WrappedPositionData
+  deploymentData: WrappedPositionData,
+  deploymentValidator: DeploymentValidator
 ) {
   const [signer] = await ethers.getSigners();
 
@@ -138,6 +140,11 @@ export async function deployWrappedPosition(
     }
   );
   await wrappedPosition.deployed();
+
+  // validate wp address
+  console.log("Registering wp address with deployment validator")
+  deploymentValidator.validatePoolAddress(wrappedPosition.address);
+
   await hre.run("verify:verify", {
     network: "mainnet",
     address: wrappedPosition.address,
