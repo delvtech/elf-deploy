@@ -181,7 +181,8 @@ export async function setZapSwapCurveApprovals(addresses: any) {
     })
   );
 
-  // List of tokens and spenders to be approved, pending allowance filtration
+  // List of unique tokens and spenders to be approved, pending allowance
+  // filtration
   let tokensAndSpendersUnchecked: { token: string; spender: string }[] = [];
 
   for (let i = 0; i < principalTokenAddresses.length; i++) {
@@ -210,6 +211,7 @@ export async function setZapSwapCurveApprovals(addresses: any) {
     ];
   }
 
+  // Tokens and spenders filtered with an allowance check
   const tokensAndSpendersWithSymbol = (
     await Promise.all(
       tokensAndSpendersUnchecked.map(async ({ token, spender }) => {
