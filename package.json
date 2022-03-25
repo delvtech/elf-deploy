@@ -4,7 +4,6 @@
     "build": "npx hardhat compile && rm ./typechain/index.ts",
     "deployPool": "npx hardhat run scripts/deployAMMPools.ts --no-compile",
     "deployTranche": "npx hardhat run scripts/deployTranche.ts --no-compile",
-    "deployZapSwapCurve": "npx hardhat run scripts/deployZapSwapCurve.ts --no-compile",
     "fundPtPool": "npx hardhat run scripts/fundPTPool.ts --no-compile",
     "fundYtPool": "npx hardhat run scripts/fundYTPool.ts --no-compile",
     "processAddresses": "npx hardhat run scripts/processAddresses.ts",
