@@ -43,13 +43,8 @@ async function main() {
   const [signer] = await ethers.getSigners();
 
   const network = await signer.provider?.getNetwork();
-  console.log(network?.chainId);
   switch (network?.chainId) {
-    case 31337: {
-      const result = await deployZapSwapCurve(mainnet);
-      console.log(result);
-      break;
-    }
+    case 31337:
     case 1: {
       const result = await deployZapSwapCurve(mainnet);
       console.log(
