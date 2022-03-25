@@ -4,13 +4,14 @@ import { ERC20__factory } from "../typechain/factories/ERC20__factory";
 import { Tranche__factory } from "../typechain/factories/Tranche__factory";
 import { ZapSwapCurve__factory } from "../typechain/factories/ZapSwapCurve__factory";
 import * as readline from "readline-sync";
+
 // 1) For each principal token, the balancerVault must be an approved spender
 // 2) For each principal token's base token, the balancerVault must be an
 //    approved spender. This can be checked if already set
 // 3) For each erc20 member of the base token's pool, both the zapSwapCurve
 //    contract and the base token pool contract should be approved spenders
 // 4) If any of the erc20 members of the base token pools contract is also an lp
-//    token of a different curve pool, then we can call that erc20 a meta token.
+//    token of a different curve pool, then we call that erc20 a meta token.
 //    We then repeat step 3 with the meta token in place of the base token
 //
 // Notes:
@@ -18,6 +19,9 @@ import * as readline from "readline-sync";
 //   all these tokens and their structure is a hard problem. Therefore it is
 //   recommended to express the relationships manually for all curve based
 //   tokens
+// - Also the crv3crypto/crvtricrypto have use pool wrappers to use ETH and
+//   WETH. We should approve both the wrapper as we would the normal pool
+//   and the original pool
 
 const DAI = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
 const USDC = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48";
