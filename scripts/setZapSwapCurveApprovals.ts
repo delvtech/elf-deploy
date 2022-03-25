@@ -63,10 +63,6 @@ interface TrancheInfo {
 type TrancheData = Record<string, TrancheInfo[]>;
 
 export async function setZapSwapCurveApprovals(addresses: any) {
-  addresses = {
-    ...addresses,
-    zaps: { zapSwapCurve: "0x3Aa5ebB10DC797CAC828524e59A333d0A371443c" },
-  };
   if (!addresses?.zaps?.zapSwapCurve) {
     console.log("Error: already deployed");
     return;
@@ -246,12 +242,17 @@ export async function setZapSwapCurveApprovals(addresses: any) {
 
   const submitApprovals = readline.question("Submit approvals [Y/N]: ");
 
+  const gas = readline.question("Set gas price: ");
+
   if (submitApprovals === "Y") {
     console.log("Submitting approvals...");
     const tx = await zapSwapCurve.setApprovalsFor(
       tokens,
       spenders,
-      spenders.map(() => ethers.constants.MaxUint256)
+      spenders.map(() => ethers.constants.MaxUint256),
+      {
+        maxFeePerGas: ethers.utils.parseUnits(gas, "gwei"),
+      }
     );
     await tx.wait(1);
     console.log("Approvals submitted...");
@@ -263,6 +264,7 @@ async function main() {
 
   const network = await signer.provider?.getNetwork();
   switch (network?.chainId) {
+    case 31337:
     case 1: {
       await setZapSwapCurveApprovals(mainnet);
       break;

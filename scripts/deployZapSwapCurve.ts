@@ -21,7 +21,7 @@ async function deployZapSwapCurve(addresses: any) {
   const [signer] = await ethers.getSigners();
   const zapSwapCurveFactory = new ZapSwapCurve__factory(signer);
 
-  const gas = readline.question("gas price: ");
+  const gas = readline.question("Set gas price: ");
 
   console.log("Deploying zapSwapCurve contract");
   const zapSwapCurveContract = await zapSwapCurveFactory.deploy(
@@ -43,6 +43,7 @@ async function main() {
   const [signer] = await ethers.getSigners();
 
   const network = await signer.provider?.getNetwork();
+  console.log(network?.chainId);
   switch (network?.chainId) {
     case 31337:
     case 1: {
