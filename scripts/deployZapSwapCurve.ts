@@ -38,7 +38,7 @@ async function deployZapSwapCurve(addresses: any) {
       maxFeePerGas: ethers.utils.parseUnits(gas, "gwei"),
     }
   );
-
+  console.log(zapSwapCurveContract.deployTransaction.hash);
   await zapSwapCurveContract.deployed();
 
   console.log("Deployed zapSwapCurve contract!");

@@ -245,11 +245,10 @@ export async function setZapSwapCurveApprovals(addresses: any) {
   const tokens = tokensAndSpendersWithSymbol.map(({ token }) => token);
   const spenders = tokensAndSpendersWithSymbol.map(({ spender }) => spender);
 
-  const submitApprovals = readline.question("Submit approvals [Y/N]: ");
-
-  const gas = readline.question("Set gas price: ");
+  const submitApprovals = readline.question("Confirm set approvals [Y/N]: ");
 
   if (submitApprovals === "Y") {
+    const gas = readline.question("Set gas price: ");
     console.log("Submitting approvals...");
     const tx = await zapSwapCurve.setApprovalsFor(
       tokens,
