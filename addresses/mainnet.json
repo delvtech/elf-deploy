@@ -559,5 +559,6 @@
         "usdc": "0x57A170cEC0c9Daa701d918d60809080C4Ba3C570"
       }
     }
-  }
+  },
+  "zaps": { "zapSwapCurve": "0xb2d75b4c0c44e4144Fc8A4F41b2893ef684F3032" }
 }
