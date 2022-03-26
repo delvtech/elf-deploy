@@ -1,8 +1,10 @@
-import { ethers } from "hardhat";
 import fs from "fs";
+import { ethers } from "hardhat";
+import * as readline from "readline-sync";
 import mainnet from "../addresses/mainnet.json";
 import { ZapSwapCurve__factory } from "../typechain/factories/ZapSwapCurve__factory";
-import * as readline from "readline-sync";
+import { setBlock } from "./setBlock";
+import { setZapSwapCurveApprovals } from "./setZapSwapCurveApprovals";
 
 async function deployZapSwapCurve(addresses: any) {
   if (
@@ -24,6 +26,12 @@ async function deployZapSwapCurve(addresses: any) {
   const gas = readline.question("Set gas price: ");
 
   console.log("Deploying zapSwapCurve contract");
+
+  const confirm = readline.question("Confirm zapSwapCurve deployment [Y/N]: ");
+
+  if (confirm !== "Y") {
+    return;
+  }
   const zapSwapCurveContract = await zapSwapCurveFactory.deploy(
     addresses.balancerVault,
     {
@@ -34,8 +42,19 @@ async function deployZapSwapCurve(addresses: any) {
   await zapSwapCurveContract.deployed();
 
   console.log("Deployed zapSwapCurve contract!");
+  console.log(`ZapSwapCurve :: ${zapSwapCurveContract.address}`);
+
   if (addresses.zap === undefined) addresses.zaps = {};
   addresses.zaps.zapSwapCurve = zapSwapCurveContract.address;
+
+  const shouldSetApprovals = readline.question(
+    "Should set zapSwapCurve approvals? [Y/N]: "
+  );
+
+  if (shouldSetApprovals === "Y") {
+    await setZapSwapCurveApprovals(addresses);
+  }
+
   return addresses;
 }
 
@@ -45,9 +64,17 @@ async function main() {
   const network = await signer.provider?.getNetwork();
   console.log(network?.chainId);
   switch (network?.chainId) {
-    case 31337:
+    case 31337: {
+      await setBlock(14450000); // Mar-24-2022 04:13:00 PM +UTC
+      await deployZapSwapCurve(mainnet);
+      break;
+    }
     case 1: {
       const result = await deployZapSwapCurve(mainnet);
+      if (!result) {
+        console.log("No change");
+        break;
+      }
       console.log(
         "writing changed address to output file 'addresses/mainnet.json'"
       );

@@ -1,5 +1,4 @@
 import { ethers } from "hardhat";
-import mainnet from "../addresses/mainnet.json";
 import { ERC20__factory } from "../typechain/factories/ERC20__factory";
 import { Tranche__factory } from "../typechain/factories/Tranche__factory";
 import { ZapSwapCurve__factory } from "../typechain/factories/ZapSwapCurve__factory";
@@ -68,7 +67,7 @@ type TrancheData = Record<string, TrancheInfo[]>;
 
 export async function setZapSwapCurveApprovals(addresses: any) {
   if (!addresses?.zaps?.zapSwapCurve) {
-    console.log("Error: already deployed");
+    console.log("Error: zapSwapCurve not deployed");
     return;
   }
   if (addresses.balancerVault == undefined || addresses.balancerVault == "") {
@@ -260,30 +259,8 @@ export async function setZapSwapCurveApprovals(addresses: any) {
         maxFeePerGas: ethers.utils.parseUnits(gas, "gwei"),
       }
     );
+    console.log(tx.hash);
     await tx.wait(1);
     console.log("Approvals submitted...");
   }
 }
-
-async function main() {
-  const [signer] = await ethers.getSigners();
-
-  const network = await signer.provider?.getNetwork();
-  switch (network?.chainId) {
-    case 31337:
-    case 1: {
-      await setZapSwapCurveApprovals(mainnet);
-      break;
-    }
-    default: {
-      console.log("Unsupported network");
-    }
-  }
-}
-
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
