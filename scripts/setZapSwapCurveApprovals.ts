@@ -3,6 +3,7 @@ import { ERC20__factory } from "../typechain/factories/ERC20__factory";
 import { Tranche__factory } from "../typechain/factories/Tranche__factory";
 import { ZapSwapCurve__factory } from "../typechain/factories/ZapSwapCurve__factory";
 import * as readline from "readline-sync";
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
 // 1) For each principal token, the balancerVault must be an approved spender
 // 2) For each principal token's base token, the balancerVault must be an
@@ -65,7 +66,16 @@ interface TrancheInfo {
 }
 type TrancheData = Record<string, TrancheInfo[]>;
 
-export async function setZapSwapCurveApprovals(addresses: any) {
+interface TokenAndSpender {
+  token: string;
+  spender: string;
+}
+type TokenAndSpenderWithSymbol = TokenAndSpender & { symbol: string };
+
+export async function setZapSwapCurveApprovals(
+  addresses: any,
+  signer: SignerWithAddress
+) {
   if (!addresses?.zaps?.zapSwapCurve) {
     console.log("Error: zapSwapCurve not deployed");
     return;
@@ -75,7 +85,7 @@ export async function setZapSwapCurveApprovals(addresses: any) {
     return;
   }
 
-  const [signer] = await ethers.getSigners();
+  console.log(signer.address);
   const zapSwapCurve = ZapSwapCurve__factory.connect(
     addresses.zaps.zapSwapCurve,
     signer
@@ -182,7 +192,7 @@ export async function setZapSwapCurveApprovals(addresses: any) {
 
   // List of unique tokens and spenders to be approved, pending allowance
   // filtration
-  let tokensAndSpendersUnchecked: { token: string; spender: string }[] = [];
+  let tokensAndSpendersUnchecked: TokenAndSpender[] = [];
 
   for (let i = 0; i < principalTokenAddresses.length; i++) {
     const principalAddress = principalTokenAddresses[i];
@@ -228,38 +238,50 @@ export async function setZapSwapCurveApprovals(addresses: any) {
         }
       })
     )
-  ).filter(
-    (x): x is { token: string; spender: string; symbol: string } =>
-      x !== undefined
-  );
+  ).filter((x): x is TokenAndSpenderWithSymbol => x !== undefined);
 
   if (tokensAndSpendersWithSymbol.length === 0) {
     console.log("No allowances to be made!");
     return;
   }
 
-  tokensAndSpendersWithSymbol.forEach(({ token, spender, symbol }) =>
-    console.log(`Approving ${spender} to use token ${token} :: ${symbol}`)
-  );
+  const approvalsToBeMadePerTx = 10;
+  const tokensAndSpendersWithSymbolChunks: TokenAndSpenderWithSymbol[][] = [];
 
-  const tokens = tokensAndSpendersWithSymbol.map(({ token }) => token);
-  const spenders = tokensAndSpendersWithSymbol.map(({ spender }) => spender);
-
-  const submitApprovals = readline.question("Confirm set approvals [Y/N]: ");
-
-  if (submitApprovals === "Y") {
-    const gas = readline.question("Set gas price: ");
-    console.log("Submitting approvals...");
-    const tx = await zapSwapCurve.setApprovalsFor(
-      tokens,
-      spenders,
-      spenders.map(() => ethers.constants.MaxUint256),
-      {
-        maxFeePerGas: ethers.utils.parseUnits(gas, "gwei"),
-      }
+  for (
+    let i = 0;
+    i < tokensAndSpendersWithSymbol.length;
+    i += approvalsToBeMadePerTx
+  ) {
+    tokensAndSpendersWithSymbolChunks.push(
+      tokensAndSpendersWithSymbol.slice(i, i + approvalsToBeMadePerTx)
     );
-    console.log(tx.hash);
-    await tx.wait(1);
-    console.log("Approvals submitted...");
   }
+
+  for (const tokenSpenderChunk of tokensAndSpendersWithSymbolChunks) {
+    tokenSpenderChunk.forEach(({ token, spender, symbol }) =>
+      console.log(`Approving ${spender} to use token ${token} :: ${symbol}`)
+    );
+    const tokens = tokenSpenderChunk.map(({ token }) => token);
+    const spenders = tokenSpenderChunk.map(({ spender }) => spender);
+    const submitApprovals = readline.question("Confirm approvals [Y/N]: ");
+
+    if (submitApprovals === "Y") {
+      const gas = readline.question("Set gas price: ");
+      console.log("Submitting approvals...");
+      const tx = await zapSwapCurve.setApprovalsFor(
+        tokens,
+        spenders,
+        spenders.map(() => ethers.constants.MaxUint256),
+        {
+          maxFeePerGas: ethers.utils.parseUnits(gas, "gwei"),
+        }
+      );
+      console.log(tx.hash);
+      await tx.wait(1);
+      console.log("Approvals submitted...");
+    }
+  }
+
+  console.log("Finished!");
 }
