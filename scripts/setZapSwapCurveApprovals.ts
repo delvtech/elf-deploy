@@ -280,6 +280,8 @@ export async function setZapSwapCurveApprovals(
       console.log(tx.hash);
       await tx.wait(1);
       console.log("Approvals submitted...");
+    } else {
+      break;
     }
   }
 
