@@ -5,7 +5,6 @@ import "@nomiclabs/hardhat-etherscan";
 
 import { HardhatUserConfig } from "hardhat/config";
 
-const ALCHEMY_KEY = process.env.ALCHEMY_KEY || "";
 const DEPLOYER_PRIVATE_KEY =
   process.env.DEPLOYER_PRIVATE_KEY ||
   "0000000000000000000000000000000000000000000000000000000000000000";
@@ -56,28 +55,17 @@ const config: HardhatUserConfig = {
   },
   mocha: { timeout: 0 },
   networks: {
-    hardhat: {
-      forking: {
-        url:
-          "https://eth-mainnet.alchemyapi.io/v2/kwjMP-X-Vajdk1ItCfU-56Uaq1wwhamK",
-        blockNumber: 11853372,
-      },
-      accounts: {
-        accountsBalance: "100000000000000000000000", // 100000 ETH
-        count: 5,
-      },
-    },
     goerli: {
-      url: `https://eth-goerli.alchemyapi.io/v2/${ALCHEMY_KEY}`,
+      url: `https://eth-goerli.alchemyapi.io/v2/${process.env.ALCHEMY_GOERLI_API_KEY}`,
       accounts: [`0x${DEPLOYER_PRIVATE_KEY}`],
     },
     mainnet: {
-      url: `https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_KEY}`,
+      url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_MAINNET_API_KEY}`,
       accounts: [`0x${DEPLOYER_PRIVATE_KEY}`],
     },
   },
   etherscan: {
-    apiKey: "Z73GWKPFXX87ENVY9KK9DK7NJS4ZYA7JM2",
+    apiKey: process.env.ETHERSCAN_API_KEY,
   },
 };
 
