@@ -259,6 +259,19 @@
           "fee": "0.003",
           "poolId": "0x8e9d636bbe6939bd0f52849afc02c0c66f6a3603000200000000000000000104"
         }
+      },
+      {
+        "address": "0x83d392a7be901892a8c861c96ea430b8d9c2bd51",
+        "convergentCurvePoolFactory": "0xE88628700eaE9213169D715148ac5A5F47B5dCd9",
+        "expiration": 1663348630,
+        "trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
+        "ptPool": {
+          "address": "0x489eeDB33F82574AfEABb3F4e156FBf662308AdA",
+          "poolId": "0x489eedb33f82574afeabb3f4e156fbf662308ada0002000000000000000001a3",
+          "fee": "0.1",
+          "timeStretch": 34.67
+        },
+        "weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9"
       }
     ],
     "mim-3lp3crv-f": [
@@ -539,7 +552,8 @@
     "v1_1": {
       "yearn": {
         "stecrv": "0xcD62f09681dCBB9fbc5bA8054B52F414Cb28960A",
-        "dai": "0x3A285cbE492cB172b78E76Cf4f15cb6Fe9f162E4"
+        "dai": "0x3A285cbE492cB172b78E76Cf4f15cb6Fe9f162E4",
+        "lusd3crv-f": "0x55Ae4214ceAA407928d33AEd0A005829d9B68Ad3"
       },
       "yearnv4": {
         "usdc": "0x57A170cEC0c9Daa701d918d60809080C4Ba3C570"
