@@ -6,8 +6,8 @@ import * as readline from "readline-sync";
 
 async function deployZapSwapCurve(addresses: any) {
   if (
-    addresses.zaps?.zapSwapCurve === undefined ||
-    addresses.zaps?.zapSwapCurve === ""
+    addresses.zaps?.zapSwapCurve !== undefined &&
+    addresses.zaps?.zapSwapCurve !== ""
   ) {
     console.log("Error: already deployed");
     return;
@@ -43,8 +43,13 @@ async function main() {
   const [signer] = await ethers.getSigners();
 
   const network = await signer.provider?.getNetwork();
-
+  console.log(network?.chainId);
   switch (network?.chainId) {
+    case 31337: {
+      const result = await deployZapSwapCurve(mainnet);
+      console.log(result);
+      break;
+    }
     case 1: {
       const result = await deployZapSwapCurve(mainnet);
       console.log(

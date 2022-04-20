@@ -55,6 +55,16 @@ const config: HardhatUserConfig = {
   },
   mocha: { timeout: 0 },
   networks: {
+    hardhat: {
+      forking: {
+        url: "https://eth-mainnet.alchemyapi.io/v2/kwjMP-X-Vajdk1ItCfU-56Uaq1wwhamK",
+        blockNumber: 14450000,
+      },
+      accounts: {
+        accountsBalance: "100000000000000000000000", // 100000 ETH
+        count: 5,
+      },
+    },
     goerli: {
       url: `https://eth-goerli.alchemyapi.io/v2/${process.env.ALCHEMY_GOERLI_API_KEY}`,
       accounts: [`0x${DEPLOYER_PRIVATE_KEY}`],
