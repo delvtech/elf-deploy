@@ -12,7 +12,7 @@ async function main() {
   const network = await signer.provider?.getNetwork();
   switch (network?.chainId) {
     case 31337: {
-      await setBlock(14458955); // Mar-26-2022 01:40:40 AM
+      await setBlock(14617007); // Mar-26-2022 01:40:40 AM
       signer = await impersonate(zapSwapCurveOwner);
     }
     case 1: {
