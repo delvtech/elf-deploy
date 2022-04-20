@@ -10,7 +10,7 @@
     "processAddressesGoerli": "npx hardhat run --network goerli scripts/processAddresses.ts",
     "deployWcptFactory": "npx hardhat run scripts/deployWrappedCoverTokenFactory.ts",
     "createWcpt": "npx hardhat run scripts/deployWrappedCoverPrincipalToken.ts",
-    "set-zap-approvals": "npx hardhat run scripts/runSetZapSwapCurveApprovals.ts --no-compile"
+    "setZapApprovals": "npx hardhat run scripts/runSetZapSwapCurveApprovals.ts --no-compile"
   },
   "devDependencies": {
     "@ethersproject/transactions": "^5.5.0",
