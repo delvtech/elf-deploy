@@ -94,6 +94,19 @@
           "fee": "0.003",
           "poolId": "0x4abb6fd289fa70056cfcb58cebab8689921eb9220002000000000000000000b6"
         }
+      },
+      {
+        "address": "0x097F9f108ee0Db2Cb266AA16Ccfb4831Ec4D770b",
+        "convergentCurvePoolFactory": "0xE88628700eaE9213169D715148ac5A5F47B5dCd9",
+        "expiration": 1663354791,
+        "trancheFactory": "0x62F161BF3692E4015BefB05A03a94A40f520d1c0",
+        "weightedPoolFactory": "0x8E9aa87E45e92bad84D5F8DD1bff34Fb92637dE9",
+        "ptPool": {
+          "address": "0xC80Fef22fCcc277aC0fFEA84D111888A767f717e",
+          "poolId": "0xc80fef22fccc277ac0ffea84d111888a767f717e0002000000000000000001b1",
+          "fee": "0.1",
+          "timeStretch": 22.732456
+        }
       }
     ],
     "crvtricrypto": [
@@ -553,7 +566,8 @@
       "yearn": {
         "stecrv": "0xcD62f09681dCBB9fbc5bA8054B52F414Cb28960A",
         "dai": "0x3A285cbE492cB172b78E76Cf4f15cb6Fe9f162E4",
-        "lusd3crv-f": "0x55Ae4214ceAA407928d33AEd0A005829d9B68Ad3"
+        "lusd3crv-f": "0x55Ae4214ceAA407928d33AEd0A005829d9B68Ad3",
+        "crv3crypto": "0xA6b9c8947c4BBc355b01b73b7a90c910a8e7B7C8"
       },
       "yearnv4": {
         "usdc": "0x57A170cEC0c9Daa701d918d60809080C4Ba3C570"
