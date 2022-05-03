@@ -2,6 +2,8 @@ import "@nomiclabs/hardhat-waffle";
 import "hardhat-typechain";
 import "solidity-coverage";
 import "@nomiclabs/hardhat-etherscan";
+import "dotenv/config";
+import "tsconfig-paths/register";
 
 import { HardhatUserConfig } from "hardhat/config";
 
@@ -12,6 +14,7 @@ const MAINNET_DEPLOYER_PRIVATE_KEY =
 const GOERLI_DEPLOYER_PRIVATE_KEY =
   process.env.GOERLI_DEPLOYER_PRIVATE_KEY ||
   "0000000000000000000000000000000000000000000000000000000000000000";
+console.log("GOERLI_DEPLOYER_PRIVATE_KEY", GOERLI_DEPLOYER_PRIVATE_KEY);
 
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
