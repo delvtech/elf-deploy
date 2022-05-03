@@ -2,11 +2,17 @@ import "@nomiclabs/hardhat-waffle";
 import "hardhat-typechain";
 import "solidity-coverage";
 import "@nomiclabs/hardhat-etherscan";
+import "dotenv/config";
+import "tsconfig-paths/register";
 
 import { HardhatUserConfig } from "hardhat/config";
 
-const DEPLOYER_PRIVATE_KEY =
-  process.env.DEPLOYER_PRIVATE_KEY ||
+const MAINNET_DEPLOYER_PRIVATE_KEY =
+  process.env.MAINNET_DEPLOYER_PRIVATE_KEY ||
+  "0000000000000000000000000000000000000000000000000000000000000000";
+
+const GOERLI_DEPLOYER_PRIVATE_KEY =
+  process.env.GOERLI_DEPLOYER_PRIVATE_KEY ||
   "0000000000000000000000000000000000000000000000000000000000000000";
 
 const config: HardhatUserConfig = {
@@ -67,11 +73,11 @@ const config: HardhatUserConfig = {
     },
     goerli: {
       url: `https://eth-goerli.alchemyapi.io/v2/${process.env.ALCHEMY_GOERLI_API_KEY}`,
-      accounts: [`0x${DEPLOYER_PRIVATE_KEY}`],
+      accounts: [`0x${GOERLI_DEPLOYER_PRIVATE_KEY}`],
     },
     mainnet: {
       url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_MAINNET_API_KEY}`,
-      accounts: [`0x${DEPLOYER_PRIVATE_KEY}`],
+      accounts: [`0x${MAINNET_DEPLOYER_PRIVATE_KEY}`],
     },
   },
   etherscan: {

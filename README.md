@@ -21,11 +21,15 @@ npm run build
 
 The following actions which will be repeated regularly have custom npm scripts. To prepare to deploy you need to load your private key and alchemy api key into env variables, the linux and mac run the following:
 
-
 ```bash
-export ALCHEMY_KEY=\YOUR_API_KEY_HERE
-export DEPLOYER_PRIVATE_KEY=\YOUR_PRIVATE_KEY_HERE
+export MAINNET_ALCHEMY_KEY=\YOUR_API_KEY_HERE
+export MAINNET_DEPLOYER_PRIVATE_KEY=\YOUR_PRIVATE_KEY_HERE
+# or for goerli:
+export GOERLI_ALCHEMY_KEY=\YOUR_API_KEY_HERE
+export GOERLI_DEPLOYER_PRIVATE_KEY=\YOUR_PRIVATE_KEY_HERE
 ```
+
+Alternatively, you can set the above variables in your .env
 
 To deploy a new tranche run:
 
@@ -58,9 +62,9 @@ When prompted for the version, enter something like:
 Release Version (e.g. vX.X.X:X): v1.0.0-a.1:2
 ```
 
-The format for the release version is: vMAJOR.MINOR.PATCH:TERMNUM.  Where:
+The format for the release version is: vMAJOR.MINOR.PATCH:TERMNUM. Where:
 
 - `vMAJOR.MINOR.PATCH` is the corresponding tagged release in the smart contract repo
-- `TERMNUM` is incremented by 1 each time a new term is released under a tagged release in the smart contract repo. 
+- `TERMNUM` is incremented by 1 each time a new term is released under a tagged release in the smart contract repo.
 
 To run any of these commands on the goerli testnet replace `--network mainnet` with `--network goerli`
