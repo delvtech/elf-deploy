@@ -22,7 +22,7 @@ export interface WrappedPositionData {
   symbol: string; // name
   underlying: string; // underlying token address
   vault: string; // yearn vault address
-  version: string; 
+  version: string;
 }
 
 export interface TrancheData {
@@ -147,7 +147,7 @@ export async function deployWrappedPosition(
       deploymentData.name,
       deploymentData.symbol,
       governance,
-      pauser
+      pauser,
     ],
   });
   console.log("Wrapped Position", wrappedPosition.address);
