@@ -1,5 +1,6 @@
 import "@nomiclabs/hardhat-waffle";
 import "hardhat-typechain";
+import "@typechain/ethers-v5";
 import "solidity-coverage";
 import "@nomiclabs/hardhat-etherscan";
 import "dotenv/config";
