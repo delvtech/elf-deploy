@@ -30,6 +30,23 @@
           "fee": "0.003",
           "poolId": "0x4c3f56cc1ad2bc61293739c7f0550575c9daf313000200000000000000000078"
         }
+      },
+      {
+        "expiration": 1667464797,
+        "address": "0x14f440d0f29e7902Bd1B2fCb317552EDC8837882",
+        "ptPool": {
+          "address": "0x6da82078Fb3dd48dB35cD46c4f2a7Daf7fD2964d",
+          "poolId": "0x6da82078fb3dd48db35cd46c4f2a7daf7fd2964d0002000000000000000000b5",
+          "fee": "0.1",
+          "timeStretch": 88.75
+        },
+        "trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
+        "weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
+        "convergentCurvePoolFactory": {
+          "latestVersion": "v1_1",
+          "v1": "0x0766B218517d9dC198155f0dC3485270cF788aF7",
+          "v1_1": "0x662a5e11D5769A02E1b444F1952AC575fB8cBB87"
+        }
       }
     ],
     "usdc": [

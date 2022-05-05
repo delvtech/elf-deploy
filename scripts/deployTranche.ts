@@ -68,6 +68,10 @@ async function deployWithAddresses(addresses: any) {
       console.log("Unsupported network");
     }
   }
+
+  console.log("\nwaiting to verify tranche");
+  await sleep(60000);
+
   // Verify the tranche
   await hre.run("verify:verify", {
     network: networkName,
@@ -80,8 +84,14 @@ async function deployWithAddresses(addresses: any) {
   const tranche = trancheFactory.attach(data[0].trancheAddresses[0]);
   const yt = await tranche.interestToken();
   const wpFactory = new WeightedPool__factory(signer);
-  const wp = wpFactory.attach(addresses.wrappedPositions[wpType][assetSymbol]);
+  const wp = wpFactory.attach(
+    addresses.wrappedPositions[version][wpType][assetSymbol]
+  );
   const wpSymbol = await wp.symbol();
+
+  console.log("\nwaiting to verify interest token");
+  await sleep(60000);
+
   // Verify the interest token
   await hre.run("verify:verify", {
     network: networkName,
@@ -137,3 +147,6 @@ main()
     console.error(error);
     process.exit(1);
   });
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
