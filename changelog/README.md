@@ -44,3 +44,4 @@
  - [v1.1.0:5](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/mainnet/v1.1.0:5/addresses.json)
  - [v1.1.0:6](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/mainnet/v1.1.0:6/addresses.json)
  - [v1.1.0:7](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/mainnet/v1.1.0:7/addresses.json)
+ - [v1.1.0:8](https://raw.githubusercontent.com/element-fi/elf-deploy/main/changelog/releases/mainnet/v1.1.0:8/addresses.json)
