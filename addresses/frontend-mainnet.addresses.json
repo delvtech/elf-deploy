@@ -20,7 +20,7 @@
         "lusd3crv-fAddress": "0xEd279fDD11cA84bEef15AF5D39BB4d4bEE23F0cA",
         "alusd3crv-fAddress": "0x43b4FdFD4Ff969587185cDB6f0BD875c5Fc83f8c",
         "mim-3lp3crv-fAddress": "0x5a6A4D54456819380173272A5E8E9B9904BdF41B",
-        "bb-a-usdAddress": "https://etherscan.io/address/0xa13a9247ea42d743238089903570127dda72fe44"
+        "bb-a-usdAddress": "0xA13a9247ea42D743238089903570127DdA72fE44"
     },
     "chainId": 1,
     "safelist": [
