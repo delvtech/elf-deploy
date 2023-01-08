@@ -92,10 +92,6 @@ async function main() {
       addressesFile.tokens,
       "mim-3lp3crv-f"
     ),
-    "bb-a-usdAddress": getBaseAssetAddress(
-      addressesFile.tokens,
-      "bb-a-usd"
-    )
   };
 
   // frontend json structure

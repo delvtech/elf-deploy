@@ -165,19 +165,6 @@
         },
         "weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
         "convergentCurvePoolFactory": "0x662a5e11D5769A02E1b444F1952AC575fB8cBB87"
-      },
-      {
-        "expiration": 1700258052,
-        "address": "0xafde1563E64d2A2669CAC60Cb96D5f9F0213F50f",
-        "ptPool": {
-          "address": "0x2F9f302adB1a965f0B3CAbe29E970c727e3e1Dc0",
-          "poolId": "0x2f9f302adb1a965f0b3cabe29e970c727e3e1dc00002000000000000000000b8",
-          "fee": "0.1",
-          "timeStretch": 27.733596271064897
-        },
-        "trancheFactory": "0x5690332C2f0c12F00c147cE350d95B19a0C24f14",
-        "weightedPoolFactory": "0x7576dB443020ec4F46526c317262347Acdf1B99d",
-        "convergentCurvePoolFactory": "0x662a5e11D5769A02E1b444F1952AC575fB8cBB87"
       }
     ],
     "weth": [
@@ -242,7 +229,8 @@
     },
     "v1_1": {
       "yearn": {
-        "usdc": "0xb47E7a1fD90630CfC0868d90Cb8F518578010cFe"
+        "usdc": "0xb47E7a1fD90630CfC0868d90Cb8F518578010cFe",
+        "dai": "0x6492DFDb0DD970b8B46d5d39dcC02147a2d8DE2F"
       }
     }
   }
