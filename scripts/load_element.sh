@@ -8,7 +8,7 @@ echo "Downloading contracts..."
 if [ ! -z "$1" ] && [ $1="local" ]; then
     ln -sf ../../elf-contracts .
 else
-    git clone https://github.com/element-fi/elf-contracts.git
+    git clone https://github.com/delv-tech/elf-contracts.git
 fi
 
 # blow away old-contracts
